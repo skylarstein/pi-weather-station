@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/iMears/weather-station/issues"
   },
-  "homepage": "https://github.com/iMears/weather-station#readme"
+  "homepage": "https://github.com/iMears/weather-station#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "onoff": "^1.0.4"
+  }
 }
