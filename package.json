@@ -18,6 +18,7 @@
   "homepage": "https://github.com/iMears/weather-station#readme",
   "dependencies": {
     "express": "^4.13.4",
+    "i2c": "^0.2.1",
     "onoff": "^1.0.4"
   }
 }
