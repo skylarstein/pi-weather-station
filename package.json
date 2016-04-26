@@ -4,6 +4,7 @@
   "description": "Raspberry Pi temperature and humidity sensor project",
   "main": "index.js",
   "scripts": {
+    "install": "node install_dependencies.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,8 +18,6 @@
   },
   "homepage": "https://github.com/iMears/weather-station#readme",
   "dependencies": {
-    "express": "^4.13.4",
-    "i2c": "^0.2.1",
-    "onoff": "^1.0.4"
+    "express": "^4.13.4"
   }
 }
