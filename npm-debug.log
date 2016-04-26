@@ -1,0 +1,639 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/Max/.nvm/versions/node/v4.0.0/bin/node',
+1 verbose cli   '/Users/Max/.nvm/versions/node/v4.0.0/bin/npm',
+1 verbose cli   'install' ]
+2 info using npm@2.14.2
+3 info using node@v4.0.0
+4 verbose readDependencies loading dependencies from /Users/Max/Sites/weather-station/package.json
+5 warn package.json weather-station@1.0.0 No README data
+6 verbose install where, deps [ '/Users/Max/Sites/weather-station',
+6 verbose install   [ 'express', 'i2c', 'onoff' ] ]
+7 verbose install where, peers [ '/Users/Max/Sites/weather-station', [] ]
+8 verbose installManyTop reading for lifecycle /Users/Max/Sites/weather-station/package.json
+9 info preinstall weather-station@1.0.0
+10 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/accepts/package.json
+11 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/array-flatten/package.json
+12 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/bindings/package.json
+13 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/content-disposition/package.json
+14 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/content-type/package.json
+15 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/cookie/package.json
+16 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/cookie-signature/package.json
+17 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/debug/package.json
+18 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/depd/package.json
+19 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/destroy/package.json
+20 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/ee-first/package.json
+21 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/epoll/package.json
+22 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/escape-html/package.json
+23 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/etag/package.json
+24 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/express/package.json
+25 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/finalhandler/package.json
+26 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/forwarded/package.json
+27 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/fresh/package.json
+28 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/http-errors/package.json
+29 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/inherits/package.json
+30 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/ipaddr.js/package.json
+31 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/media-typer/package.json
+32 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/merge-descriptors/package.json
+33 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/methods/package.json
+34 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/mime/package.json
+35 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/mime-db/package.json
+36 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/mime-types/package.json
+37 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/ms/package.json
+38 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/nan/package.json
+39 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/negotiator/package.json
+40 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/on-finished/package.json
+41 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/onoff/package.json
+42 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/parseurl/package.json
+43 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/path-to-regexp/package.json
+44 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/proxy-addr/package.json
+45 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/qs/package.json
+46 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/range-parser/package.json
+47 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/send/package.json
+48 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/serve-static/package.json
+49 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/statuses/package.json
+50 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/type-is/package.json
+51 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/unpipe/package.json
+52 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/utils-merge/package.json
+53 verbose installManyTop reading scoped package data from /Users/Max/Sites/weather-station/node_modules/vary/package.json
+54 info package.json mime@1.3.4 No license field.
+55 info package.json ms@0.7.1 No license field.
+56 info package.json utils-merge@1.0.0 No license field.
+57 verbose readDependencies loading dependencies from /Users/Max/Sites/weather-station/package.json
+58 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/accepts/package.json
+59 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/array-flatten/package.json
+60 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/bindings/package.json
+61 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/content-disposition/package.json
+62 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/content-type/package.json
+63 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/cookie/package.json
+64 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/cookie-signature/package.json
+65 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/debug/package.json
+66 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/depd/package.json
+67 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/destroy/package.json
+68 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/ee-first/package.json
+69 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/epoll/package.json
+70 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/escape-html/package.json
+71 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/etag/package.json
+72 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/express/package.json
+73 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/finalhandler/package.json
+74 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/forwarded/package.json
+75 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/fresh/package.json
+76 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/http-errors/package.json
+77 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/inherits/package.json
+78 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/ipaddr.js/package.json
+79 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/media-typer/package.json
+80 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/merge-descriptors/package.json
+81 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/methods/package.json
+82 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/mime/package.json
+83 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/mime-db/package.json
+84 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/mime-types/package.json
+85 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/ms/package.json
+86 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/nan/package.json
+87 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/negotiator/package.json
+88 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/on-finished/package.json
+89 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/onoff/package.json
+90 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/parseurl/package.json
+91 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/path-to-regexp/package.json
+92 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/proxy-addr/package.json
+93 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/qs/package.json
+94 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/range-parser/package.json
+95 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/send/package.json
+96 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/serve-static/package.json
+97 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/statuses/package.json
+98 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/type-is/package.json
+99 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/unpipe/package.json
+100 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/utils-merge/package.json
+101 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/vary/package.json
+102 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/.bin/cake/package.json
+103 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/.bin/coffee/package.json
+104 verbose targetResolver reading package data from /Users/Max/Sites/weather-station/node_modules/.bin/mime/package.json
+105 silly cache add args [ 'i2c@^0.2.1', null ]
+106 verbose cache add spec i2c@^0.2.1
+107 silly cache add parsed spec Result {
+107 silly cache add   raw: 'i2c@^0.2.1',
+107 silly cache add   scope: null,
+107 silly cache add   name: 'i2c',
+107 silly cache add   rawSpec: '^0.2.1',
+107 silly cache add   spec: '>=0.2.1 <0.3.0',
+107 silly cache add   type: 'range' }
+108 silly addNamed i2c@>=0.2.1 <0.3.0
+109 verbose addNamed ">=0.2.1 <0.3.0" is a valid semver range for i2c
+110 silly addNameRange { name: 'i2c', range: '>=0.2.1 <0.3.0', hasData: false }
+111 silly mapToRegistry name i2c
+112 silly mapToRegistry using default registry
+113 silly mapToRegistry registry https://registry.npmjs.org/
+114 silly mapToRegistry uri https://registry.npmjs.org/i2c
+115 verbose addNameRange registry:https://registry.npmjs.org/i2c not in flight; fetching
+116 verbose already installed skipping onoff@^1.0.4 /Users/Max/Sites/weather-station
+117 verbose already installed skipping express@^4.13.4 /Users/Max/Sites/weather-station
+118 verbose request uri https://registry.npmjs.org/i2c
+119 verbose request no auth needed
+120 info attempt registry request try #1 at 11:59:07 PM
+121 verbose request id 271368246c19d85d
+122 verbose etag "2US7AV2E523LRIDUMG1NU426P"
+123 http request GET https://registry.npmjs.org/i2c
+124 http 304 https://registry.npmjs.org/i2c
+125 silly get cb [ 304,
+125 silly get   { date: 'Sun, 24 Apr 2016 06:59:08 GMT',
+125 silly get     via: '1.1 varnish',
+125 silly get     'cache-control': 'max-age=300',
+125 silly get     etag: '"2US7AV2E523LRIDUMG1NU426P"',
+125 silly get     age: '49',
+125 silly get     connection: 'keep-alive',
+125 silly get     'x-served-by': 'cache-sjc3129-SJC',
+125 silly get     'x-cache': 'HIT',
+125 silly get     'x-cache-hits': '1',
+125 silly get     'x-timer': 'S1461481148.194966,VS0,VE0',
+125 silly get     vary: 'Accept-Encoding' } ]
+126 verbose etag https://registry.npmjs.org/i2c from cache
+127 verbose get saving i2c to /Users/Max/.npm/registry.npmjs.org/i2c/.cache.json
+128 silly addNameRange number 2 { name: 'i2c', range: '>=0.2.1 <0.3.0', hasData: true }
+129 silly addNameRange versions [ 'i2c',
+129 silly addNameRange   [ '0.0.1',
+129 silly addNameRange     '0.0.2',
+129 silly addNameRange     '0.0.3',
+129 silly addNameRange     '0.0.4',
+129 silly addNameRange     '0.0.5',
+129 silly addNameRange     '0.1.0',
+129 silly addNameRange     '0.1.1',
+129 silly addNameRange     '0.1.2',
+129 silly addNameRange     '0.1.3',
+129 silly addNameRange     '0.1.4',
+129 silly addNameRange     '0.1.5',
+129 silly addNameRange     '0.1.6',
+129 silly addNameRange     '0.1.7',
+129 silly addNameRange     '0.1.8',
+129 silly addNameRange     '0.2.0',
+129 silly addNameRange     '0.2.1' ] ]
+130 silly addNamed i2c@0.2.1
+131 verbose addNamed "0.2.1" is a plain semver version for i2c
+132 silly cache afterAdd i2c@0.2.1
+133 verbose afterAdd /Users/Max/.npm/i2c/0.2.1/package/package.json not in flight; writing
+134 verbose afterAdd /Users/Max/.npm/i2c/0.2.1/package/package.json written
+135 silly install resolved [ { name: 'i2c',
+135 silly install resolved     version: '0.2.1',
+135 silly install resolved     description: 'Native bindings for i2c-dev. Plays well with Raspberry Pi and BeagleBone.',
+135 silly install resolved     main: 'main.js',
+135 silly install resolved     author: { name: 'Kelly Korevec' },
+135 silly install resolved     repository:
+135 silly install resolved      { type: 'git',
+135 silly install resolved        url: 'git+ssh://git@github.com/korevec/node-i2c.git' },
+135 silly install resolved     license: 'BSD',
+135 silly install resolved     dependencies:
+135 silly install resolved      { bindings: '1.2.1',
+135 silly install resolved        underscore: '1.8.2',
+135 silly install resolved        'coffee-script': '1.9.1',
+135 silly install resolved        repl: '0.1.3' },
+135 silly install resolved     engine: 'node >= 0.12.0',
+135 silly install resolved     scripts: { install: 'node-gyp rebuild' },
+135 silly install resolved     gypfile: true,
+135 silly install resolved     bugs: { url: 'https://github.com/korevec/node-i2c/issues' },
+135 silly install resolved     homepage: 'https://github.com/korevec/node-i2c',
+135 silly install resolved     _id: 'i2c@0.2.1',
+135 silly install resolved     dist:
+135 silly install resolved      { shasum: 'e5687031c60acf09aa7ea9d35221a9e9161e0abc',
+135 silly install resolved        tarball: 'https://registry.npmjs.org/i2c/-/i2c-0.2.1.tgz' },
+135 silly install resolved     _from: 'i2c@>=0.2.1 <0.3.0',
+135 silly install resolved     _npmVersion: '1.3.14',
+135 silly install resolved     _npmUser: { name: 'kelly', email: 'korevec@gmail.com' },
+135 silly install resolved     maintainers: [ [Object] ],
+135 silly install resolved     directories: {},
+135 silly install resolved     _shasum: 'e5687031c60acf09aa7ea9d35221a9e9161e0abc',
+135 silly install resolved     _resolved: 'https://registry.npmjs.org/i2c/-/i2c-0.2.1.tgz',
+135 silly install resolved     readme: 'ERROR: No README data found!' } ]
+136 info install i2c@0.2.1 into /Users/Max/Sites/weather-station
+137 info installOne i2c@0.2.1
+138 verbose installOne of i2c to /Users/Max/Sites/weather-station not in flight; installing
+139 verbose lock using /Users/Max/.npm/_locks/i2c-474b81548709e44c.lock for /Users/Max/Sites/weather-station/node_modules/i2c
+140 silly install write writing i2c 0.2.1 to /Users/Max/Sites/weather-station/node_modules/i2c
+141 verbose unbuild node_modules/i2c
+142 silly gentlyRm /Users/Max/Sites/weather-station/node_modules/i2c is being purged from base /Users/Max/Sites/weather-station
+143 verbose gentlyRm don't care about contents; nuking /Users/Max/Sites/weather-station/node_modules/i2c
+144 verbose tar unpack /Users/Max/.npm/i2c/0.2.1/package.tgz
+145 verbose tar unpacking to /Users/Max/Sites/weather-station/node_modules/i2c
+146 silly gentlyRm /Users/Max/Sites/weather-station/node_modules/i2c is being purged
+147 verbose gentlyRm don't care about contents; nuking /Users/Max/Sites/weather-station/node_modules/i2c
+148 silly gunzTarPerm modes [ '755', '644' ]
+149 silly gunzTarPerm extractEntry package.json
+150 silly gunzTarPerm extractEntry .npmignore
+151 silly gunzTarPerm extractEntry README.md
+152 silly gunzTarPerm extractEntry LICENSE
+153 silly gunzTarPerm extractEntry main.js
+154 silly gunzTarPerm extractEntry binding.gyp
+155 silly gunzTarPerm extractEntry examples/accelerometer/accel.coffee
+156 silly gunzTarPerm extractEntry examples/blinkm/blinkm.coffee
+157 silly gunzTarPerm extractEntry lib/i2c.coffee
+158 silly gunzTarPerm extractEntry src/i2c-dev.c
+159 silly gunzTarPerm extractEntry src/i2c-dev.h
+160 silly gunzTarPerm extractEntry src/i2c.cc
+161 verbose write writing to /Users/Max/Sites/weather-station/node_modules/i2c/package.json
+162 info preinstall i2c@0.2.1
+163 verbose readDependencies loading dependencies from /Users/Max/Sites/weather-station/node_modules/i2c/package.json
+164 silly prepareForInstallMany adding underscore@1.8.2 from i2c dependencies
+165 silly prepareForInstallMany adding coffee-script@1.9.1 from i2c dependencies
+166 silly prepareForInstallMany adding repl@0.1.3 from i2c dependencies
+167 verbose readDependencies loading dependencies from /Users/Max/Sites/weather-station/node_modules/i2c/package.json
+168 silly cache add args [ 'underscore@1.8.2', null ]
+169 verbose cache add spec underscore@1.8.2
+170 silly cache add args [ 'coffee-script@1.9.1', null ]
+171 verbose cache add spec coffee-script@1.9.1
+172 silly cache add parsed spec Result {
+172 silly cache add   raw: 'underscore@1.8.2',
+172 silly cache add   scope: null,
+172 silly cache add   name: 'underscore',
+172 silly cache add   rawSpec: '1.8.2',
+172 silly cache add   spec: '1.8.2',
+172 silly cache add   type: 'version' }
+173 silly addNamed underscore@1.8.2
+174 verbose addNamed "1.8.2" is a plain semver version for underscore
+175 silly mapToRegistry name underscore
+176 silly mapToRegistry using default registry
+177 silly mapToRegistry registry https://registry.npmjs.org/
+178 silly mapToRegistry uri https://registry.npmjs.org/underscore
+179 verbose addNameVersion registry:https://registry.npmjs.org/underscore not in flight; fetching
+180 silly cache add parsed spec Result {
+180 silly cache add   raw: 'coffee-script@1.9.1',
+180 silly cache add   scope: null,
+180 silly cache add   name: 'coffee-script',
+180 silly cache add   rawSpec: '1.9.1',
+180 silly cache add   spec: '1.9.1',
+180 silly cache add   type: 'version' }
+181 silly addNamed coffee-script@1.9.1
+182 verbose addNamed "1.9.1" is a plain semver version for coffee-script
+183 silly mapToRegistry name coffee-script
+184 silly mapToRegistry using default registry
+185 silly mapToRegistry registry https://registry.npmjs.org/
+186 silly mapToRegistry uri https://registry.npmjs.org/coffee-script
+187 verbose addNameVersion registry:https://registry.npmjs.org/coffee-script not in flight; fetching
+188 silly cache add args [ 'repl@0.1.3', null ]
+189 verbose cache add spec repl@0.1.3
+190 silly cache add parsed spec Result {
+190 silly cache add   raw: 'repl@0.1.3',
+190 silly cache add   scope: null,
+190 silly cache add   name: 'repl',
+190 silly cache add   rawSpec: '0.1.3',
+190 silly cache add   spec: '0.1.3',
+190 silly cache add   type: 'version' }
+191 silly addNamed repl@0.1.3
+192 verbose addNamed "0.1.3" is a plain semver version for repl
+193 silly mapToRegistry name repl
+194 silly mapToRegistry using default registry
+195 silly mapToRegistry registry https://registry.npmjs.org/
+196 silly mapToRegistry uri https://registry.npmjs.org/repl
+197 verbose addNameVersion registry:https://registry.npmjs.org/repl not in flight; fetching
+198 verbose request uri https://registry.npmjs.org/underscore
+199 verbose request no auth needed
+200 info attempt registry request try #1 at 11:59:08 PM
+201 verbose etag "5U2C90741S0OGYJZDF5NSSBSD"
+202 http request GET https://registry.npmjs.org/underscore
+203 verbose request uri https://registry.npmjs.org/repl
+204 verbose request no auth needed
+205 info attempt registry request try #1 at 11:59:08 PM
+206 verbose etag "B2YIZ9SHIPM70CR4ZZI8WJ13O"
+207 http request GET https://registry.npmjs.org/repl
+208 verbose request uri https://registry.npmjs.org/coffee-script
+209 verbose request no auth needed
+210 info attempt registry request try #1 at 11:59:08 PM
+211 verbose etag "8TCAF9MCAIKNBJ4QK3J2KMSXT"
+212 http request GET https://registry.npmjs.org/coffee-script
+213 http 304 https://registry.npmjs.org/underscore
+214 silly get cb [ 304,
+214 silly get   { date: 'Sun, 24 Apr 2016 06:59:08 GMT',
+214 silly get     via: '1.1 varnish',
+214 silly get     'cache-control': 'max-age=300',
+214 silly get     etag: '"5U2C90741S0OGYJZDF5NSSBSD"',
+214 silly get     age: '196',
+214 silly get     connection: 'keep-alive',
+214 silly get     'x-served-by': 'cache-sjc3120-SJC',
+214 silly get     'x-cache': 'HIT',
+214 silly get     'x-cache-hits': '4',
+214 silly get     'x-timer': 'S1461481148.347482,VS0,VE0',
+214 silly get     vary: 'Accept-Encoding' } ]
+215 verbose etag https://registry.npmjs.org/underscore from cache
+216 verbose get saving underscore to /Users/Max/.npm/registry.npmjs.org/underscore/.cache.json
+217 silly cache afterAdd underscore@1.8.2
+218 verbose afterAdd /Users/Max/.npm/underscore/1.8.2/package/package.json not in flight; writing
+219 verbose afterAdd /Users/Max/.npm/underscore/1.8.2/package/package.json written
+220 http 304 https://registry.npmjs.org/repl
+221 silly get cb [ 304,
+221 silly get   { date: 'Sun, 24 Apr 2016 06:59:08 GMT',
+221 silly get     via: '1.1 varnish',
+221 silly get     'cache-control': 'max-age=300',
+221 silly get     etag: '"B2YIZ9SHIPM70CR4ZZI8WJ13O"',
+221 silly get     age: '49',
+221 silly get     connection: 'keep-alive',
+221 silly get     'x-served-by': 'cache-sjc3123-SJC',
+221 silly get     'x-cache': 'HIT',
+221 silly get     'x-cache-hits': '1',
+221 silly get     'x-timer': 'S1461481148.362825,VS0,VE0',
+221 silly get     vary: 'Accept-Encoding' } ]
+222 verbose etag https://registry.npmjs.org/repl from cache
+223 verbose get saving repl to /Users/Max/.npm/registry.npmjs.org/repl/.cache.json
+224 silly cache afterAdd repl@0.1.3
+225 verbose afterAdd /Users/Max/.npm/repl/0.1.3/package/package.json not in flight; writing
+226 verbose afterAdd /Users/Max/.npm/repl/0.1.3/package/package.json written
+227 http 304 https://registry.npmjs.org/coffee-script
+228 silly get cb [ 304,
+228 silly get   { date: 'Sun, 24 Apr 2016 06:59:08 GMT',
+228 silly get     via: '1.1 varnish',
+228 silly get     'cache-control': 'max-age=300',
+228 silly get     etag: '"8TCAF9MCAIKNBJ4QK3J2KMSXT"',
+228 silly get     age: '49',
+228 silly get     connection: 'keep-alive',
+228 silly get     'x-served-by': 'cache-sjc3132-SJC',
+228 silly get     'x-cache': 'HIT',
+228 silly get     'x-cache-hits': '1',
+228 silly get     'x-timer': 'S1461481148.366377,VS0,VE0',
+228 silly get     vary: 'Accept-Encoding' } ]
+229 verbose etag https://registry.npmjs.org/coffee-script from cache
+230 verbose get saving coffee-script to /Users/Max/.npm/registry.npmjs.org/coffee-script/.cache.json
+231 silly cache afterAdd coffee-script@1.9.1
+232 verbose afterAdd /Users/Max/.npm/coffee-script/1.9.1/package/package.json not in flight; writing
+233 verbose afterAdd /Users/Max/.npm/coffee-script/1.9.1/package/package.json written
+234 silly install resolved [ { name: 'underscore',
+234 silly install resolved     description: 'JavaScript\'s functional programming helper library.',
+234 silly install resolved     homepage: 'http://underscorejs.org',
+234 silly install resolved     keywords: [ 'util', 'functional', 'server', 'client', 'browser' ],
+234 silly install resolved     author: { name: 'Jeremy Ashkenas', email: 'jeremy@documentcloud.org' },
+234 silly install resolved     repository:
+234 silly install resolved      { type: 'git',
+234 silly install resolved        url: 'git://github.com/jashkenas/underscore.git' },
+234 silly install resolved     main: 'underscore.js',
+234 silly install resolved     version: '1.8.2',
+234 silly install resolved     devDependencies:
+234 silly install resolved      { docco: '*',
+234 silly install resolved        eslint: '0.6.x',
+234 silly install resolved        karma: '~0.12.31',
+234 silly install resolved        'karma-qunit': '~0.1.4',
+234 silly install resolved        'qunit-cli': '~0.2.0',
+234 silly install resolved        'uglify-js': '2.4.x' },
+234 silly install resolved     scripts:
+234 silly install resolved      { test: 'npm run test-node && npm run lint',
+234 silly install resolved        lint: 'eslint underscore.js test/*.js',
+234 silly install resolved        'test-node': 'qunit-cli test/*.js',
+234 silly install resolved        'test-browser': 'npm i karma-phantomjs-launcher && ./node_modules/karma/bin/karma start',
+234 silly install resolved        build: 'uglifyjs underscore.js -c "evaluate=false" --comments "/    .*/" -m --source-map underscore-min.map -o underscore-min.js',
+234 silly install resolved        doc: 'docco underscore.js' },
+234 silly install resolved     license: 'MIT',
+234 silly install resolved     files:
+234 silly install resolved      [ 'underscore.js',
+234 silly install resolved        'underscore-min.js',
+234 silly install resolved        'underscore-min.map',
+234 silly install resolved        'LICENSE' ],
+234 silly install resolved     gitHead: '19db749b190a7cb5a8b7ab1aab42c0e9dc517250',
+234 silly install resolved     bugs: { url: 'https://github.com/jashkenas/underscore/issues' },
+234 silly install resolved     _id: 'underscore@1.8.2',
+234 silly install resolved     _shasum: '64df2eb590899de950782f3735190ba42ebf311d',
+234 silly install resolved     _from: 'underscore@1.8.2',
+234 silly install resolved     _npmVersion: '1.4.28',
+234 silly install resolved     _npmUser: { name: 'jashkenas', email: 'jashkenas@gmail.com' },
+234 silly install resolved     maintainers: [ [Object] ],
+234 silly install resolved     dist:
+234 silly install resolved      { shasum: '64df2eb590899de950782f3735190ba42ebf311d',
+234 silly install resolved        tarball: 'https://registry.npmjs.org/underscore/-/underscore-1.8.2.tgz' },
+234 silly install resolved     directories: {},
+234 silly install resolved     _resolved: 'https://registry.npmjs.org/underscore/-/underscore-1.8.2.tgz',
+234 silly install resolved     readme: 'ERROR: No README data found!' },
+234 silly install resolved   { name: 'repl',
+234 silly install resolved     author: { name: 'Firejune', url: 'http://firejune.com/' },
+234 silly install resolved     version: '0.1.3',
+234 silly install resolved     description: 'A simple fast template libray.',
+234 silly install resolved     homepage: 'http://github.com/firejune/repl',
+234 silly install resolved     keywords: [ 'template', 'engine', 'repl' ],
+234 silly install resolved     main: 'lib/template',
+234 silly install resolved     directories: { lib: 'lib' },
+234 silly install resolved     repository: { type: 'git', url: 'git://github.com/firejune/repl.git' },
+234 silly install resolved     licenses: [ [Object] ],
+234 silly install resolved     bugs: { url: 'http://github.com/firejune/repl/issues' },
+234 silly install resolved     engines: { node: '>= 0.4.0' },
+234 silly install resolved     _npmUser: { name: 'firejune', email: 'to@firejune.com' },
+234 silly install resolved     _id: 'repl@0.1.3',
+234 silly install resolved     dependencies: {},
+234 silly install resolved     devDependencies: {},
+234 silly install resolved     _engineSupported: true,
+234 silly install resolved     _npmVersion: '1.0.94',
+234 silly install resolved     _nodeVersion: 'v0.4.12',
+234 silly install resolved     _defaultsLoaded: true,
+234 silly install resolved     dist:
+234 silly install resolved      { shasum: '2f05d42b0c88b43d05ccbda10ed14aeff5699b60',
+234 silly install resolved        tarball: 'https://registry.npmjs.org/repl/-/repl-0.1.3.tgz' },
+234 silly install resolved     maintainers: [ [Object] ],
+234 silly install resolved     _shasum: '2f05d42b0c88b43d05ccbda10ed14aeff5699b60',
+234 silly install resolved     _resolved: 'https://registry.npmjs.org/repl/-/repl-0.1.3.tgz',
+234 silly install resolved     _from: 'repl@0.1.3',
+234 silly install resolved     readme: 'ERROR: No README data found!' },
+234 silly install resolved   { name: 'coffee-script',
+234 silly install resolved     description: 'Unfancy JavaScript',
+234 silly install resolved     keywords: [ 'javascript', 'language', 'coffeescript', 'compiler' ],
+234 silly install resolved     author: { name: 'Jeremy Ashkenas' },
+234 silly install resolved     version: '1.9.1',
+234 silly install resolved     license: 'MIT',
+234 silly install resolved     engines: { node: '>=0.8.0' },
+234 silly install resolved     directories: { lib: './lib/coffee-script' },
+234 silly install resolved     main: './lib/coffee-script/coffee-script',
+234 silly install resolved     bin: { coffee: './bin/coffee', cake: './bin/cake' },
+234 silly install resolved     preferGlobal: true,
+234 silly install resolved     scripts:
+234 silly install resolved      { test: 'node ./bin/cake test',
+234 silly install resolved        'test-harmony': 'node --harmony ./bin/cake test' },
+234 silly install resolved     homepage: 'http://coffeescript.org',
+234 silly install resolved     bugs: { url: 'https://github.com/jashkenas/coffeescript/issues' },
+234 silly install resolved     repository:
+234 silly install resolved      { type: 'git',
+234 silly install resolved        url: 'git://github.com/jashkenas/coffeescript.git' },
+234 silly install resolved     devDependencies:
+234 silly install resolved      { 'uglify-js': '~2.2',
+234 silly install resolved        jison: '>=0.2.0',
+234 silly install resolved        'highlight.js': '~8.0.0',
+234 silly install resolved        underscore: '~1.5.2',
+234 silly install resolved        docco: '~0.7.0' },
+234 silly install resolved     gitHead: '533ad8afe920b2dbf64ffb00efda45648242cc24',
+234 silly install resolved     _id: 'coffee-script@1.9.1',
+234 silly install resolved     _shasum: 'c458d02200f460d064a79cb6ab1ee6e2c9ca1c31',
+234 silly install resolved     _from: 'coffee-script@1.9.1',
+234 silly install resolved     _npmVersion: '1.4.28',
+234 silly install resolved     _npmUser: { name: 'jashkenas', email: 'jashkenas@gmail.com' },
+234 silly install resolved     maintainers: [ [Object], [Object] ],
+234 silly install resolved     dist:
+234 silly install resolved      { shasum: 'c458d02200f460d064a79cb6ab1ee6e2c9ca1c31',
+234 silly install resolved        tarball: 'https://registry.npmjs.org/coffee-script/-/coffee-script-1.9.1.tgz' },
+234 silly install resolved     _resolved: 'https://registry.npmjs.org/coffee-script/-/coffee-script-1.9.1.tgz',
+234 silly install resolved     readme: 'ERROR: No README data found!' } ]
+235 info install underscore@1.8.2 into /Users/Max/Sites/weather-station/node_modules/i2c
+236 info install repl@0.1.3 into /Users/Max/Sites/weather-station/node_modules/i2c
+237 info install coffee-script@1.9.1 into /Users/Max/Sites/weather-station/node_modules/i2c
+238 info installOne underscore@1.8.2
+239 verbose installOne of underscore to /Users/Max/Sites/weather-station/node_modules/i2c not in flight; installing
+240 info installOne repl@0.1.3
+241 verbose installOne of repl to /Users/Max/Sites/weather-station/node_modules/i2c not in flight; installing
+242 info installOne coffee-script@1.9.1
+243 verbose installOne of coffee-script to /Users/Max/Sites/weather-station/node_modules/i2c not in flight; installing
+244 verbose lock using /Users/Max/.npm/_locks/underscore-b04156ec3a54efe3.lock for /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/underscore
+245 silly install write writing underscore 1.8.2 to /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/underscore
+246 verbose lock using /Users/Max/.npm/_locks/repl-5eb7b6b3d0e807ab.lock for /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/repl
+247 verbose lock using /Users/Max/.npm/_locks/coffee-script-05d7fb0064c7f2d5.lock for /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/coffee-script
+248 silly install write writing repl 0.1.3 to /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/repl
+249 silly install write writing coffee-script 1.9.1 to /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/coffee-script
+250 verbose unbuild node_modules/i2c/node_modules/underscore
+251 verbose unbuild node_modules/i2c/node_modules/repl
+252 silly gentlyRm /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/underscore is being purged from base /Users/Max/Sites/weather-station
+253 verbose gentlyRm don't care about contents; nuking /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/underscore
+254 verbose unbuild node_modules/i2c/node_modules/coffee-script
+255 silly gentlyRm /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/repl is being purged from base /Users/Max/Sites/weather-station
+256 verbose gentlyRm don't care about contents; nuking /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/repl
+257 verbose tar unpack /Users/Max/.npm/underscore/1.8.2/package.tgz
+258 verbose tar unpacking to /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/underscore
+259 silly gentlyRm /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/underscore is being purged
+260 verbose gentlyRm don't care about contents; nuking /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/underscore
+261 verbose tar unpack /Users/Max/.npm/repl/0.1.3/package.tgz
+262 verbose tar unpacking to /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/repl
+263 silly gentlyRm /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/repl is being purged
+264 verbose gentlyRm don't care about contents; nuking /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/repl
+265 silly gunzTarPerm modes [ '755', '644' ]
+266 silly gentlyRm /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/coffee-script is being purged from base /Users/Max/Sites/weather-station
+267 verbose gentlyRm don't care about contents; nuking /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/coffee-script
+268 silly gunzTarPerm modes [ '755', '644' ]
+269 verbose tar unpack /Users/Max/.npm/coffee-script/1.9.1/package.tgz
+270 verbose tar unpacking to /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/coffee-script
+271 silly gentlyRm /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/coffee-script is being purged
+272 verbose gentlyRm don't care about contents; nuking /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/coffee-script
+273 silly gunzTarPerm modes [ '755', '644' ]
+274 silly gunzTarPerm extractEntry package.json
+275 silly gunzTarPerm extractEntry test.js
+276 silly gunzTarPerm extractEntry package.json
+277 silly gunzTarPerm extractEntry README.md
+278 silly gunzTarPerm extractEntry LICENSE
+279 silly gunzTarPerm extractEntry README.md
+280 silly gunzTarPerm extractEntry package.json
+281 silly gunzTarPerm extractEntry .npmignore
+282 silly gunzTarPerm extractEntry README
+283 silly gunzTarPerm extractEntry index.js
+284 silly gunzTarPerm extractEntry lib/repl.js
+285 silly gunzTarPerm extractEntry underscore.js
+286 silly gunzTarPerm extractEntry underscore-min.js
+287 silly gunzTarPerm extractEntry underscore-min.map
+288 silly gunzTarPerm extractEntry README.md
+289 silly gunzTarPerm extractEntry LICENSE
+290 silly gunzTarPerm extractEntry register.js
+291 silly gunzTarPerm extractEntry repl.js
+292 silly gunzTarPerm extractEntry bin/cake
+293 silly gunzTarPerm extractEntry bin/coffee
+294 silly gunzTarPerm extractEntry bower.json
+295 silly gunzTarPerm extractEntry lib/coffee-script/browser.js
+296 verbose write writing to /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/repl/package.json
+297 silly gunzTarPerm extractEntry lib/coffee-script/grammar.js
+298 silly gunzTarPerm extractEntry lib/coffee-script/helpers.js
+299 info preinstall repl@0.1.3
+300 verbose readDependencies loading dependencies from /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/repl/package.json
+301 silly gunzTarPerm extractEntry lib/coffee-script/index.js
+302 silly gunzTarPerm extractEntry lib/coffee-script/lexer.js
+303 verbose readDependencies loading dependencies from /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/repl/package.json
+304 silly gunzTarPerm extractEntry lib/coffee-script/command.js
+305 silly gunzTarPerm extractEntry lib/coffee-script/optparse.js
+306 silly install resolved []
+307 verbose about to build /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/repl
+308 info build /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/repl
+309 info linkStuff repl@0.1.3
+310 silly linkStuff repl@0.1.3 has /Users/Max/Sites/weather-station/node_modules/i2c/node_modules as its parent node_modules
+311 silly gunzTarPerm extractEntry lib/coffee-script/parser.js
+312 silly gunzTarPerm extractEntry lib/coffee-script/register.js
+313 verbose linkBins repl@0.1.3
+314 verbose linkMans repl@0.1.3
+315 verbose rebuildBundles repl@0.1.3
+316 info install repl@0.1.3
+317 silly gunzTarPerm extractEntry lib/coffee-script/repl.js
+318 silly gunzTarPerm extractEntry lib/coffee-script/rewriter.js
+319 info postinstall repl@0.1.3
+320 verbose unlock done using /Users/Max/.npm/_locks/repl-5eb7b6b3d0e807ab.lock for /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/repl
+321 silly gunzTarPerm extractEntry lib/coffee-script/coffee-script.js
+322 silly gunzTarPerm extractEntry lib/coffee-script/scope.js
+323 silly gunzTarPerm extractEntry lib/coffee-script/cake.js
+324 silly gunzTarPerm extractEntry lib/coffee-script/sourcemap.js
+325 silly gunzTarPerm extractEntry lib/coffee-script/nodes.js
+326 silly gunzTarPerm extractEntry CNAME
+327 silly gunzTarPerm extractEntry CONTRIBUTING.md
+328 verbose write writing to /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/underscore/package.json
+329 info preinstall underscore@1.8.2
+330 verbose readDependencies loading dependencies from /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/underscore/package.json
+331 verbose readDependencies loading dependencies from /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/underscore/package.json
+332 silly install resolved []
+333 verbose about to build /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/underscore
+334 info build /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/underscore
+335 info linkStuff underscore@1.8.2
+336 silly linkStuff underscore@1.8.2 has /Users/Max/Sites/weather-station/node_modules/i2c/node_modules as its parent node_modules
+337 verbose linkBins underscore@1.8.2
+338 verbose linkMans underscore@1.8.2
+339 verbose rebuildBundles underscore@1.8.2
+340 info install underscore@1.8.2
+341 info postinstall underscore@1.8.2
+342 verbose unlock done using /Users/Max/.npm/_locks/underscore-b04156ec3a54efe3.lock for /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/underscore
+343 verbose write writing to /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/coffee-script/package.json
+344 info preinstall coffee-script@1.9.1
+345 verbose readDependencies loading dependencies from /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/coffee-script/package.json
+346 verbose readDependencies loading dependencies from /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/coffee-script/package.json
+347 silly install resolved []
+348 verbose about to build /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/coffee-script
+349 info build /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/coffee-script
+350 info linkStuff coffee-script@1.9.1
+351 silly linkStuff coffee-script@1.9.1 has /Users/Max/Sites/weather-station/node_modules/i2c/node_modules as its parent node_modules
+352 verbose linkBins coffee-script@1.9.1
+353 verbose link bins [ { coffee: './bin/coffee', cake: './bin/cake' },
+353 verbose link bins   '/Users/Max/Sites/weather-station/node_modules/i2c/node_modules/.bin',
+353 verbose link bins   false ]
+354 verbose linkMans coffee-script@1.9.1
+355 verbose rebuildBundles coffee-script@1.9.1
+356 silly gentlyRm /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/.bin/coffee is being purged
+357 verbose gentlyRm don't care about contents; nuking /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/.bin/coffee
+358 silly gentlyRm /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/.bin/cake is being purged
+359 verbose gentlyRm don't care about contents; nuking /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/.bin/cake
+360 info install coffee-script@1.9.1
+361 info postinstall coffee-script@1.9.1
+362 verbose unlock done using /Users/Max/.npm/_locks/coffee-script-05d7fb0064c7f2d5.lock for /Users/Max/Sites/weather-station/node_modules/i2c/node_modules/coffee-script
+363 verbose about to build /Users/Max/Sites/weather-station/node_modules/i2c
+364 info build /Users/Max/Sites/weather-station/node_modules/i2c
+365 info linkStuff i2c@0.2.1
+366 silly linkStuff i2c@0.2.1 has /Users/Max/Sites/weather-station/node_modules as its parent node_modules
+367 verbose linkBins i2c@0.2.1
+368 verbose linkMans i2c@0.2.1
+369 verbose rebuildBundles i2c@0.2.1
+370 verbose rebuildBundles [ '.bin', 'coffee-script', 'repl', 'underscore' ]
+371 info install i2c@0.2.1
+372 verbose unsafe-perm in lifecycle false
+373 info i2c@0.2.1 Failed to exec install script
+374 verbose unlock done using /Users/Max/.npm/_locks/i2c-474b81548709e44c.lock for /Users/Max/Sites/weather-station/node_modules/i2c
+375 verbose stack Error: i2c@0.2.1 install: `node-gyp rebuild`
+375 verbose stack Exit status 1
+375 verbose stack     at EventEmitter.<anonymous> (/Users/Max/.nvm/versions/node/v4.0.0/lib/node_modules/npm/lib/utils/lifecycle.js:214:16)
+375 verbose stack     at emitTwo (events.js:87:13)
+375 verbose stack     at EventEmitter.emit (events.js:172:7)
+375 verbose stack     at ChildProcess.<anonymous> (/Users/Max/.nvm/versions/node/v4.0.0/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+375 verbose stack     at emitTwo (events.js:87:13)
+375 verbose stack     at ChildProcess.emit (events.js:172:7)
+375 verbose stack     at maybeClose (internal/child_process.js:817:16)
+375 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+376 verbose pkgid i2c@0.2.1
+377 verbose cwd /Users/Max/Sites/weather-station
+378 error Darwin 15.4.0
+379 error argv "/Users/Max/.nvm/versions/node/v4.0.0/bin/node" "/Users/Max/.nvm/versions/node/v4.0.0/bin/npm" "install"
+380 error node v4.0.0
+381 error npm  v2.14.2
+382 error code ELIFECYCLE
+383 error i2c@0.2.1 install: `node-gyp rebuild`
+383 error Exit status 1
+384 error Failed at the i2c@0.2.1 install script 'node-gyp rebuild'.
+384 error This is most likely a problem with the i2c package,
+384 error not with npm itself.
+384 error Tell the author that this fails on your system:
+384 error     node-gyp rebuild
+384 error You can get their info via:
+384 error     npm owner ls i2c
+384 error There is likely additional logging output above.
+385 verbose exit [ 1, true ]
+386 verbose unbuild node_modules/i2c
+387 info preuninstall i2c@0.2.1
+388 info uninstall i2c@0.2.1
+389 verbose unbuild rmStuff i2c@0.2.1 from /Users/Max/Sites/weather-station/node_modules
+390 info postuninstall i2c@0.2.1
+391 silly gentlyRm /Users/Max/Sites/weather-station/node_modules/i2c is being purged from base /Users/Max/Sites/weather-station
+392 verbose gentlyRm don't care about contents; nuking /Users/Max/Sites/weather-station/node_modules/i2c
+393 silly vacuum-fs purging /Users/Max/Sites/weather-station/node_modules/i2c
+394 silly vacuum-fs quitting because other entries in /Users/Max/Sites/weather-station/node_modules
