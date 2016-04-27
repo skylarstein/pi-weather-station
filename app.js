@@ -11,30 +11,31 @@ const express       = require("express");
 const app           = express();
 const moment        = require('moment');
 const DeviceManager = require('./devices/device-manager.js');
+const path          = require('path');
+const viewsRoot     = path.join(__dirname, 'views');
 
 // DeviceManager provides a platform-independent interface to our hardware devices
 // so we can build and run this application on different platforms.
 //
 const deviceManager = new DeviceManager();
 
+app.use(express.static(path.join(__dirname, '/public')));
+
 app.get("/", function (req, res) {
   deviceManager.ReadSensors(function(data) {
-  res.send('Welcome to the Raspberry Pi Weather Station!<br><br>Sensors: ' +
-    JSON.stringify(data) +
-    '<br><br>Platform uptime:' +
-    JSON.stringify(moment.duration(os.uptime(), 'seconds')._data));
+    res.render(path.join(viewsRoot, 'index.ejs'), { sensorData : data });
   });
 });
 
-app.get("/on", function (req, res) {
-  deviceManager.LEDOn(function() {
-    res.send("LEDOn");
+app.post("/led-on", function (req, res) {
+  deviceManager.LEDOn(function(err) {
+    res.status(err ? 500 : 200).send(err ? err : 'OK');
   });
 });
 
-app.get("/off", function (req, res) {
-  deviceManager.LEDOff(function() {
-    res.send("LEDOff");
+app.post("/led-off", function (req, res) {
+  deviceManager.LEDOff(function(err) {
+    res.status(err ? 500 : 200).send(err ? err : 'OK');
   });
 });
 
