@@ -1,3 +1,5 @@
+"use strict";
+
 /*
   install-dependencies.js
 
