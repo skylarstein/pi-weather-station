@@ -26,3 +26,5 @@ Currently targeting NodeJS v4.4.3 LTS
   g++ -v
   gcc -v
 ```
+
+## npm install
