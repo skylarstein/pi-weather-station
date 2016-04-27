@@ -7,20 +7,20 @@
   laying on a bit of anti-pattern on here since failures are not bubbled up.
 */
 
-const os           = require('os');
-const path         = require('path');
-const packageJson  = require(path.join(__dirname, 'package.json'));
-const execSync     = require('child_process').execSync;
-const colors       = require('colors/safe');
+const os          = require('os');
+const path        = require('path');
+const packageJson = require(path.join(__dirname, 'package.json'));
+const execSync    = require('child_process').execSync;
+const colors      = require('colors/safe');
 
 if(os.type() === 'Linux' && packageJson.linuxDependencies) {
 
-  for(var pkg of Object.keys(packageJson.linuxDependencies)) {
+  for(let pkg of Object.keys(packageJson.linuxDependencies)) {
 
-    var cmd = 'npm install ' + pkg + '@' + packageJson.linuxDependencies[pkg];
+    let cmd = 'npm install ' + pkg + '@' + packageJson.linuxDependencies[pkg];
     console.log(colors.cyan.bold('exec(\'' + cmd + '\')'));
 
-    var result = execSync(cmd, { encoding: 'utf8' });
+    let result = execSync(cmd, { encoding: 'utf8' });
 
     console.log(colors.black.bgYellow(cmd));
     console.log(result);

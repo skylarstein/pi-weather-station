@@ -6,7 +6,7 @@ var led     = new Gpio(23, 'out'); // Pin 16 on the header (GPIO23)
 var i2c = require('i2c-bus');
 var i2c1 = i2c.openSync(1);
 var HIH6130_ADDRESS = 0x27;
-var HIH6130_CMD_READ = 0x4;
+var HIH6130_CMD_READ = 0x04;
 
 function led_on() {
   led.writeSync(1);
