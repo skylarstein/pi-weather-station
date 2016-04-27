@@ -23,7 +23,11 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 app.get("/", function (req, res) {
   deviceManager.ReadSensors(function(data) {
-    res.render(path.join(viewsRoot, 'index.ejs'), { sensorData : data });
+    res.render(path.join(viewsRoot, 'index.ejs'), {
+        sensorData     : data,
+        platformUptime : os.uptime(),
+        processUptime  : process.uptime()
+      });
   });
 });
 
