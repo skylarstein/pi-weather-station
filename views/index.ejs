@@ -2,39 +2,42 @@
 <html>
   <head>
     <title>Raspberry Pi Weather Station</title>
-    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
-    <script src="/js/moment.min.js"></script>
-    <script>
-      $(document).ready(function() {
-        $('#ledOn').on('click', function() {
-          alert('This is not complete. POST to /led-on');
-        });
 
-        $('#ledOff').on('click', function() {
-          alert('This is not complete. POST to /led-off');
-        });
-      });
-    </script>
+    <!-- Vendor assets -->
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/moment.min.js"></script>
+
+    <!-- App Assets -->
+    <script src="/js/home.js"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
   </head>
   <body>
-    <h1>Welcome to the Raspberry Pi Weather Station</h1>
-    <img src="/images/raspberry-pi-logo.svg" width=75>
-
-    <p>
-      Sensors: <%=JSON.stringify(sensorData)%>
-    </p>
-
-    <p>
-      <script>document.write('Platform uptime: ' + JSON.stringify(moment.duration(<%=platformUptime%>, 'seconds')._data));</script>
-    </p>
-
-    <p>
-      <script>document.write('Process uptime: ' + JSON.stringify(moment.duration(<%=processUptime%>, 'seconds')._data));</script>
-    </p>
-
-    <p>
-      <button id="ledOn">LED On</button>
-      <button id="ledOff">LED Off</button>
-    </p>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <img src="/images/raspberry-pi-logo.svg" alt="Raspberry Pi logo" width=20>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container text-center">
+      <h1>Raspberry Pi Weather Station</h1>
+      <br>
+      <img src="/images/raspberry-pi-logo.svg" alt="Raspberry Pi logo" width=50>
+      <br>
+      <br>
+      <p>Sensors: <%=JSON.stringify(sensorData)%></p>
+      <p><script>document.write('Platform uptime: ' + JSON.stringify(moment.duration(<%=platformUptime%>, 'seconds')._data));</script></p>
+      <p><script>document.write('Process uptime: ' + JSON.stringify(moment.duration(<%=processUptime%>, 'seconds')._data));</script></p>
+      <br><br>
+      <div>
+        <button id="ledOn" class="btn btn-success">LED On</button>
+        <button id="ledOff" class="btn btn-danger">LED Off</button>
+      </div>
+    </div>
   </body>
 </html>
