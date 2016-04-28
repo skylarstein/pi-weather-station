@@ -7,34 +7,37 @@
 "use strict";
 
 const LED_GPIO_OUTPUT  = 23;
+const HIH6130_I2C_BUS  = 1;
 const HIH6130_ADDRESS  = 0x27;
 const HIH6130_CMD_READ = 0x04;
 
 const deviceUtils = require('./device-utils.js');
-const i2c         = require('i2c-bus');
-const i2c1        = i2c.openSync(1);
-const Gpio        = require('onoff').Gpio;
-
-const led  = new Gpio(LED_GPIO_OUTPUT, 'out'); // Pin 16 on the header (GPIO23)
 
 // DevicesRPi constructor
 //
 function DevicesRPi() {
+
   console.log('Creating DevicesRPi');
+
+  let i2c  = require('i2c-bus');
+  let Gpio = require('onoff').Gpio;
+
+  this.i2cBus = i2c.openSync(HIH6130_I2C_BUS);
+  this.led = new Gpio(LED_GPIO_OUTPUT, 'out'); // Pin 16 on the header (GPIO23)
 }
 
 // DevicesRPi functions
 //
 DevicesRPi.prototype.LEDOn = function(callback) {
   console.log("DevicesRPi.LEDOn()");
-  led.write(1, function(err) {
+  this.led.write(1, function(err) {
     callback(err);
   });
 }
 
 DevicesRPi.prototype.LEDOff = function(callback) {
   console.log("DevicesRPi.LEDOff()");
-  led.write(0, function(err) {
+  this.led.write(0, function(err) {
     callback(err);
   });
 }
@@ -42,13 +45,13 @@ DevicesRPi.prototype.LEDOff = function(callback) {
 DevicesRPi.prototype.ReadSensors = function(callback) {
   console.log("DevicesRPi.ReadSensors()");
 
-  i2c1.readI2cBlock(HIH6130_ADDRESS, HIH6130_CMD_READ, 4, new Buffer(4), function (err, bytesRead, data)
+  this.i2cBus.readI2cBlock(HIH6130_ADDRESS, HIH6130_CMD_READ, 4, new Buffer(4), function (err, bytesRead, data)
   {
     console.log('DevicesRPi.ReadSensors() read', bytesRead , 'bytes:', data, 'Error: ', err ? err : 'None');
 
     /*
       data[0] // humidity high byte
-      data[1] // humidify low byte
+      data[1] // humidity low byte
       data[2] // temperature high byte
       data[3] // temperature low byte
     */
