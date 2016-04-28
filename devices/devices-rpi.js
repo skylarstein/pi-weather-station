@@ -46,14 +46,16 @@ DevicesRPi.prototype.ReadSensors = function(callback) {
   {
     console.log('DevicesRPi.ReadSensors() read', bytesRead , 'bytes:', data, 'Error: ', err ? err : 'None');
 
-    var hum_hi  = data[0];
-    var hum_lo  = data[1];
-    var temp_hi = data[2];
-    var temp_lo = data[3];
+    /*
+      data[0] // humidity high byte
+      data[1] // humidify low byte
+      data[2] // temperature high byte
+      data[3] // temperature low byte
+    */
 
     var status   = (data[0] & 0xc0) >> 6;
-    var humidity = ((data[0] & 0x3f) * 256 + data[1]) / 0x3fff * 100;
-    var tempC    = ((data[2] *256 + data[3]) >> 2) / 0x3fff * 165 - 40;
+    var humidity = (((data[0] & 0x3f) << 8) + data[1]) / 0x3fff * 100;
+    var tempC    = (((data[2] << 8) + data[3]) >> 2) / 0x3fff * 165 - 40;
     var tempF    = deviceUtils.celsiusToFahrenheit(tempC); 
 
     var data = {
