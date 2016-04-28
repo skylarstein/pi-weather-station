@@ -27,7 +27,6 @@
     </nav>
     <div class="container text-center">
       <h1>Raspberry Pi Weather Station</h1>
-      <br>
       <img src="/images/raspberry-pi-logo.svg" alt="Raspberry Pi logo" width=50>
       <div class="data">
         <h4>Sensors:</h4>
@@ -41,8 +40,7 @@
         <h4>Process uptime:</h4>
         <p><script>document.write(JSON.stringify(moment.duration(<%=processUptime%>, 'seconds')._data));</script></p>
       </div>
-      <br>
-      <div>
+      <div id="led-btns">
         <button id="ledOn" class="btn btn-success">LED On</button>
         <button id="ledOff" class="btn btn-danger">LED Off</button>
       </div>
