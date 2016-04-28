@@ -12,7 +12,7 @@ const http = require("http");
 
 // Start our server
 //
-const httpServer = http.createServer(app).listen(process.env.PORT || 8080);
+const httpServer = http.createServer(app).listen(process.env.PORT || 8888);
 
 httpServer.on('listening', function() {
   console.log("HTTP server listening on port " + httpServer.address().port + " on " + os.hostname());
