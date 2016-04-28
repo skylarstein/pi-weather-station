@@ -13,6 +13,7 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
   </head>
   <body>
     <nav class="navbar navbar-default">
@@ -28,12 +29,19 @@
       <h1>Raspberry Pi Weather Station</h1>
       <br>
       <img src="/images/raspberry-pi-logo.svg" alt="Raspberry Pi logo" width=50>
+      <div class="data">
+        <h4>Sensors:</h4>
+        <p><%=JSON.stringify(sensorData)%></p>
+      </div>
+      <div class="data">
+        <h4>Platform uptime:</h4>
+        <p><script>document.write(JSON.stringify(moment.duration(<%=platformUptime%>, 'seconds')._data));</script></p>
+      </div>
+      <div class="data">
+        <h4>Process uptime:</h4>
+        <p><script>document.write(JSON.stringify(moment.duration(<%=processUptime%>, 'seconds')._data));</script></p>
+      </div>
       <br>
-      <br>
-      <p>Sensors: <%=JSON.stringify(sensorData)%></p>
-      <p><script>document.write('Platform uptime: ' + JSON.stringify(moment.duration(<%=platformUptime%>, 'seconds')._data));</script></p>
-      <p><script>document.write('Process uptime: ' + JSON.stringify(moment.duration(<%=processUptime%>, 'seconds')._data));</script></p>
-      <br><br>
       <div>
         <button id="ledOn" class="btn btn-success">LED On</button>
         <button id="ledOff" class="btn btn-danger">LED Off</button>
