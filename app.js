@@ -9,7 +9,6 @@
 const os            = require('os');
 const express       = require("express");
 const app           = express();
-const moment        = require('moment');
 const DeviceManager = require('./devices/device-manager.js');
 const path          = require('path');
 const viewsRoot     = path.join(__dirname, 'views');

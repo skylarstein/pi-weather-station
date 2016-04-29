@@ -1,7 +1,7 @@
 /*
   devices-rpi.js
 
-  A direct hardware interface to our RasbperryPi devices.
+  A direct hardware interface to our Rasbperry Pi devices.
 */
 
 "use strict";

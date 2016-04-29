@@ -14,6 +14,6 @@ exports.isRaspberryPi = function isRaspberryPi() {
   return os.type() === 'Linux';
 };
 
- exports.celsiusToFahrenheit = function celsiusToFahrenheit(c) {
+exports.celsiusToFahrenheit = function celsiusToFahrenheit(c) {
   return c * 9 / 5 + 32
- };
+};
