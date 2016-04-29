@@ -4,16 +4,16 @@
     <title>Raspberry Pi Weather Station</title>
 
     <!-- Vendor assets -->
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/moment.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/moment/min/moment.min.js"></script>
 
     <!-- App Assets -->
-    <script src="/js/home.js"></script>
+    <script src="/js/index.js"></script>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/home.css">
+    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
   </head>
   <body>
     <nav class="navbar navbar-default">
@@ -34,12 +34,17 @@
       </div>
       <div class="data">
         <h4>Platform uptime:</h4>
-        <p><script>document.write(JSON.stringify(moment.duration(<%=platformUptime%>, 'seconds')._data));</script></p>
+        <p>
+          <script>
+            document.write(humanizeSeconds(<%=platformUptime%>));
+          </script>
       </div>
       <div class="data">
         <h4>Process uptime:</h4>
-        <p><script>document.write(JSON.stringify(moment.duration(<%=processUptime%>, 'seconds')._data));</script></p>
-      </div>
+         <script>
+            document.write(humanizeSeconds(<%=processUptime%>));
+          </script>
+        </div>
       <div id="led-btns">
         <button id="ledOn" class="btn btn-success">LED On</button>
         <button id="ledOff" class="btn btn-danger">LED Off</button>
