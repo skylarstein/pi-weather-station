@@ -17,23 +17,20 @@ class DevicesSimulated extends DevicesBase {
   }
 
   LEDOn() {
-    console.log("DevicesSimulated.LEDOn()");
-    return new Promise(function(resolve, reject) {
-      resolve('OK');
-    });
+    console.log('DevicesSimulated.LEDOn()');
+    return new Promise((resolve, reject) => resolve('OK'));
   }
 
   LEDOff() {
-    console.log("DevicesSimulated.LEDOff()");
-    return new Promise(function(resolve, reject) {
-      resolve('OK');
-    });
+    console.log('DevicesSimulated.LEDOff()');
+    return new Promise((resolve, reject) => resolve('OK'));
   }
 
   ReadSensors() {
-    console.log("DevicesSimulated.ReadSensors()");
+    console.log('DevicesSimulated.ReadSensors()');
 
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
+
       // TODO: Can be fancier here. Maybe have temperature and humidity drift by time of day, etc.
       //
       let humidity  = 40.00 + Math.random();

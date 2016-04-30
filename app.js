@@ -7,7 +7,7 @@
 "use strict";
 
 const os            = require('os');
-const express       = require("express");
+const express       = require('express');
 const app           = express();
 const DeviceManager = require('./devices/device-manager.js');
 const path          = require('path');
@@ -20,43 +20,27 @@ const deviceManager = new DeviceManager();
 
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.get("/", function (req, res) {
+app.get('/', (req, res) =>
   deviceManager.ReadSensors()
-    .then(function(data) {
-      renderIndex(res, data);
-    })
-    .catch(function(error) {
-      renderIndex(res, null, error);
-    });
-});
+    .then(data => renderIndex(res, data))
+    .catch(error => renderIndex(res, null, error)));
 
-function renderIndex(res, data, error) {
+const renderIndex = (res, data, error) =>
   res.render(path.join(viewsRoot, 'index.ejs'), {
     sensorData     : data,
     error          : error,
     platformUptime : os.uptime(),
     processUptime  : process.uptime()
   });
-}
 
-app.post("/led-on", function (req, res) {
+app.post('/led-on', (req, res) =>
   deviceManager.LEDOn()
-    .then(function(data) {
-      res.status(200).send(data);
-    })
-    .catch(function(err) {
-      res.status(500).send(err);
-    });
-});
+    .then(data => res.status(200).send(data))
+    .catch(err => res.status(500).send(err)));
 
-app.post("/led-off", function (req, res) {
+app.post('/led-off', (req, res) =>
   deviceManager.LEDOff()
-    .then(function(data) {
-      res.status(200).send(data);
-    })
-    .catch(function(err) {
-      res.status(500).send(err);
-    });
-});
+    .then(data => res.status(200).send(data))
+    .catch(err => res.status(500).send(err)));
 
 module.exports = app;

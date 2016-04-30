@@ -29,31 +29,22 @@ class DevicesRPi extends DevicesBase {
   }
 
   LEDOn() {
-    console.log("DevicesRPi.LEDOn()");
+    console.log('DevicesRPi.LEDOn()');
     const led = this.led;
-    return new Promise(function(resolve, reject) {
-      led.write(1, function(err) {
-        return err ? reject(err) : resolve('OK');
-      });
-    });
+    return new Promise((resolve, reject) => led.write(1, err => err ? reject(err) : resolve('OK')));
   }
 
   LEDOff() {
-    console.log("DevicesRPi.LEDOff()");
+    console.log('DevicesRPi.LEDOff()');
     const led = this.led;
-    return new Promise(function(resolve, reject) {
-      led.write(0, function(err) {
-        return err ? reject(err) : resolve('OK');
-      });
-    });
+    return new Promise((resolve, reject) => led.write(0, err => err ? reject(err) : resolve('OK')));
   }
 
-  ReadSensors(callback) {
-    console.log("DevicesRPi.ReadSensors()");
+  ReadSensors() {
+    console.log('DevicesRPi.ReadSensors()');
     const i2cBus = this.i2cBus;
-    return new Promise(function(resolve, reject) {
-      i2cBus.readI2cBlock(HIH6130_ADDRESS, HIH6130_CMD_READ, HIH6130_CMD_SIZE, new Buffer(4), function (err, bytesRead, data)
-      {
+    return new Promise((resolve, reject) => {
+      i2cBus.readI2cBlock(HIH6130_ADDRESS, HIH6130_CMD_READ, HIH6130_CMD_SIZE, new Buffer(4), (err, bytesRead, data) => {
         console.log('DevicesRPi.ReadSensors() read', bytesRead , 'bytes:', data, 'Error: ', err ? err : 'None');
 
         if(err) {

@@ -14,26 +14,26 @@ const http = require("http");
 //
 const httpServer = http.createServer(app).listen(process.env.PORT || 8888);
 
-httpServer.on('listening', function() {
+httpServer.on('listening', () => {
   console.log("HTTP server listening on port " + httpServer.address().port + " on " + os.hostname());
 });
 
 // Clean shutdown
 //
-process.on('SIGTERM', function () {
-  console.log("[SIGTERM] Initiating graceful shutdown...");
+process.on('SIGTERM', () => {
+  console.log('[SIGTERM] Initiating graceful shutdown...');
 
-  httpServer.close(function () {
-    console.log("HTTP server closed remaining connections. Exiting now.");
+  httpServer.close(() => {
+    console.log('HTTP server closed remaining connections. Exiting now.');
     process.exit(0);
   });
 });
 
-process.on( "SIGINT", function() {
-  console.log("[SIGINT] Initiating graceful shutdown...")
+process.on('SIGINT', () => {
+  console.log('[SIGINT] Initiating graceful shutdown...');
 
-  httpServer.close(function () {
-    console.log("HTTP server closed remaining connections. Exiting now.");
+  httpServer.close(() => {
+    console.log('HTTP server closed remaining connections. Exiting now.');
     process.exit(0);
   });
 });

@@ -12,15 +12,15 @@ class DevicesBase {
   }
 
   LEDOn() {
-    throw new Error("Derived class has not implemented LEDOn()"); // Derived class should return a Promise
+    throw new Error('Derived class has not implemented LEDOn()'); // Derived class should return a Promise
   }
 
   LEDOff() {
-    throw new Error("Derived class has not implemented LEDOff()"); // Derived class should return a Promise
+    throw new Error('Derived class has not implemented LEDOff()'); // Derived class should return a Promise
   }
 
   ReadSensors() {
-    throw new Error("Derived class has not implemented ReadSensors()"); // Derived class should return a Promise
+    throw new Error('Derived class has not implemented ReadSensors()'); // Derived class should return a Promise
   }
 }
 
