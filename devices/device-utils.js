@@ -3,7 +3,7 @@
 
 */
 
-"use strict";
+'use strict';
 
 const os = require('os');
 
@@ -11,4 +11,4 @@ const os = require('os');
 //
 exports.isRaspberryPi = () => (os.type() === 'Linux');
 
-exports.celsiusToFahrenheit = (c) => (c * 9 / 5 + 32);
+exports.celsiusToFahrenheit = c => (c * 9 / 5 + 32);

@@ -4,7 +4,7 @@
   A direct hardware interface to our Rasbperry Pi devices.
 */
 
-"use strict";
+'use strict';
 
 const LED_GPIO_OUTPUT  = 23;
 const HIH6130_I2C_BUS  = 1;

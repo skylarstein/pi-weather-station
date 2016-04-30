@@ -8,7 +8,7 @@
   here (via constructor args or a config file), but not today.
 */
 
-"use strict";
+'use strict';
 
 const deviceUtils = require('./device-utils.js');
 

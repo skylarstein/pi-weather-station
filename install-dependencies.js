@@ -1,4 +1,3 @@
-"use strict";
 /*
   install-dependencies.js
 
@@ -7,6 +6,8 @@
   and will only install the package.json 'linuxDependencies' modules on the target platform.
   Yes, I'm laying on a bit of anti-pattern on here since failures are not bubbled up.
 */
+
+'use strict';
 
 const path        = require('path');
 const deviceUtils = require(path.join(__dirname, './devices/device-utils.js'));
@@ -18,10 +19,10 @@ if(deviceUtils.isRaspberryPi() && packageJson.linuxDependencies) {
 
   for(let pkg of Object.keys(packageJson.linuxDependencies)) {
 
-    let cmd = 'npm install ' + pkg + '@' + packageJson.linuxDependencies[pkg];
-    console.log(colors.cyan.bold('exec(\'' + cmd + '\')'));
+    let cmd = `npm install ${pkg}@${packageJson.linuxDependencies[pkg]}`;
+    console.log(colors.cyan.bold(`exec('${cmd}')`));
 
-    let result = execSync(cmd, { encoding: 'utf8' });
+    let result = execSync(cmd, { encoding : 'utf8' });
 
     console.log(colors.black.bgYellow(cmd));
     console.log(result);

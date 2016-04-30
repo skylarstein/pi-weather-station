@@ -4,7 +4,7 @@
   Base class for our device interface implementations.
 */
 
-"use strict";
+'use strict';
 
 class DevicesBase {
 

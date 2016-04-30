@@ -4,7 +4,7 @@
   Express app implementation for our Raspberry Pi Weather Station
 */
 
-"use strict";
+'use strict';
 
 const os            = require('os');
 const express       = require('express');

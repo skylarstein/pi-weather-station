@@ -4,7 +4,7 @@
   A simulated interface to our devices so we can run this application on any platform.
 */
 
-"use strict";
+'use strict';
 
 const DevicesBase = require('./devices-base.js');
 const deviceUtils = require('./device-utils.js');
