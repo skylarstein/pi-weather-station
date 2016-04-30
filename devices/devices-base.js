@@ -11,16 +11,16 @@ class DevicesBase {
   constructor() {
   }
 
-  LEDOn(callback) {
-    throw new Error("Derived class has not implemented LEDOn()")
+  LEDOn() {
+    throw new Error("Derived class has not implemented LEDOn()"); // Derived class should return a Promise
   }
 
-  LEDOff(callback) {
-    throw new Error("Derived class has not implemented LEDOff()")
+  LEDOff() {
+    throw new Error("Derived class has not implemented LEDOff()"); // Derived class should return a Promise
   }
 
-  ReadSensors(callback) {
-    throw new Error("Derived class has not implemented ReadSensors()")
+  ReadSensors() {
+    throw new Error("Derived class has not implemented ReadSensors()"); // Derived class should return a Promise
   }
 }
 

@@ -12,32 +12,33 @@
 
 const deviceUtils = require('./device-utils.js');
 
-// DeviceManager constructor
-//
-function DeviceManager() {
+class DeviceManager {
 
-  if(deviceUtils.isRaspberryPi()) {
-    let DevicesRPi = require('./devices-rpi.js');
-    this.devices = new DevicesRPi();
+  constructor() {
+    console.log('Creating DeviceManager');
+
+    if(deviceUtils.isRaspberryPi()) {
+      let DevicesRPi = require('./devices-rpi.js');
+      this.devices = new DevicesRPi();
+    }
+    else {
+      let DevicesSimulated = require('./devices-simulated.js');
+      this.devices = new DevicesSimulated();    
+    }
   }
-  else {
-    let DevicesSimulated = require('./devices-simulated.js');
-    this.devices = new DevicesSimulated();    
+
+  LEDOn() {
+    return this.devices.LEDOn(); // returns Promise
   }
-}
 
-// DeviceManager functions
-//
-DeviceManager.prototype.LEDOn = function(callback) {
-  this.devices.LEDOn(callback);
-}
+  LEDOff() {
+    return this.devices.LEDOff(); // returns Promise
+  }
 
-DeviceManager.prototype.LEDOff = function(callback) {
-  this.devices.LEDOff(callback);
-}
+  ReadSensors() {
+    return this.devices.ReadSensors(); // returns Promise
+  }      
 
-DeviceManager.prototype.ReadSensors = function(callback) {
-  return this.devices.ReadSensors(callback);
 }
 
 module.exports = DeviceManager;

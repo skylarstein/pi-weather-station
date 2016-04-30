@@ -16,36 +16,42 @@ class DevicesSimulated extends DevicesBase {
     console.log('Creating DevicesSimulated');
   }
 
-  LEDOn(callback) {
+  LEDOn() {
     console.log("DevicesSimulated.LEDOn()");
-    callback();
+    return new Promise(function(resolve, reject) {
+      resolve('OK');
+    });
   }
 
-  LEDOff(callback) {
+  LEDOff() {
     console.log("DevicesSimulated.LEDOff()");
-    callback();
+    return new Promise(function(resolve, reject) {
+      resolve('OK');
+    });
   }
 
-  ReadSensors(callback) {
+  ReadSensors() {
     console.log("DevicesSimulated.ReadSensors()");
 
-    // TODO: Can be fancier here. Maybe have temperature and humidity drift by time of day, etc.
-    //
-    let humidity  = 40.00 + Math.random();
-    let tempC     = 24.00 + Math.random();
-    let altitude  = 10.00;
-    let barometer = 30.00;
+    return new Promise(function(resolve, reject) {
+      // TODO: Can be fancier here. Maybe have temperature and humidity drift by time of day, etc.
+      //
+      let humidity  = 40.00 + Math.random();
+      let tempC     = 24.00 + Math.random();
+      let altitude  = 10.00;
+      let barometer = 30.00;
 
-    var result = {
-      status    : 0,
-      humidity  : humidity.toFixed(2),
-      tempC     : tempC.toFixed(2),
-      tempF     : deviceUtils.celsiusToFahrenheit(tempC).toFixed(2),
-      altitude  : altitude,
-      barometer : barometer
-    };
+      var data = {
+        status    : 0,
+        humidity  : humidity.toFixed(2),
+        tempC     : tempC.toFixed(2),
+        tempF     : deviceUtils.celsiusToFahrenheit(tempC).toFixed(2),
+        altitude  : altitude,
+        barometer : barometer
+      };
 
-    callback(result);
+      resolve(data);
+    });
   }
 }
 

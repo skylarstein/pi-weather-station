@@ -21,25 +21,42 @@ const deviceManager = new DeviceManager();
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.get("/", function (req, res) {
-  deviceManager.ReadSensors(function(data) {
-    res.render(path.join(viewsRoot, 'index.ejs'), {
-        sensorData     : data,
-        platformUptime : os.uptime(),
-        processUptime  : process.uptime()
-      });
-  });
+  deviceManager.ReadSensors()
+    .then(function(data) {
+      renderIndex(res, data);
+    })
+    .catch(function(error) {
+      renderIndex(res, null, error);
+    });
 });
 
-app.post("/led-on", function (req, res) {
-  deviceManager.LEDOn(function(err) {
-    res.status(err ? 500 : 200).send(err ? err : 'OK');
+function renderIndex(res, data, error) {
+  res.render(path.join(viewsRoot, 'index.ejs'), {
+    sensorData     : data,
+    error          : error,
+    platformUptime : os.uptime(),
+    processUptime  : process.uptime()
   });
+}
+
+app.post("/led-on", function (req, res) {
+  deviceManager.LEDOn()
+    .then(function(data) {
+      res.status(200).send(data);
+    })
+    .catch(function(err) {
+      res.status(500).send(err);
+    });
 });
 
 app.post("/led-off", function (req, res) {
-  deviceManager.LEDOff(function(err) {
-    res.status(err ? 500 : 200).send(err ? err : 'OK');
-  });
+  deviceManager.LEDOff()
+    .then(function(data) {
+      res.status(200).send(data);
+    })
+    .catch(function(err) {
+      res.status(500).send(err);
+    });
 });
 
 module.exports = app;
