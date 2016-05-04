@@ -18,7 +18,7 @@ const deviceManager = new DeviceManager();
 const viewsRoot     = path.join(__dirname, '../views');
 
 router.get('/', (req, res) =>
-  deviceManager.ReadSensors()
+  deviceManager.readSensors()
     .then(data => renderIndex(res, data))
     .catch(error => renderIndex(res, null, error)));
 
@@ -30,18 +30,28 @@ const renderIndex = (res, data, error) =>
     processUptime  : process.uptime()
   });
 
+router.get('/fast', (req, res) => {
+
+  for(var n = 0; n < 20; ++n) {
+    deviceManager.readSensors();
+  }
+
+  res.send('FAST');
+  });
+
+
 router.get('/sensors', (req, res) =>
-  deviceManager.ReadSensors()
+  deviceManager.readSensors()
     .then(data => res.status(200).send(data))
     .catch(err => res.status(500).send(err)));
 
 router.post('/led-on', (req, res) =>
-  deviceManager.LEDOn()
+  deviceManager.ledOn()
     .then(data => res.status(200).send(data))
     .catch(err => res.status(500).send(err)));
 
 router.post('/led-off', (req, res) =>
-  deviceManager.LEDOff()
+  deviceManager.ledOff()
     .then(data => res.status(200).send(data))
     .catch(err => res.status(500).send(err)));
 

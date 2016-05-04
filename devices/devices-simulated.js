@@ -16,17 +16,17 @@ class DevicesSimulated extends DevicesBase {
     console.log('Creating DevicesSimulated');
   }
 
-  LEDOn() {
+  ledOn() {
     console.log('DevicesSimulated.LEDOn()');
     return new Promise((resolve, reject) => resolve('OK'));
   }
 
-  LEDOff() {
+  ledOff() {
     console.log('DevicesSimulated.LEDOff()');
     return new Promise((resolve, reject) => resolve('OK'));
   }
 
-  ReadSensors() {
+  readSensors() {
     console.log('DevicesSimulated.ReadSensors()');
 
     return new Promise((resolve, reject) => {

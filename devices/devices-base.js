@@ -11,15 +11,15 @@ class DevicesBase {
   constructor() {
   }
 
-  LEDOn() {
+  ledOn() {
     throw new Error('Derived class has not implemented LEDOn()'); // Derived class should return a Promise
   }
 
-  LEDOff() {
+  ledOff() {
     throw new Error('Derived class has not implemented LEDOff()'); // Derived class should return a Promise
   }
 
-  ReadSensors() {
+  readSensors() {
     throw new Error('Derived class has not implemented ReadSensors()'); // Derived class should return a Promise
   }
 }

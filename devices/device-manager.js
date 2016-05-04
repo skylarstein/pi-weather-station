@@ -27,16 +27,16 @@ class DeviceManager {
     }
   }
 
-  LEDOn() {
-    return this.devices.LEDOn(); // returns Promise
+  ledOn() {
+    return this.devices.ledOn(); // returns Promise
   }
 
-  LEDOff() {
-    return this.devices.LEDOff(); // returns Promise
+  ledOff() {
+    return this.devices.ledOff(); // returns Promise
   }
 
-  ReadSensors() {
-    return this.devices.ReadSensors(); // returns Promise
+  readSensors() {
+    return this.devices.readSensors(); // returns Promise
   }      
 
 }
