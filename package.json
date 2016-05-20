@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/iMears/weather-station#readme",
   "dependencies": {
+    "async": "^2.0.0-rc.5",
     "bower": "^1.7.9",
     "colors": "^1.1.2",
     "ejs": "^2.4.1",

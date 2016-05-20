@@ -28,9 +28,9 @@
     <div class="container text-center">
       <h1>Raspberry Pi Weather Station</h1>
       <img src="/images/raspberry-pi-logo.svg" alt="Raspberry Pi logo" width=50>
-      <div class="data">
-        <h4>Sensors:</h4>
-        <p><%=JSON.stringify(sensorData)%></p>
+      <h4>Sensors:</h4>
+      <div id="raw-data">
+        <pre><%=JSON.stringify(sensorData, null, 2)%></pre>
       </div>
       <div class="data">
         <h4>Platform uptime:</h4>

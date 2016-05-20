@@ -8,9 +8,11 @@
 
 const LED_GPIO_OUTPUT = 23;
 const HIH6130_I2C_BUS = 1;
+const BME280_I2C_BUS = 1;
 
 const DevicesBase = require('./devices-base.js');
 const deviceUtils = require('./device-utils.js');
+const async       = require('async');
 
 class DevicesRPi extends DevicesBase {
 
@@ -18,11 +20,17 @@ class DevicesRPi extends DevicesBase {
     super();
     console.log('Creating DevicesRPi');
 
-    let Gpio = require('onoff').Gpio;
+    let Gpio    = require('onoff').Gpio;
     let HIH6130 = require('./HIH6130.js');
+    let BME280  = require('./BME280.js');
 
-    this.led = new Gpio(LED_GPIO_OUTPUT, 'out'); // Pin 16 on the header (GPIO23)
+    this.led     = new Gpio(LED_GPIO_OUTPUT, 'out'); // Pin 16 on the header (GPIO23)
     this.hih6130 = new HIH6130(HIH6130_I2C_BUS);
+    this.bme280  = new BME280(BME280_I2C_BUS);
+
+    this.bme280.init()
+      .then(result => console.log('BME280 initialization succeeded'))
+      .catch(err => console.error('BME280 initialization failed: ' + err));
   }
 
   ledOn() {
@@ -39,17 +47,21 @@ class DevicesRPi extends DevicesBase {
 
   readSensors() {
     console.log('DevicesRPi.ReadSensors()');
+
     const hih6130 = this.hih6130;
+    const bme280 = this.bme280;
+
     return new Promise((resolve, reject) => {
-      hih6130.readData()
-        .then(data => resolve({
-            status   : data.status,
-            humidity : data.humidity.toFixed(2),
-            tempC    : data.tempC.toFixed(2),
-            tempF    : deviceUtils.celsiusToFahrenheit(data.tempC).toFixed(2),
-            raw      : data.raw
-          }))
-         .catch(err => reject(err));
+      async.parallel([
+        callback => bme280.readSensorData()
+          .then(data => callback(null, { BME280 : data }))
+          .catch(err => callback(null, { BME280 : err })),
+
+        callback => hih6130.readSensorData()
+          .then(data => callback(null, { HIH6130 : data }))
+          .catch(err => callback(null, { HIH6130 : err }))
+      ],
+      (err, results) => resolve(results));
     });
   }
 
