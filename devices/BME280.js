@@ -67,9 +67,7 @@ class BME280 {
           }
           else {
             console.log('Found BME280 chip id 0x' + chipId.toString(16));
-            this.loadCalibration(function(err) {
-              return err ? reject(err) : resolve(chipId);
-            });
+            this.loadCalibration(err => err ? reject(err) : resolve(chipId));
           }
         });
       });
@@ -79,11 +77,15 @@ class BME280 {
   readSensorData() {
     let _this = this;
     return new Promise((resolve, reject) => {
+      if(!_this.cal) {
+        return reject('You must first call bme280.init()');
+      }
+
       // Read temperature
       //
       // t_fine is required for both humidify and pressure regardless. Let's just read it all.
       //
-      _this.i2cBus.readI2cBlock(_this.i2cAddress, _this.REGISTER_TEMP_DATA, 3, new Buffer(3), function(err, bytesRead, buffer) {
+      _this.i2cBus.readI2cBlock(_this.i2cAddress, _this.REGISTER_TEMP_DATA, 3, new Buffer(3), (err, bytesRead, buffer) => {
         if(err) {
           return reject(err);
         }
@@ -96,7 +98,7 @@ class BME280 {
 
         // Read humidity
         //
-        _this.i2cBus.readI2cBlock(_this.i2cAddress, _this.REGISTER_HUMIDITY_DATA, 2, new Buffer(2), function(err, bytesRead, buffer) {
+        _this.i2cBus.readI2cBlock(_this.i2cAddress, _this.REGISTER_HUMIDITY_DATA, 2, new Buffer(2), (err, bytesRead, buffer) => {
           if(err) {
             return reject(err);
           }
@@ -111,7 +113,7 @@ class BME280 {
 
           // Read pressure
           //
-          _this.i2cBus.readI2cBlock(_this.i2cAddress, _this.REGISTER_PRESSURE_DATA, 24, new Buffer(24), function(err, bytesRead, buffer) {
+          _this.i2cBus.readI2cBlock(_this.i2cAddress, _this.REGISTER_PRESSURE_DATA, 24, new Buffer(24), (err, bytesRead, buffer) => {
             if(err) {
               return reject(err);
             }

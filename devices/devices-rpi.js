@@ -55,11 +55,11 @@ class DevicesRPi extends DevicesBase {
       async.parallel([
         callback => bme280.readSensorData()
           .then(data => callback(null, { BME280 : data }))
-          .catch(err => callback(null, { BME280 : err })),
+          .catch(err => callback(null, { BME280 : { err : err }})),
 
         callback => hih6130.readSensorData()
           .then(data => callback(null, { HIH6130 : data }))
-          .catch(err => callback(null, { HIH6130 : err }))
+          .catch(err => callback(null, { HIH6130 : { err : err }}))
       ],
       (err, results) => resolve(results));
     });
