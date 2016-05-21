@@ -18,11 +18,11 @@ class DeviceManager {
     console.log('Creating DeviceManager');
 
     if(deviceUtils.isRaspberryPi()) {
-      let DevicesRPi = require('./devices-rpi.js');
+      const DevicesRPi = require('./devices-rpi.js');
       this.devices = new DevicesRPi();
     }
     else {
-      let DevicesSimulated = require('./devices-simulated.js');
+      const DevicesSimulated = require('./devices-simulated.js');
       this.devices = new DevicesSimulated();    
     }
   }
