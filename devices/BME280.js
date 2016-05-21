@@ -9,8 +9,8 @@
 class BME280 {
 
   constructor(i2cBusNo, i2cAddress) {
-    let i2c = require('i2c-bus');
-    this.i2cBus = i2c.openSync(i2cBusNo);
+    const i2c = require('i2c-bus');
+    this.i2cBus = i2c.openSync(i2cBusNo ? i2cBusNo : 1);
     this.i2cAddress = i2cAddress ? i2cAddress : 0x77;
 
     this.I2C_ADDRESS_B   = 0x76;
@@ -67,7 +67,16 @@ class BME280 {
           }
           else {
             console.log('Found BME280 chip id 0x' + chipId.toString(16));
-            this.loadCalibration(err => err ? reject(err) : resolve(chipId));
+            this.loadCalibration(err => {
+              if(err) {
+                return eject(err);
+              }
+
+              this.i2cBus.writeByteSync(this.i2cAddress, this.REGISTER_CONTROL_HUM, 0x05); // 16x oversampling
+              this.i2cBus.writeByteSync(this.i2cAddress, this.REGISTER_CONTROL, 0xB7); // 16x oversampling, normal mode
+
+              resolve(chipId);
+            });
           }
         });
       });
@@ -75,7 +84,7 @@ class BME280 {
   }
 
   readSensorData() {
-    let _this = this;
+    const _this = this;
     return new Promise((resolve, reject) => {
       if(!_this.cal) {
         return reject('You must first call bme280.init()');
@@ -89,6 +98,7 @@ class BME280 {
         if(err) {
           return reject(err);
         }
+
         let adc_T = BME280.uint20(buffer[0], buffer[1], buffer[2]);
         let var1 = ((((adc_T >> 3) - (_this.cal.dig_T1 << 1))) * _this.cal.dig_T2) >> 11;
         let var2  = (((((adc_T >> 4) - _this.cal.dig_T1) * ((adc_T >> 4) - _this.cal.dig_T1)) >> 12) * _this.cal.dig_T3) >> 14;
@@ -113,10 +123,11 @@ class BME280 {
 
           // Read pressure
           //
-          _this.i2cBus.readI2cBlock(_this.i2cAddress, _this.REGISTER_PRESSURE_DATA, 24, new Buffer(24), (err, bytesRead, buffer) => {
+          _this.i2cBus.readI2cBlock(_this.i2cAddress, _this.REGISTER_PRESSURE_DATA, 3, new Buffer(3), (err, bytesRead, buffer) => {
             if(err) {
               return reject(err);
             }
+
             let adc_P = BME280.uint20(buffer[0], buffer[1], buffer[2]);
             let var1 = t_fine / 2 - 64000;
             let var2 = var1 * var1 * _this.cal.dig_P6 / 32768;
@@ -137,11 +148,9 @@ class BME280 {
               pressure_hPa = p/100;
             }
 
-            resolve({ temperature_C : temperature_C.toFixed(2),
-                      temperature_F : (temperature_C * 9 / 5 + 32).toFixed(2),
-                      humidity      : humidity.toFixed(2),
-                      pressure_hPa  : pressure_hPa.toFixed(2),
-                      pressure_inHg : (pressure_hPa * 0.02953).toFixed(2)
+            resolve({ temperature_C : temperature_C,
+                      humidity      : humidity,
+                      pressure_hPa  : pressure_hPa
             });
           });
         });
@@ -183,7 +192,7 @@ class BME280 {
       };
 
       //console.log('BME280 cal = ' + JSON.stringify(this.cal, null, 2));
-      this.i2cBus.writeByte(this.i2cAddress, this.REGISTER_CONTROL, 0x3F, err => callback(err));
+      callback();
     });
   }
 
@@ -198,6 +207,39 @@ class BME280 {
 
   static uint20(msb, lsb, xlsb) {
     return ((msb << 8 | lsb) << 8 | xlsb) >> 4;
+  }
+
+  static convertCelciusToFahrenheit(c) { 
+    return c * 9 / 5 + 32;
+  }
+
+  static convertHectopascalToInchesOfMercury(hPa) {
+    return hPa * 0.02952998751;
+  }
+
+  static convertMetersToFeet(m) {
+    return m * 3.28084;
+  }
+
+  static calculateHeatIndexCelcius(temperature_C, humidity) {
+    return -8.784695 + 1.61139411 * temperature_C + 2.33854900 * humidity +
+           -0.14611605 * temperature_C * humidity + -0.01230809 * Math.pow(temperature_C, 2) +
+           -0.01642482 * Math.pow(humidity, 2) + 0.00221173 * Math.pow(temperature_C, 2) * humidity +
+           0.00072546 * temperature_C * Math.pow(humidity, 2) +
+           -0.00000358 * Math.pow(temperature_C, 2) * Math.pow(humidity, 2);
+  }
+
+  static calculateDewPointCelcius(temperature_C, humidity) {
+    return 243.04 * (Math.log(humidity/100.0) + ((17.625 * temperature_C)/(243.04 + temperature_C))) / 
+           (17.625 - Math.log(humidity/100.0) - ((17.625 * temperature_C)/(243.04 + temperature_C)));
+  }
+
+  static calculateAltitudeMeters(pressure_hPa, seaLevelPressure_hPa) {
+    if(!seaLevelPressure_hPa) {
+      seaLevelPressure_hPa = 1013.25;
+    }
+
+    return -44330 * (1.0 - Math.pow((pressure_hPa / seaLevelPressure_hPa), (1 / 5.255)));
   }
 
 }
