@@ -9,6 +9,7 @@
 const router = require('express').Router();
 const os     = require('os');
 const path   = require('path');
+const _      = require('lodash');
 
 // DeviceManager provides a platform-independent interface to our hardware devices
 // so we can build and run this application on different platforms.
@@ -24,21 +25,30 @@ router.get('/', (req, res) =>
 
 const renderIndex = (res, data, error) =>
   res.render(path.join(viewsRoot, 'index.ejs'), {
-    sensorData     : data,
+    sensorData     : toFixedDeep(data, 2),
     error          : error,
     platformUptime : os.uptime(),
     processUptime  : process.uptime()
   });
 
-router.get('/fast', (req, res) => {
-
-  for(var n = 0; n < 20; ++n) {
-    deviceManager.readSensors();
-  }
-
-  res.send('FAST');
+const toFixedDeep = (obj, precision) => {
+  _.forIn(obj, (val, key) => {
+    if(_.isNumber(val) && val % 1 != 0) {
+      obj[key] = Number(val.toFixed(precision));
+    }
+    if(_.isArray(val)) {
+      val.forEach(el => {
+        if(_.isObject(el)) {
+          toFixedDeep(el, precision);
+        }
+      });
+    }
+    if(_.isObject(obj[key])) {
+      toFixedDeep(obj[key], precision);
+    }
   });
-
+  return obj;
+}
 
 router.get('/sensors', (req, res) =>
   deviceManager.readSensors()

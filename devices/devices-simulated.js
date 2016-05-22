@@ -33,21 +33,16 @@ class DevicesSimulated extends DevicesBase {
 
       // TODO: Can be fancier here. Maybe have temperature and humidity drift by time of day, etc.
       //
-      let humidity  = 40.00 + Math.random();
-      let tempC     = 24.00 + Math.random();
-      let altitude  = 10.00;
-      let barometer = 30.00;
+      const humidity  = 40.00 + Math.random();
+      const tempC     = 22.00 + Math.random();
+      const barometer = 29.00 + Math.random();
 
-      var data = {
-        status    : 0,
-        humidity  : humidity.toFixed(2),
-        tempC     : tempC.toFixed(2),
-        tempF     : deviceUtils.celsiusToFahrenheit(tempC).toFixed(2),
-        altitude  : altitude,
-        barometer : barometer
-      };
-
-      resolve(data);
+      resolve({
+        humidity      : humidity.toFixed(2),
+        temperature_C : tempC.toFixed(2),
+        temperature_F : deviceUtils.celsiusToFahrenheit(tempC).toFixed(2),
+        pressure_inHg : barometer.toFixed(2)
+      });
     });
   }
 }

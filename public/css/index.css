@@ -5,3 +5,8 @@
 .data {
   margin-top: 20px;
 }
+
+#raw-data {
+  display: inline-block;
+  text-align: left;
+}
