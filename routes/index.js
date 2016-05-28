@@ -25,26 +25,26 @@ router.get('/', (req, res) =>
 
 const renderIndex = (res, data, error) =>
   res.render(path.join(viewsRoot, 'index.ejs'), {
-    sensorData     : toFixedDeep(data, 2),
+    sensorData     : toFixedDeep(data, 2, ['lat', 'lon']),
     error          : error,
     platformUptime : os.uptime(),
     processUptime  : process.uptime()
   });
 
-const toFixedDeep = (obj, precision) => {
+const toFixedDeep = (obj, precision, ignore) => {
   _.forIn(obj, (val, key) => {
-    if(_.isNumber(val) && val % 1 != 0) {
+    if(_.isNumber(val) && val % 1 != 0 && (!ignore || !_.includes(ignore, key))) {
       obj[key] = Number(val.toFixed(precision));
     }
     if(_.isArray(val)) {
       val.forEach(el => {
         if(_.isObject(el)) {
-          toFixedDeep(el, precision);
+          toFixedDeep(el, precision, ignore);
         }
       });
     }
     if(_.isObject(obj[key])) {
-      toFixedDeep(obj[key], precision);
+      toFixedDeep(obj[key], precision, ignore);
     }
   });
   return obj;

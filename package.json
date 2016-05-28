@@ -23,7 +23,9 @@
     "colors": "^1.1.2",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
-    "lodash": "^4.12.0"
+    "lodash": "^4.12.0",
+    "nmea": "0.0.9",
+    "serialport": "^3.1.2"
   },
   "linuxDependencies": {
     "i2c-bus": "^1.0.3",

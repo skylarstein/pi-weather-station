@@ -14,6 +14,7 @@ const async       = require('async');
 const Gpio        = require('onoff').Gpio;
 const HIH6130     = require('./HIH6130.js');
 const BME280      = require('./BME280.js');
+const SerialGPS   = require('./serial-gps.js');
 
 class DevicesRPi extends DevicesBase {
 
@@ -24,6 +25,7 @@ class DevicesRPi extends DevicesBase {
     this.led     = new Gpio(LED_GPIO_OUTPUT, 'out'); // Pin 16 on the header (GPIO23)
     this.hih6130 = new HIH6130();
     this.bme280  = new BME280();
+    this.gps     = new SerialGPS('/dev/ttyAMA0', 9600);
 
     this.bme280.init()
       .then(result => console.log('BME280 initialization succeeded'))
@@ -47,12 +49,12 @@ class DevicesRPi extends DevicesBase {
 
     const hih6130 = this.hih6130;
     const bme280 = this.bme280;
+    const gps    = this.gps;
 
     return new Promise((resolve, reject) => {
       async.parallel([
         callback => bme280.readSensorData()
           .then(data => {
-
             data['temperature_F'] = BME280.convertCelciusToFahrenheit(data.temperature_C);
             data['pressure_inHg'] = BME280.convertHectopascalToInchesOfMercury(data.pressure_hPa);
 
@@ -71,7 +73,9 @@ class DevicesRPi extends DevicesBase {
 
         callback => hih6130.readSensorData()
           .then(data => callback(null, { HIH6130 : data }))
-          .catch(err => callback(null, { HIH6130 : { err : err }}))
+          .catch(err => callback(null, { HIH6130 : { err : err }})),
+
+        callback => callback(null, { GPS : gps.getData() })
       ],
       (err, results) => resolve(results));
     });

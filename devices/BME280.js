@@ -239,7 +239,7 @@ class BME280 {
       seaLevelPressure_hPa = 1013.25;
     }
 
-    return -44330 * (1.0 - Math.pow((pressure_hPa / seaLevelPressure_hPa), (1 / 5.255)));
+    return (1.0 - Math.pow(pressure_hPa / seaLevelPressure_hPa, (1 / 5.2553))) * 145366.45 * 0.3048;
   }
 
 }
