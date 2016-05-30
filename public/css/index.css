@@ -2,11 +2,33 @@
   margin-top: 20px;
 }
 
-.data {
-  margin-top: 20px;
-}
-
 #raw-data {
   display: inline-block;
   text-align: left;
+}
+
+#data-container {
+  width: 100%;
+  padding: 0;
+  display: table;
+}
+
+#table-row  {
+  display: table-row;
+}
+
+#gauge-col {
+  width: 175px;
+  padding: 0;
+  display: table-cell;
+}
+
+#map-canvas {
+  display: table-cell;
+  height: 100%;
+}
+
+#gauge {
+  width: 350px;
+  height: 350px;
 }

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Raspberry Pi Weather Station</title>
+
+    <!-- Vendor assets -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/lodash/lodash.min.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap&libraries=places"></script>
+
+    <!-- App Assets -->
+    <script src="/js/data-display.js"></script>
+    <script src="/js/index.js"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/jquery-jsonview/dist/jquery.jsonview.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <span><img src="images/raspberry-pi-logo.svg" alt="Raspberry Pi logo" width=20></span>
+            <span>&nbsp;Raspberry Pi Weather Station</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container text-center">
+      <div id="data-container">
+        <div id="table-row">
+          <div id="gauge-col">
+            <div class="column-in">
+              <div id="chart_div1" class="gauge"></div>
+              <div id="chart_div2" class="gauge"></div>
+              <div id="chart_div3" class="gauge"></div>
+            </div>
+          </div>
+          <div id="map-canvas"></div>
+        </div>
+      </div>
+      <br>
+      <div id="raw-data">
+        <pre id="raw-data-json"></pre>
+      </div>
+      <div id="raw-data">
+        <pre id="raw-location-json"></pre>
+      </div>
+    </div>
+  </body>
+</html>

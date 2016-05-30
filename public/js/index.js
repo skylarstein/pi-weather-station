@@ -1,4 +1,17 @@
+/*
+  index.js
+*/
+
 $(document).ready(function() {
+
+  // Assume root data source endpoint is local unless explicitly overridden.
+  // This makes local front-end dev/test a bit easier from my laptop.
+  //
+  window.dataSourceUrl = '';
+  if($.urlParam('source')) {
+    window.dataSourceUrl = $.urlParam('source');
+  }
+
   $('#ledOn').on('click', function() {
     $.post('/led-on')
       .done(function(msg) {
@@ -18,16 +31,22 @@ $(document).ready(function() {
         alert('Error: ' + xhr.status + ', ' + xhr.responseText);
       });
    });
+
+  initCharts();
+
+  (function monitorLocationDetails() {
+    // This request calls third part rate-limited reverse geocoding and timezone API.
+    // Be nice if you want to run this app 24 hours a day.
+    //
+    $.get(`${window.dataSourceUrl}/location`, function(data) {
+      $.locationData = data;
+      $('#raw-location-json').text(JSON.stringify(data, null, 2));
+      setTimeout(monitorLocationDetails, 60000);
+    });
+  })();
 });
 
-function padZeros(n, len) {
- return (Array(len + 1).join("0") + n).slice(-len);
-}
-
-function humanizeSeconds(seconds) {
-  var data = moment.duration(seconds, 'seconds')._data;
-  return data.years + ' Years, ' + 
-         data.months + ' Months, ' + 
-         data.days + ' Days, ' + 
-         padZeros(data.hours, 2) + ':' + padZeros(data.minutes, 2) + ':' + padZeros(data.seconds, 2);
+$.urlParam = function(name) {
+  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+  return results == null ? null : decodeURI(results[1]) || null;
 }

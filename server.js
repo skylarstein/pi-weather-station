@@ -57,8 +57,14 @@ process.on('SIGINT', () => cleanShutdown('SIGINT'));
 const cleanShutdown = shutdownType => {
   console.log(`[${shutdownType}] Initiating graceful shutdown...`);
 
+  // I ain't got time to wait, commenting this out but leaving it here for posterity.
+  //
+  /*
   httpServer.close(() => {
     console.log('HTTP server closed remaining connections. Exiting now.');
     process.exit(0);
   });
+  */
+
+  process.exit(0);
 }

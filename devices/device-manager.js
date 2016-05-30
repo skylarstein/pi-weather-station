@@ -39,6 +39,10 @@ class DeviceManager {
     return this.devices.readSensors(); // returns Promise
   }      
 
+  locationDetails() {
+    return this.devices.locationDetails(); // returns Promise
+  }      
+
 }
 
 module.exports = DeviceManager;

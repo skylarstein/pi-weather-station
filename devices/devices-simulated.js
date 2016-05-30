@@ -8,6 +8,7 @@
 
 const DevicesBase = require('./devices-base.js');
 const deviceUtils = require('./device-utils.js');
+const os          = require('os');
 
 class DevicesSimulated extends DevicesBase {
 
@@ -17,32 +18,97 @@ class DevicesSimulated extends DevicesBase {
   }
 
   ledOn() {
-    console.log('DevicesSimulated.LEDOn()');
+    console.log('DevicesSimulated.ledOn()');
     return new Promise((resolve, reject) => resolve('OK'));
   }
 
   ledOff() {
-    console.log('DevicesSimulated.LEDOff()');
+    console.log('DevicesSimulated.ledOff()');
     return new Promise((resolve, reject) => resolve('OK'));
   }
 
   readSensors() {
-    console.log('DevicesSimulated.ReadSensors()');
+    console.log('DevicesSimulated.readSensors()');
 
     return new Promise((resolve, reject) => {
+      let c = 15 + (new Date()).getSeconds() / 60 * 15;
+      let fakeData = {
+        simulated : true,
+        BME280 : {
+          temperature_C : c,
+          temperature_F : c * 9 / 5 + 32,
+          humidity : 39.7666,
+          pressure_hPa : 1014.3578,
+          pressure_inHg : 29.9539,
+          altitude_m :  9.2139,
+          altitude_ft : 30.2295
+        },
+        GPS : {
+          lat : 37.444795 + Math.random() * 0.000001,
+          lon : -122.165146 + Math.random() * 0.000001,
+          altitude : 9.144 + Math.random() * 0.03,
+          altitudeUnits : 'M',
+          satelliteCount : 8,
+          PDOP : 1.94,
+          HDOP : 0.98,
+          VDOP : 1.68,
+          fix : '3D Fix',
+          timestamp : new Date(),
+          speedKnots : 0.01,
+          heading : 227.16
+        },
+        app : {
+          platformUptime : os.uptime(),
+          processUptime : process.uptime()
+        }
+      };
 
-      // TODO: Can be fancier here. Maybe have temperature and humidity drift by time of day, etc.
-      //
-      const humidity  = 40.00 + Math.random();
-      const tempC     = 22.00 + Math.random();
-      const barometer = 29.00 + Math.random();
+      resolve(fakeData);
+    });
+  }
 
-      resolve({
-        humidity      : humidity.toFixed(2),
-        temperature_C : tempC.toFixed(2),
-        temperature_F : deviceUtils.celsiusToFahrenheit(tempC).toFixed(2),
-        pressure_inHg : barometer.toFixed(2)
-      });
+  locationDetails() {
+    console.log('DevicesSimulated.locationDetails()');
+
+    return new Promise((resolve, reject) => {
+      let fakeData =  {
+        timestamp : new Date(),
+        location : {
+          place_id : '87856626',
+          licence : 'Data © OpenStreetMap contributors, ODbL 1.0. http:\/\/www.openstreetmap.org\/copyright',
+          osm_type : 'way',
+          osm_id : '120110740',
+          lat : '37.4448081',
+          lon : '-122.165109168756',
+          display_name : '129, Lytton Avenue, Downtown North, Palo Alto, Santa Clara County, California, 94301, United States of America',
+          address : {
+            house_number : '129',
+            road : 'Lytton Avenue',
+            neighbourhood : 'Downtown North',
+            city : 'Palo Alto',
+            county : 'Santa Clara County',
+            state : 'California',
+            postcode : '94301',
+            country : 'United States of America',
+            country_code : 'us'
+          },
+          boundingbox : [
+            '37.4447023',
+            '37.4449146',
+            '-122.1652638',
+            '-122.1649522'
+          ]
+        },
+        timezone : {
+          dstOffset : 3600,
+          rawOffset : -28800,
+          status : 'OK',
+          timeZoneId : 'America/Los_Angeles',
+          timeZoneName : 'Pacific Daylight Time'
+        }
+      };
+
+      resolve(fakeData);
     });
   }
 }

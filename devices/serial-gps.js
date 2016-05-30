@@ -35,32 +35,34 @@ class SerialGPS {
         sentence = nmea.parse(line);
       }
       catch(err){
+        // TODO: UART may never sync on bad startup condition, should close and re-open port!
         return console.error('Invalid or impartial NMEA sentence, probably due to startup condition. Will try the next one...');
       }
 
       switch(sentence.sentence) {
 
         case 'GGA':
-          let loc = this.gpsToDegrees(sentence.lat, sentence.latPole, sentence.lon, sentence.lonPole);
-          _this.data['lat']      = loc.lat;
-          _this.data['lon']      = loc.lon;
-          _this.data['altitude'] = sentence.alt;
+          let locGGA = this.gpsToDegrees(sentence.lat, sentence.latPole, sentence.lon, sentence.lonPole);
+          _this.data['lat']           = locGGA.lat;
+          _this.data['lon']           = locGGA.lon;
+          _this.data['altitude']      = sentence.alt;
+          _this.data['altitudeUnits'] = sentence.altUnit;
           break;
 
         case 'RMC':
-          let loc = this.gpsToDegrees(sentence.lat, sentence.latPole, sentence.lon, sentence.lonPole);
-          _this.data['lat']        = loc.lat;
-          _this.data['lon']        = loc.lon;
+          let locRMC = this.gpsToDegrees(sentence.lat, sentence.latPole, sentence.lon, sentence.lonPole);
+          _this.data['lat']        = locRMC.lat;
+          _this.data['lon']        = locRMC.lon;
           _this.data['timestamp']  = this.gpsToUTC(sentence.timestamp, sentence.date);
           _this.data['speedKnots'] = sentence.speedKnots;
           _this.data['heading']    = sentence.trackTrue;
           break;
   
         case 'GSA':
-          _this.data['satellites'] = sentence.satellites;
-          _this.data['PDOP']       = parseFloat(sentence.PDOP);
-          _this.data['HDOP']       = parseFloat(sentence.HDOP);
-          _this.data['VDOP']       = parseFloat(sentence.VDOP);
+          _this.data['satelliteCount'] = sentence.satellites.length;
+          _this.data['PDOP']           = parseFloat(sentence.PDOP);
+          _this.data['HDOP']           = parseFloat(sentence.HDOP);
+          _this.data['VDOP']           = parseFloat(sentence.VDOP);
 
           switch(sentence.mode) {
             case 1:
@@ -122,7 +124,6 @@ class SerialGPS {
 
     return { lat : latitude, lon : longitude }
   }
-
 }
 
 module.exports = SerialGPS;
