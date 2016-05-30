@@ -100,6 +100,8 @@ class DevicesRPi extends DevicesBase {
 
         callback => callback(null, { timestamp : gpsData.timestamp }),
 
+        callback => callback(null, { solar : deviceUtils.suntimes(gpsData) }),
+
         callback => deviceUtils.reverseGeocode(gpsData)
           .then(data => callback(null, { location : data }))
           .catch(err => callback(null, { location : { err : err }})),

@@ -5,9 +5,10 @@
 
 'use strict';
 
-const os      = require('os');
-const _       = require('lodash');
-const request = require('request');
+const _         = require('lodash');
+const os        = require('os');
+const request   = require('request');
+const SolarCalc = require('solar-calc');
 
 // isRaspberryPi() - This isn't actually identifying the Raspberry Pi specifically
 // but it does the job for now.
@@ -57,7 +58,16 @@ exports.lookupTimezone = (gpsData) => {
     });
 }
 
-//getJSON() - wrapper around an HTTP GET request
+// sunTimes() - get sunrise and sunset times for the given date and location
+//
+exports.suntimes = (gpsData) => {
+  let solarCalc = new SolarCalc(gpsData.timestamp, gpsData.lat, gpsData.lon);
+  return { sunrise : solarCalc.sunrise,
+           sunset : solarCalc.sunset
+         };
+}
+
+// getJSON() - wrapper around an HTTP GET request
 //
 const getJSON = (url) => {
   return new Promise((resolve, reject) => {
