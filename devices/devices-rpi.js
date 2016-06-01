@@ -29,20 +29,20 @@ class DevicesRPi extends DevicesBase {
     this.gps     = new SerialGPS('/dev/ttyAMA0', 9600);
 
     this.bme280.init()
-      .then(result => console.log('BME280 initialization succeeded'))
-      .catch(err => console.error('BME280 initialization failed: ' + err));
+      .then((result) => console.log('BME280 initialization succeeded'))
+      .catch((err) => console.error('BME280 initialization failed: ' + err));
   }
 
   ledOn() {
     console.log('DevicesRPi.ledOn()');
     const led = this.led;
-    return new Promise((resolve, reject) => led.write(1, err => err ? reject(err) : resolve('OK')));
+    return new Promise((resolve, reject) => led.write(1, (err) => err ? reject(err) : resolve('OK')));
   }
 
   ledOff() {
     console.log('DevicesRPi.ledOff()');
     const led = this.led;
-    return new Promise((resolve, reject) => led.write(0, err => err ? reject(err) : resolve('OK')));
+    return new Promise((resolve, reject) => led.write(0, (err) => err ? reject(err) : resolve('OK')));
   }
 
   readSensors() {
@@ -57,8 +57,8 @@ class DevicesRPi extends DevicesBase {
       //
       async.parallel([
 
-        callback => bme280.readSensorData()
-          .then(data => {
+        (callback) => bme280.readSensorData()
+          .then((data) => {
             data['temperature_F'] = BME280.convertCelciusToFahrenheit(data.temperature_C);
             data['pressure_inHg'] = BME280.convertHectopascalToInchesOfMercury(data.pressure_hPa);
             /*
@@ -73,15 +73,15 @@ class DevicesRPi extends DevicesBase {
 
             return callback(null, { BME280 : data });
           })
-          .catch(err => callback(null, { BME280 : { err : err }})),
+          .catch((err) => callback(null, { BME280 : { err : err }})),
 
-        callback => hih6130.readSensorData()
-          .then(data => callback(null, { HIH6130 : data }))
-          .catch(err => callback(null, { HIH6130 : { err : err }})),
+        (callback) => hih6130.readSensorData()
+          .then((data) => callback(null, { HIH6130 : data }))
+          .catch((err) => callback(null, { HIH6130 : { err : err }})),
 
-        callback => callback(null, { GPS : gps.getData() }),
+        (callback) => callback(null, { GPS : gps.getData() }),
 
-        callback => callback(null, { app : { platformUptime : os.uptime(), processUptime  : process.uptime() }})
+        (callback) => callback(null, { app : { platformUptime : os.uptime(), processUptime  : process.uptime() }})
       ],
 
       (err, results) => resolve(deviceUtils.flattenResults(results)));
@@ -98,17 +98,17 @@ class DevicesRPi extends DevicesBase {
       //
       async.parallel([
 
-        callback => callback(null, { timestamp : gpsData.timestamp }),
+        (callback) => callback(null, { timestamp : gpsData.timestamp }),
 
-        callback => callback(null, { solar : deviceUtils.suntimes(gpsData) }),
+        (callback) => callback(null, { solar : deviceUtils.suntimes(gpsData) }),
 
-        callback => deviceUtils.reverseGeocode(gpsData)
-          .then(data => callback(null, { location : data }))
-          .catch(err => callback(null, { location : { err : err }})),
+        (callback) => deviceUtils.reverseGeocode(gpsData)
+          .then((data) => callback(null, { location : data }))
+          .catch((err) => callback(null, { location : { err : err }})),
 
-        callback => deviceUtils.lookupTimezone(gpsData)
-          .then(data => callback(null, { timezone : data }))
-          .catch(err => callback(null, { timezone : { err : err }}))
+        (callback) => deviceUtils.lookupTimezone(gpsData)
+          .then((data) => callback(null, { timezone : data }))
+          .catch((err) => callback(null, { timezone : { err : err }}))
       ],
 
       (err, results) => resolve(deviceUtils.flattenResults(results)));

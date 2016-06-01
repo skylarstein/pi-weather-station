@@ -38,7 +38,7 @@ function initCharts() {
   google.charts.setOnLoadCallback(drawCharts);
 
   (function pollSensors() {
-    $.get(`${window.dataSourceUrl}/sensors`, function(data) {
+    $.get(window.dataSourceUrl + '/sensors', function(data) {
       $.sensorData = data;
       
       drawCharts();
@@ -52,7 +52,7 @@ function initCharts() {
         //
         if(mapReady && firstFix) {
           firstFix = false;
-          map.setZoom(12);
+          map.setZoom(16);
           map.panTo(latlng);
         }
 

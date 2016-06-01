@@ -30,6 +30,8 @@ class DevicesSimulated extends DevicesBase {
   readSensors() {
     console.log('DevicesSimulated.readSensors()');
 
+    // Including a little bit of movement in the fake data to illustrate live updates on the front end
+    //
     return new Promise((resolve, reject) => {
       let c = 15 + (new Date()).getSeconds() / 60 * 15;
       let fakeData = {
@@ -74,10 +76,6 @@ class DevicesSimulated extends DevicesBase {
       let fakeData =  {
         timestamp : new Date(),
         location : {
-          place_id : '87856626',
-          licence : 'Data © OpenStreetMap contributors, ODbL 1.0. http:\/\/www.openstreetmap.org\/copyright',
-          osm_type : 'way',
-          osm_id : '120110740',
           lat : '37.4448081',
           lon : '-122.165109168756',
           display_name : '129, Lytton Avenue, Downtown North, Palo Alto, Santa Clara County, California, 94301, United States of America',

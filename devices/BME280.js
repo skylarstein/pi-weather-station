@@ -54,7 +54,7 @@ class BME280 {
 
   init() {
     return new Promise((resolve, reject) => {
-      this.i2cBus.writeByte(this.i2cAddress, this.REGISTER_CHIPID, 0, err => {
+      this.i2cBus.writeByte(this.i2cAddress, this.REGISTER_CHIPID, 0, (err) => {
         if(err) {
           return reject(err);
         }
@@ -67,7 +67,7 @@ class BME280 {
           }
           else {
             console.log('Found BME280 chip id 0x' + chipId.toString(16));
-            this.loadCalibration(err => {
+            this.loadCalibration((err) => {
               if(err) {
                 return eject(err);
               }

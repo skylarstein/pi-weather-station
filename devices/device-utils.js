@@ -26,6 +26,7 @@ exports.isRaspberryPi = () => (os.type() === 'Linux');
             sensor2 : { val2 : 2 },
             sensor3 : { val3 : 3 }}
 */
+
 exports.flattenResults = (data) => {
   let results = {};
   if(_.isObject(data)) {
@@ -43,8 +44,12 @@ exports.reverseGeocode = (gpsData) => {
   return new Promise((resolve, reject) => {
     //getJSON(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${gpsData.lat},${gpsData.lon}`)
     getJSON(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${gpsData.lat}&lon=${gpsData.lon}`)
-      .then(data => resolve(data))
-      .catch(err => reject(err));
+      .then((data) => resolve({ address     : data.address,
+                                lat         : data.lat,
+                                lon         : data.lon,
+                                boundingBox : data.boundingbox
+                            }))
+      .catch((err) => reject(err));
     });
 }
 
@@ -53,8 +58,8 @@ exports.reverseGeocode = (gpsData) => {
 exports.lookupTimezone = (gpsData) => {
   return new Promise((resolve, reject) => {
     getJSON(`https://maps.googleapis.com/maps/api/timezone/json?location=${gpsData.lat},${gpsData.lon}&timestamp=${gpsData.timestamp.getTime()/1000}`)
-      .then(data => resolve(data))
-      .catch(err => reject(err));
+      .then((data) => resolve(data))
+      .catch((err) => reject(err));
     });
 }
 

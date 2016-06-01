@@ -14,7 +14,16 @@ const deviceUtils = require('./device-utils.js');
 
 class DeviceManager {
 
+  static instance() { // singleton instance
+    const DeviceManagerSingletonSymbol = Symbol.for("app.weather-station.device-manager");
+    return Object.getOwnPropertySymbols(global).indexOf(DeviceManagerSingletonSymbol) >= 0 ?
+      global[DeviceManagerSingletonSymbol] : (global[DeviceManagerSingletonSymbol] = new DeviceManager());
+  }
+
   constructor() {
+    // Would ideally have a private constructor. Users should not instantiate this
+    // class directly, but should instead call DevicemManager.instance() for the singleton.
+    //
     console.log('Creating DeviceManager');
 
     if(deviceUtils.isRaspberryPi()) {

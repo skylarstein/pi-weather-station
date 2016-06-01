@@ -20,7 +20,7 @@ class SerialGPS {
     this.data = {};
     const _this = this;
 
-    this.serialPort.open(err => {
+    this.serialPort.open((err) => {
       if(err) {
         console.error(`Failed to open GPS port: ${err.message}`);
       }
@@ -29,7 +29,7 @@ class SerialGPS {
       }
     });
 
-    this.serialPort.on('data', line => {
+    this.serialPort.on('data', (line) => {
       let sentence = {};
       try {
         sentence = nmea.parse(line);

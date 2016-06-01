@@ -42,6 +42,9 @@ $(document).ready(function() {
       $.locationData = data;
       $('#raw-location-json').text(JSON.stringify(data, null, 2));
       setTimeout(monitorLocationDetails, 60000);
+    }).
+    fail(function() {
+      setTimeout(monitorLocationDetails, 60000);
     });
   })();
 });

@@ -7,6 +7,17 @@
   text-align: left;
 }
 
+#raw-data-json {
+float: left;
+  font-size: 10px;
+}
+
+#raw-location-json {
+  clear: left;
+float: left;
+  font-size: 10px;
+}
+
 #data-container {
   width: 100%;
   padding: 0;

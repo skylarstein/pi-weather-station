@@ -10,10 +10,10 @@ const router = require('express').Router();
 const path   = require('path');
 
 // DeviceManager provides a platform-independent interface to our hardware devices
-// so we can build and run this application on different platforms.
+// so we can install and run this application on different platforms.
 //
 const DeviceManager = require('../devices/device-manager.js');
-const deviceManager = new DeviceManager();
+const deviceManager = DeviceManager.instance();
 
 router.get('/', (req, res) =>
   res.sendFile(path.join(_dirname, 'public', 'index.html')));

@@ -5,6 +5,10 @@
 
 'use strict';
 
+if(!require('dotenv').config({silent: true})) {
+  throw new Error('An .env file is required!');
+ }
+
 const app        = require('./app.js');
 const os         = require('os');
 const http       = require('http');
@@ -25,7 +29,7 @@ httpServer.on('listening', () => {
   console.log(`HTTP server listening on ${bind} on ${os.hostname()}`);
 });
 
-httpServer.on('error', error => {
+httpServer.on('error', (error) => {
   if(error.syscall !== 'listen') {
     throw error;
   }
@@ -35,12 +39,12 @@ httpServer.on('error', error => {
   switch(error.code) {
 
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      console.error(`Error: ${bind} requires elevated privileges`);
       process.exit(1);
       break;
 
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      console.error(`Error: ${bind} is already in use`);
       process.exit(1);
       break;
 
@@ -54,7 +58,7 @@ httpServer.on('error', error => {
 process.on('SIGTERM', () => cleanShutdown('SIGTERM'));
 process.on('SIGINT', () => cleanShutdown('SIGINT'));
 
-const cleanShutdown = shutdownType => {
+const cleanShutdown = (shutdownType) => {
   console.log(`[${shutdownType}] Initiating graceful shutdown...`);
 
   // I ain't got time to wait, commenting this out but leaving it here for posterity.
@@ -65,6 +69,5 @@ const cleanShutdown = shutdownType => {
     process.exit(0);
   });
   */
-
   process.exit(0);
 }
