@@ -12,10 +12,11 @@ class SerialGPS {
     const SerialPort = require('serialport');
     const nmea = require('nmea');
 
-    this.serialPort = new SerialPort.SerialPort(port ? port : '/dev/ttyAMA0', {
+    this.serialPort = new SerialPort(port ? port : '/dev/ttyAMA0', {
       baudrate : baud ? baud : 9600,
-      parser : SerialPort.parsers.readline('\r\n')
-    }, false);
+      parser : SerialPort.parsers.readline('\r\n'),
+      autoOpen : false
+    });
 
     this.data = {};
     const _this = this;
