@@ -19,14 +19,13 @@ class SerialGPS {
     });
 
     this.data = {};
-    const _this = this;
 
     this.serialPort.open((err) => {
       if(err) {
         console.error(`Failed to open GPS port: ${err.message}`);
       }
       else {
-        console.log(`Opened GPS port '${_this.serialPort.path}' at ${_this.serialPort.options.baudRate} baud`);
+        console.log(`Opened GPS port '${this.serialPort.path}' at ${this.serialPort.options.baudRate} baud`);
       }
     });
 
@@ -44,42 +43,42 @@ class SerialGPS {
 
         case 'GGA':
           let locGGA = this.gpsToDegrees(sentence.lat, sentence.latPole, sentence.lon, sentence.lonPole);
-          _this.data['lat']           = locGGA.lat;
-          _this.data['lon']           = locGGA.lon;
-          _this.data['altitude']      = sentence.alt;
-          _this.data['altitudeUnits'] = sentence.altUnit;
+          this.data['lat']           = locGGA.lat;
+          this.data['lon']           = locGGA.lon;
+          this.data['altitude']      = sentence.alt;
+          this.data['altitudeUnits'] = sentence.altUnit;
           break;
 
         case 'RMC':
           let locRMC = this.gpsToDegrees(sentence.lat, sentence.latPole, sentence.lon, sentence.lonPole);
-          _this.data['lat']        = locRMC.lat;
-          _this.data['lon']        = locRMC.lon;
-          _this.data['timestamp']  = this.gpsToUTC(sentence.timestamp, sentence.date);
-          _this.data['speedKnots'] = sentence.speedKnots;
-          _this.data['heading']    = sentence.trackTrue;
+          this.data['lat']        = locRMC.lat;
+          this.data['lon']        = locRMC.lon;
+          this.data['timestamp']  = this.gpsToUTC(sentence.timestamp, sentence.date);
+          this.data['speedKnots'] = sentence.speedKnots;
+          this.data['heading']    = sentence.trackTrue;
           break;
   
         case 'GSA':
-          _this.data['satelliteCount'] = sentence.satellites.length;
-          _this.data['PDOP']           = parseFloat(sentence.PDOP);
-          _this.data['HDOP']           = parseFloat(sentence.HDOP);
-          _this.data['VDOP']           = parseFloat(sentence.VDOP);
+          this.data['satelliteCount'] = sentence.satellites.length;
+          this.data['PDOP']           = parseFloat(sentence.PDOP);
+          this.data['HDOP']           = parseFloat(sentence.HDOP);
+          this.data['VDOP']           = parseFloat(sentence.VDOP);
 
           switch(sentence.mode) {
             case 1:
-              _this.data['fix'] = 'No Fix';
+              this.data['fix'] = 'No Fix';
               break;
 
             case 2:
-              _this.data['fix'] = '2D Fix';
+              this.data['fix'] = '2D Fix';
               break;
 
             case 3:
-              _this.data['fix'] = '3D Fix';
+              this.data['fix'] = '3D Fix';
               break;
 
             default:
-              _this.data['fix'] = `Unknown (${sentence.mode})`;
+              this.data['fix'] = `Unknown (${sentence.mode})`;
           }
 
           break;
