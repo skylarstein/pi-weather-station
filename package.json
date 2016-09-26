@@ -33,6 +33,7 @@
   },
   "linuxDependencies": {
     "i2c-bus": "^1.0.3",
+    "dht-sensor": "0.0.4",
     "onoff": "^1.0.4"
   }
 }
