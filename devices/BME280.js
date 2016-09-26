@@ -8,10 +8,12 @@
 
 class BME280 {
 
-  constructor(i2cBusNo, i2cAddress) {
+  constructor(options) {
     const i2c = require('i2c-bus');
-    this.i2cBus = i2c.openSync(i2cBusNo ? i2cBusNo : 1);
-    this.i2cAddress = i2cAddress ? i2cAddress : 0x77;
+
+    this.i2cBusNo = (options && options.hasOwnProperty('i2cBusNo')) ? options.i2cBusNo : 1;    
+    this.i2cBus = i2c.openSync(this.i2cBusNo);
+    this.i2cAddress = (options && options.hasOwnProperty('i2cAddress')) ? options.i2cAddress : BME280.BME280_DEFAULT_I2C_ADDRESS();
 
     this.I2C_ADDRESS_B   = 0x76;
     this.I2C_ADDRESS_A   = 0x77;
@@ -66,7 +68,7 @@ class BME280 {
             return reject(`Unexpected Chip ID: ${chipId}`);
           }
           else {
-            console.log('Found BME280 chip id 0x' + chipId.toString(16));
+            console.log('Found BME280 chip id 0x' + chipId.toString(16) + ' on bus i2c-' + this.i2cBusNo + ' address ' + '0x' + this.i2cAddress.toString(16));
             this.loadCalibration((err) => {
               if(err) {
                 return eject(err);
@@ -91,7 +93,7 @@ class BME280 {
 
       // Read temperature
       //
-      // t_fine is required for both humidify and pressure regardless. Let's just read it all.
+      // t_fine is required for both humidity and pressure regardless. Let's just read it all.
       //
       this.i2cBus.readI2cBlock(this.i2cAddress, this.REGISTER_TEMP_DATA, 3, new Buffer(3), (err, bytesRead, buffer) => {
         if(err) {
@@ -194,6 +196,10 @@ class BME280 {
       callback();
     });
   }
+
+  static BME280_DEFAULT_I2C_ADDRESS() {
+    return 0x77;
+  } 
 
   static int16(msb, lsb) {
     let val = BME280.uint16(msb, lsb);
