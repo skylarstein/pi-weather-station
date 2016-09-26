@@ -7,6 +7,7 @@
 'use strict';
 
 const LED_GPIO_OUTPUT = 23; // Pin 16 on the header (GPIO23)
+const DHT22_GPIO_PIN = 17;
 
 const DevicesBase = require('./devices-base.js');
 const deviceUtils = require('./device-utils.js');
@@ -14,6 +15,7 @@ const async       = require('async');
 const Gpio        = require('onoff').Gpio;
 const HIH6130     = require('./HIH6130.js');
 const BME280      = require('./BME280.js');
+const DHT22       = require('./DHT22.js');
 const SerialGPS   = require('./serial-gps.js');
 const os          = require('os');
 
@@ -26,6 +28,7 @@ class DevicesRPi extends DevicesBase {
     this.led     = new Gpio(LED_GPIO_OUTPUT, 'out');
     this.hih6130 = new HIH6130();
     this.bme280  = new BME280();
+    this.dht22   = new DHT22(DHT22_GPIO_PIN);
     this.gps     = new SerialGPS('/dev/ttyAMA0', 9600);
 
     this.bme280.init()
@@ -35,29 +38,23 @@ class DevicesRPi extends DevicesBase {
 
   ledOn() {
     console.log('DevicesRPi.ledOn()');
-    const led = this.led;
-    return new Promise((resolve, reject) => led.write(1, (err) => err ? reject(err) : resolve('OK')));
+    return new Promise((resolve, reject) => this.led.write(1, (err) => err ? reject(err) : resolve('OK')));
   }
 
   ledOff() {
     console.log('DevicesRPi.ledOff()');
-    const led = this.led;
-    return new Promise((resolve, reject) => led.write(0, (err) => err ? reject(err) : resolve('OK')));
+    return new Promise((resolve, reject) => this.led.write(0, (err) => err ? reject(err) : resolve('OK')));
   }
 
   readSensors() {
     console.log('DevicesRPi.readSensors()');
-
-    const hih6130 = this.hih6130;
-    const bme280 = this.bme280;
-    const gps    = this.gps;
 
     return new Promise((resolve, reject) => {
       // Gather all of our data sources in parallel
       //
       async.parallel([
 
-        (callback) => bme280.readSensorData()
+        (callback) => this.bme280.readSensorData()
           .then((data) => {
             data['temperature_F'] = BME280.convertCelciusToFahrenheit(data.temperature_C);
             data['pressure_inHg'] = BME280.convertHectopascalToInchesOfMercury(data.pressure_hPa);
@@ -75,11 +72,17 @@ class DevicesRPi extends DevicesBase {
           })
           .catch((err) => callback(null, { BME280 : { err : err }})),
 
-        (callback) => hih6130.readSensorData()
+        (callback) => this.hih6130.readSensorData()
           .then((data) => callback(null, { HIH6130 : data }))
           .catch((err) => callback(null, { HIH6130 : { err : err }})),
 
-        (callback) => callback(null, { GPS : gps.getData() }),
+        (callback) => {
+          let data = this.dht22.readSensorData();
+          data['temperature_F'] = BME280.convertCelciusToFahrenheit(data.temperature_C);
+          return callback(null, { DHT22 : data });
+        },
+
+        (callback) => callback(null, { GPS : this.gps.getData() }),
 
         (callback) => callback(null, { app : { platformUptime : os.uptime(), processUptime  : process.uptime() }})
       ],

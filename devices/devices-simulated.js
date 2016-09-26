@@ -33,12 +33,18 @@ class DevicesSimulated extends DevicesBase {
     // Including a little bit of movement in the fake data to illustrate live updates on the front end
     //
     return new Promise((resolve, reject) => {
-      let c = 15 + (new Date()).getSeconds() / 60 * 15;
+      let c1 = 15 + (new Date()).getSeconds() / 60 * 15;
+      let c2 = 15 + (new Date()).getSeconds() / 60 * 15;
       let fakeData = {
         simulated : true,
+        DHT22 : {
+          temperature_C : c1,
+          temperature_F : c1 * 9 / 5 + 32,
+          humidity : 39.7666
+        },
         BME280 : {
-          temperature_C : c,
-          temperature_F : c * 9 / 5 + 32,
+          temperature_C : c2,
+          temperature_F : c2 * 9 / 5 + 32,
           humidity : 39.7666,
           pressure_hPa : 1014.3578,
           pressure_inHg : 29.9539,
