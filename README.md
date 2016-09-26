@@ -52,7 +52,7 @@ sudo make install
 ```
 ### 5. npm install
 
-One my RPi 2 Model B this takes several minutes. Hang in there.
+The takes several minutes on my RPi 2 Model B. Hang in there.
 
 ## Device Hardware Setup
 
