@@ -8,10 +8,10 @@
 
 class HIH6130 {
 
-  constructor(i2cBusNo, i2cAddress) {
+  constructor(options) {
     const i2c = require('i2c-bus');
-    this.i2cBus = i2c.openSync(i2cBusNo ? i2cBusNo : 1);
-    this.i2cAddress = i2cAddress ? i2cAddress : HIH6130.HIH6130_DEFAULT_I2C_ADDRESS();
+    this.i2cBus = i2c.openSync((options && options.hasOwnProperty('i2cBusNo')) ? options.i2cBusNo : 1);
+    this.i2cAddress = (options && options.hasOwnProperty('i2cAddress')) ? options.i2cAddress : HIH6130.HIH6130_DEFAULT_I2C_ADDRESS();
 
     this.HIH6130_CMD_SIZE = 0x04;
     this.HIH6130_CMD_READ = 0x04;
