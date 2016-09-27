@@ -6,8 +6,8 @@
 'use strict';
 
 if(!require('dotenv').config({silent: true})) {
-  throw new Error('An .env file is required!');
- }
+  //throw new Error('An .env file is required!');
+}
 
 const app        = require('./app.js');
 const os         = require('os');
