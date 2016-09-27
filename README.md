@@ -54,9 +54,9 @@ sudo make install
 
 The takes several minutes on my RPi 2 Model B. Hang in there.
 
-## Device Hardware Setup
+## Hardware Device Setup
 
-Imaine an awesome image from http://fritzing.org right here.
+![Hardware Device Setup Image](/docs/pi-weather-station.png?raw=true "Hardware Device Setup Image")
 
 ## Running the Project
 
