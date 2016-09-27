@@ -1,7 +1,7 @@
 {
-  "name": "weather-station",
+  "name": "pi-weather-station",
   "version": "1.0.0",
-  "description": "Raspberry Pi Temperature and Humidity Sensor Project",
+  "description": "Raspberry Pi Weather Station",
   "main": "server.js",
   "scripts": {
     "install": "node install-dependencies.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iMears/weather-station.git"
+    "url": "git+https://github.com/skylarstein/pi-weather-station.git"
   },
   "author": "Maxwell Mears, Skylar Stein",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/iMears/weather-station/issues"
+    "url": "https://github.com/skylarstein/pi-weather-station/issues"
   },
-  "homepage": "https://github.com/iMears/weather-station#readme",
+  "homepage": "https://github.com/skylarstein/pi-weather-station#readme",
   "dependencies": {
     "async": "^2.0.0-rc.5",
     "colors": "^1.1.2",
