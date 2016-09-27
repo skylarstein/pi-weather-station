@@ -6,6 +6,8 @@ A super basic front-end is served out of the /public directory with a few gauge 
 
 Next on the list, a lux sensor, maybe a piezo buzzer because everyone needs a startup sound right? Also perhaps an integrated display or LCD. I imagine I'll just keep adding sensors until I run out of room on the prototype board.
 
+[<img src="/docs/screenshot.png" width="250">](https://cdn.rawgit.com/skylarstein/pi-weather-station/master/docs/screenshot.png)
+
 ## Currently Supported Hardware
 
 * Foremost, I am running this project on a [Raspberry Pi 2 Model B](https://www.raspberrypi.org/products/raspberry-pi-2-model-b/). I haven't yet tried this on a RPi 3 since the Adafruit GPS Hat I'm using is not compatible with that board. Hopefully that will change in the future.
@@ -17,6 +19,10 @@ Next on the list, a lux sensor, maybe a piezo buzzer because everyone needs a st
 * Serial GPS via the [Adafruit Ultimated GPS Hat](https://www.adafruit.com/product/2324). I am also using a [28dB external antenna](https://www.adafruit.com/products/960) but if you have a clear view of the sky the internal patch antenna may do the job.
 
 * Although I'm targetting the Raspberry Pi, this project will install and run on the desktop (on macOS at least) with simulated values reported for all sensors. For the particulars, see the 'linuxDependencies' section of package.json (not all drivers install and build on all platforms), the install-dependencies.js module used by the 'npm install' step, and /devices/device-manager.js which will instantiate either /devices/device-rpi.js or /devices/devices-simulated.js as appropriate. Running on a local dev machine can make things easier for the front-end development in this project, and even though you could simply mount an SFTP share to your RPi to get your Sublime Text on, hardware independence is a good excercise.
+
+## Hardware Device Setup
+
+![Hardware Device Setup Image](/docs/pi-weather-station.png?raw=true "Hardware Device Setup Image")
 
 ## Raspberry Pi Software Setup
 
@@ -62,10 +68,6 @@ sudo make install
 ### 5. npm install
 
 The takes several minutes on my RPi 2 Model B. Hang in there.
-
-## Hardware Device Setup
-
-![Hardware Device Setup Image](/docs/pi-weather-station.png?raw=true "Hardware Device Setup Image")
 
 ## Running the Project
 
