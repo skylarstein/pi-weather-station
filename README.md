@@ -60,7 +60,7 @@ The takes several minutes on my RPi 2 Model B. Hang in there.
 
 ## Running the Project
 
-This Node.js project needs to talk directly to the hardware and requires access to /open/mem, /sys/class/gpio, and /dev/i2c. Because of this you will typically need run node with admin privileges.
+This Node project needs to talk directly to the hardware and requires access to /open/mem, /sys/class/gpio, and /dev/i2c. Because of this you will typically need run Node with admin privileges.
 
 ```
 sudo npm start
