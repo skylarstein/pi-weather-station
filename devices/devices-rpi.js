@@ -13,7 +13,6 @@ const DevicesBase = require('./devices-base.js');
 const deviceUtils = require('./device-utils.js');
 const async       = require('async');
 const Gpio        = require('onoff').Gpio;
-const HIH6130     = require('./HIH6130.js');
 const BME280      = require('./BME280.js');
 const DHT22       = require('./DHT22.js');
 const SerialGPS   = require('./serial-gps.js');
@@ -26,7 +25,6 @@ class DevicesRPi extends DevicesBase {
     console.log('Creating DevicesRPi');
 
     this.led     = new Gpio(LED_GPIO_OUTPUT, 'out');
-    this.hih6130 = new HIH6130();
     this.bme280  = new BME280();
     this.dht22   = new DHT22(DHT22_GPIO_PIN);
     this.gps     = new SerialGPS('/dev/ttyAMA0', 9600);
@@ -71,10 +69,6 @@ class DevicesRPi extends DevicesBase {
             return callback(null, { BME280 : data });
           })
           .catch((err) => callback(null, { BME280 : { err : err }})),
-
-        (callback) => this.hih6130.readSensorData()
-          .then((data) => callback(null, { HIH6130 : data }))
-          .catch((err) => callback(null, { HIH6130 : { err : err }})),
 
         (callback) => {
           let data = this.dht22.readSensorData();
