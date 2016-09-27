@@ -12,7 +12,7 @@ Next on the list, a lux sensor, maybe a piezo buzzer because everyone needs a st
 
 * Foremost, I am running this project on a [Raspberry Pi 2 Model B](https://www.raspberrypi.org/products/raspberry-pi-2-model-b/). I haven't yet tried this on a RPi 3 since the Adafruit GPS Hat I'm using is not compatible with that board. Hopefully that will change in the future.
 
-* [BME280 Humidity and Pressure Sensor](https://www.adafruit.com/product/2652) (I2C). While this device does report temperature, note that temperature is measured by the internal temperature sensor. This temperature value depends on the PCB temperature, sensor element self-heating, and ambient temperature and is typically reported above actual ambient temperature.
+* [BME280 Humidity and Pressure Sensor](https://www.adafruit.com/product/2652) (I2C). While this device does report temperature, note that temperature is measured by the internal temperature sensor. This temperature value depends on the PCB temperature, sensor element self-heating, and ambient temperature is typically reported above actual ambient temperature.
 
 * [DHT22 Ambient Temperature and Humidity Sensor](https://www.adafruit.com/product/385) (Single pin digital signal, not 1-wire)
 
@@ -71,7 +71,7 @@ The takes several minutes on my RPi 2 Model B. Hang in there.
 
 ## Running the Project
 
-This Node project needs to talk directly to the hardware and requires access to /open/mem, /sys/class/gpio, and /dev/i2c. Because of this you will typically need run Node with elevated privileges.
+This Node project needs to talk directly to the hardware and requires access to /open/mem, /sys/class/gpio, and /dev/i2c, so you will typically need run Node with elevated privileges.
 
 ```
 sudo npm start
