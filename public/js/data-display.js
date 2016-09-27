@@ -87,7 +87,7 @@ function drawCharts() {
 
 function drawTemperatureChart() {
 
-  if(!_.has(google, 'visualization.arrayToDataTable') || !$.sensorData)
+  if(!_.has(google, 'visualization.arrayToDataTable') || !_.has(google, 'visualization.Gauge') || !$.sensorData)
     return;
 
   var data = google.visualization.arrayToDataTable([
@@ -112,7 +112,7 @@ function drawTemperatureChart() {
 
 function drawHumidityChart() {
 
-  if(!_.has(google, 'visualization.arrayToDataTable') || !$.sensorData)
+  if(!_.has(google, 'visualization.arrayToDataTable') || !_.has(google, 'visualization.Gauge') || !$.sensorData)
     return;
 
   var data = google.visualization.arrayToDataTable([
@@ -133,7 +133,7 @@ function drawHumidityChart() {
 
 function drawPressureChart() {
 
-  if(!_.has(google, 'visualization.arrayToDataTable') || !$.sensorData)
+  if(!_.has(google, 'visualization.arrayToDataTable') || !_.has(google, 'visualization.Gauge') || !$.sensorData)
     return;
 
   var data = google.visualization.arrayToDataTable([
