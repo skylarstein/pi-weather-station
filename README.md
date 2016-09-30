@@ -34,7 +34,7 @@ At the time of this writing, all is well under Node 4.5.0 and 6.6.0.
 
 ### 2. Configure I2C
 
-[This Adafruit Lession](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c) will walk you through I2C configuration on your Pi.
+[This Adafruit Lesson](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c) will walk you through I2C configuration on your Pi.
 
 ### 3. Install gcc/g++ 4.8
 The [i2c-bus](https://github.com/fivdi/i2c-bus) module requires at least v4.8 to build during install.
