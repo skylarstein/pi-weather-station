@@ -34,10 +34,10 @@ At the time of this writing, all is well under Node 4.5.0 and 6.6.0.
 
 ### 2. Configure I2C
 
-https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
+[This Adafruit Lession](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c) will walk you through I2C configuration on your Pi.
 
 ### 3. Install gcc/g++ 4.8
-The 'i2c-bus' module requires at least v4.8 to build during install.
+The [i2c-bus](https://github.com/fivdi/i2c-bus) module requires at least v4.8 to build during install.
 ```
 sudo apt-get update
 sudo apt-get install gcc-4.8 g++-4.8
@@ -54,7 +54,7 @@ g++ -v
 gcc -v
 ```
 ### 4. Install the Broadcom BCM2835 C Library
-The BMC2835 library is required to install and build the 'dht-sensor' module.
+The BMC2835 library is required to install and build the [dht-sensor](https://github.com/entercritical/dht-sensor) module.
 ```
 cd ~
 wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.5.tar.gz
