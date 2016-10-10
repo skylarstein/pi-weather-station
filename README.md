@@ -2,9 +2,9 @@
 
 Node.js spends so much of its time running inside virtualized instances, I figured it'd be fun to let it have its very own Raspberry Pi for an opportunity to talk directly to some hardware sensors: GPS, luminosity, ambient temperature, ambient humidity, and barometric pressure. Includes some fun stuff like calculating the local timezone offset and sunrise/sunset times at the reported GPS location, as well as support for publishing data to "the cloud" for real-time and historical data reporting.
 
-A super basic front-end is served out of the /public directory with a few gauge controls for temperature, humidity, and barometric pressure, and a map to display the current location. All raw sensor data is displayed as well.
+A super basic front-end is served out of the /public directory with a few gauge controls for temperature, humidity, barometric pressure, and lux, as well as a map to display the current location. Raw data is included from all sensors.
 
-Next on the list, maybe a piezo buzzer for a startup sound, an LED for a heartbeat, graphs to display values over time, perhaps an integrated display or LCD. I imagine I'll just keep adding sensors/devices until I run out of room on the prototype board. Also, since the device knows it's location, local weather forcasts could be queried from one of several sources.
+Next on the list, maybe a piezo buzzer for a startup sound, an LED for a heartbeat, graphs to display values over time, perhaps an integrated display or LCD. I imagine I'll just keep adding sensors/devices until I run out of room on the prototype board. Also, since the device knows its location, local weather forcasts could be queried from one of several sources.
 
 [<img src="/docs/screenshot.png" width="250">](https://raw.githubusercontent.com/skylarstein/pi-weather-station/master/docs/screenshot.png)
 
