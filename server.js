@@ -71,3 +71,5 @@ const cleanShutdown = (shutdownType) => {
   */
   process.exit(0);
 }
+
+module.exports = app; // for testing
