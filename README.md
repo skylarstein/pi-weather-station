@@ -1,10 +1,10 @@
 # Raspberry Pi Weather Station <img src="https://cdn.rawgit.com/skylarstein/pi-weather-station/master/public/images/raspberry-pi-logo.svg" width="40" align="bottom">
 
-Node.js spends so much of its time running inside virtualized instances, I figured it'd be fun to let it have its very own Raspberry Pi for an opportunity to talk directly to some hardware sensors: GPS, ambient temperature, ambient humidity, and barometric pressure. Includes some fun stuff like calculating the local timezone offset and sunrise/sunset times at the reported GPS location, as well as support for publishing data to "the cloud" for real-time and historical data reporting.
+Node.js spends so much of its time running inside virtualized instances, I figured it'd be fun to let it have its very own Raspberry Pi for an opportunity to talk directly to some hardware sensors: GPS, luminosity, ambient temperature, ambient humidity, and barometric pressure. Includes some fun stuff like calculating the local timezone offset and sunrise/sunset times at the reported GPS location, as well as support for publishing data to "the cloud" for real-time and historical data reporting.
 
 A super basic front-end is served out of the /public directory with a few gauge controls for temperature, humidity, and barometric pressure, and a map to display the current location. All raw sensor data is displayed as well.
 
-Next on the list, a lux sensor, maybe a piezo buzzer because everyone needs a startup sound right? Graphs to display values over time, perhaps an integrated display or LCD. I imagine I'll just keep adding sensors until I run out of room on the prototype board. Also, since the device knows it's location, local weather forcasts could be queried from one of several sources.
+Next on the list, maybe a piezo buzzer for a startup sound, an LED for a heartbeat, graphs to display values over time, perhaps an integrated display or LCD. I imagine I'll just keep adding sensors/devices until I run out of room on the prototype board. Also, since the device knows it's location, local weather forcasts could be queried from one of several sources.
 
 [<img src="/docs/screenshot.png" width="250">](https://cdn.rawgit.com/skylarstein/pi-weather-station/master/docs/screenshot.png)
 
@@ -13,6 +13,8 @@ Next on the list, a lux sensor, maybe a piezo buzzer because everyone needs a st
 * Foremost, I am running this project on a [Raspberry Pi 2 Model B](https://www.raspberrypi.org/products/raspberry-pi-2-model-b/). I haven't yet tried this on a RPi 3 since the Adafruit GPS Hat I'm using is not compatible with that board. Hopefully that will change in the future.
 
 * [BME280 Humidity and Pressure Sensor](https://www.adafruit.com/product/2652) (I2C). While this device does report temperature, note that temperature is measured by the internal temperature sensor. This temperature value depends on the PCB temperature, sensor element self-heating, and ambient temperature is typically reported above actual ambient temperature.
+
+* [TSL2561 Digital Luminosity Sensor](https://www.adafruit.com/product/439) (I2C)
 
 * [DHT22 Ambient Temperature and Humidity Sensor](https://www.adafruit.com/product/385) (Single pin digital signal, not 1-wire)
 
