@@ -83,6 +83,7 @@ function drawCharts() {
   drawTemperatureChart();
   drawHumidityChart();
   drawPressureChart();
+  drawLuxChart();
 }
 
 function drawTemperatureChart() {
@@ -152,3 +153,22 @@ function drawPressureChart() {
   chart.draw(data, options);
 }
 
+function drawLuxChart() {
+  if(!_.has(google, 'visualization.arrayToDataTable') || !_.has(google, 'visualization.Gauge') || !$.sensorData)
+    return;
+
+  var data = google.visualization.arrayToDataTable([
+    ['Label', 'Value'],
+    ['Lux', Number(_.get($.sensorData, 'TSL2561.lux', 0).toFixed(0))]
+  ]);
+
+  var options = {
+    min        : 0,
+    max        : 40000,
+    minorTicks : 10,
+    majorTicks : ['0','10000', '20000', '30000', '40000']
+  };
+
+  var chart = new google.visualization.Gauge(document.getElementById('chart_div4'));
+  chart.draw(data, options);
+}

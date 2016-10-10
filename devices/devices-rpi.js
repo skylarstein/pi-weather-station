@@ -15,6 +15,7 @@ const async       = require('async');
 const Gpio        = require('onoff').Gpio;
 const BME280      = require('./BME280.js');
 const DHT22       = require('./DHT22.js');
+const TSL2561     = require('./TSL2561.js');
 const SerialGPS   = require('./serial-gps.js');
 const os          = require('os');
 
@@ -27,6 +28,7 @@ class DevicesRPi extends DevicesBase {
     this.led     = new Gpio(LED_GPIO_OUTPUT, 'out');
     this.bme280  = new BME280();
     this.dht22   = new DHT22(DHT22_GPIO_PIN);
+    this.tsl2561 = new TSL2561();
     this.gps     = new SerialGPS('/dev/ttyAMA0', 9600);
 
     this.bme280.init()
@@ -75,6 +77,10 @@ class DevicesRPi extends DevicesBase {
           data['temperature_F'] = BME280.convertCelciusToFahrenheit(data.temperature_C);
           return callback(null, { DHT22 : data });
         },
+
+        (callback) => this.tsl2561.readSensorData()
+          .then((data) => callback(null, { TSL2561 : data }))
+          .catch((err) => callback(null, { TSL2561 : { err : err }})),
 
         (callback) => callback(null, { GPS : this.gps.getData() }),
 

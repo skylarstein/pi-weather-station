@@ -41,4 +41,3 @@ class DHT22 {
 }
 
 module.exports = DHT22;
-

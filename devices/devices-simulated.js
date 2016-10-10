@@ -51,6 +51,10 @@ class DevicesSimulated extends DevicesBase {
           altitude_m :  9.2139,
           altitude_ft : 30.2295
         },
+        TSL2561 : {
+          lux : 3000 + 250 * Math.random(),
+          timestamp : '2016-10-09T23:41:15.107Z'
+        },
         GPS : {
           lat : 37.444795 + Math.random() * 0.000001,
           lon : -122.165146 + Math.random() * 0.000001,
@@ -84,7 +88,6 @@ class DevicesSimulated extends DevicesBase {
         location : {
           lat : '37.4448081',
           lon : '-122.165109168756',
-          display_name : '129, Lytton Avenue, Downtown North, Palo Alto, Santa Clara County, California, 94301, United States of America',
           address : {
             house_number : '129',
             road : 'Lytton Avenue',
