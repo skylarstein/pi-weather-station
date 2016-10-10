@@ -9,19 +9,15 @@
 class TSL2561 {
   constructor() {
     const RaspiSensors = require('raspi-sensors');
+    this.tsl2561 = new RaspiSensors.Sensor({ type : 'TSL2561', address : 0X39 }, 'light_sensor');
+  }
 
-    this.tsl2561   = new RaspiSensors.Sensor({ type : 'TSL2561', address : 0X39 }, 'light_sensor');    
-    this.lux       = 0;
-    this.timestamp = null;
-    this.error     = null;
-
-    this.tsl2561.fetchInterval((err, data) => {
-      if(err) {
-        this.lux       = -1;
-        this.timestamp = null;
-        this.error     = err.cause;
-      }
-      else {
+  readSensorData() {
+    return new Promise((resolve, reject) => {
+      this.tsl2561.fetch((err, data) => {
+        if(err) {
+          return reject(err.cause);
+        }
         /* data = {
             type         : 'Light',
             unit         : 'Lux',
@@ -33,15 +29,9 @@ class TSL2561 {
             sensor_type  : 'TSL2561'
           }
         */
-        this.lux       = data.value;
-        this.timestamp = data.date;
-        this.error     = null;
-      }
-    }, 1); // 1Hz
-  }
-
-  readSensorData() {
-    return { lux : this.lux, timestamp : this.timestamp, error : this.error };
+        resolve({ lux : data.value, timestamp : data.date });
+      });
+    });
   }
 }
 

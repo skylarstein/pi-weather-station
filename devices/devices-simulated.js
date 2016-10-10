@@ -53,8 +53,7 @@ class DevicesSimulated extends DevicesBase {
         },
         TSL2561 : {
           lux : 40000 * Math.random(),
-          timestamp : '2016-10-09T23:41:15.107Z',
-          error : null
+          timestamp : '2016-10-09T23:41:15.107Z'
         },
         GPS : {
           lat : 37.444795 + Math.random() * 0.000001,

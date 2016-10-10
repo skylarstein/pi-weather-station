@@ -78,7 +78,9 @@ class DevicesRPi extends DevicesBase {
           return callback(null, { DHT22 : data });
         },
 
-        (callback) => callback(null, { TSL2561 : this.tsl2561.readSensorData() }),
+        (callback) => this.tsl2561.readSensorData()
+          .then((data) => callback(null, { TSL2561 : data }))
+          .catch((err) => callback(null, { TSL2561 : { err : err }})),
 
         (callback) => callback(null, { GPS : this.gps.getData() }),
 
