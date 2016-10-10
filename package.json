@@ -6,7 +6,7 @@
   "scripts": {
     "install": "node install-dependencies.js",
     "postinstall": "cd public && npm install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -36,5 +36,10 @@
     "dht-sensor": "0.0.4",
     "onoff": "^1.0.4",
     "raspi-sensors": "skylarstein/raspi-sensors"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.1.1"
   }
 }
