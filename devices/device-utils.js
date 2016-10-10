@@ -9,11 +9,39 @@ const _         = require('lodash');
 const os        = require('os');
 const request   = require('request');
 const SolarCalc = require('solar-calc');
+const fs        = require('fs');
 
-// isRaspberryPi() - This isn't actually identifying the Raspberry Pi specifically
-// but it does the job for now.
+// isRaspberryPi() - are we running on a Raspberry Pi?
 //
-exports.isRaspberryPi = () => (os.type() === 'Linux');
+exports.isRaspberryPi = () => {
+
+  // If we have a BCMxxx ARM processor running Linux, I'll call it close enough for now.
+  // This will of course trigger for other non-RPi Linux BCMxxxx boards. Maybe everything
+  // would work just fine on those boards, but since I haven't tested on anything other
+  // than an RPi I can't say for certain.
+  //
+  const info = exports.cpuinfo();
+
+  const isBCM = info ? _.filter(info.Hardware, (val) => val.indexOf('BCM') !== -1).length : 0;
+  const isARM = info ? _.filter(info.model_name, (val) => val.indexOf('ARMv') !== -1).length : 0;
+
+  return (os.type() === 'Linux' && isBCM && isARM);
+}
+
+// cpuinfo() - return /proc/cpuinfo as an object
+//
+exports.cpuinfo = () => {
+  const _cpuinfo = !fs.existsSync('/proc/cpuinfo') ? '' : fs.readFileSync('/proc/cpuinfo') + '';
+  return _cpuinfo.split('\n').reduce((result, line) => {
+    line = line.replace(/\t/g, '')
+    let parts = line.split(':')
+    let key = parts[0].replace(/\s/g, '_')
+    if(parts.length === 2) {
+      result[key] = parts[1].trim().split(' ')
+    }
+    return result
+  }, {});
+}
 
 // flattenResults() - sensors results are generated via async.parallel with individual responses
 // pacakged into an array. Flatten the array to make things easier for the client to digest.
@@ -38,7 +66,7 @@ exports.flattenResults = (data) => {
   return results;
 }
 
-// reverseGeocode() - turn latitude/longitude into a human readable address
+// reverseGeocode() - turn latitude/longitude into a human readable address / place name
 //
 exports.reverseGeocode = (gpsData) => {
   return new Promise((resolve, reject) => {
