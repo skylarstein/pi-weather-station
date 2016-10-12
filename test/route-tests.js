@@ -21,7 +21,7 @@ describe('GET /', () => {
   });
 });
 
-describe('GET sensors', () => {
+describe('GET /sensors', () => {
   it('it should GET /sensors', (done) => {
     chai.request(server)
       .get('/sensors')
@@ -73,5 +73,5 @@ describe('GET /location', () => {
 
         done();
       });
-  });
+  }).timeout(5000);
 });
