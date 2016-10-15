@@ -38,7 +38,7 @@ function initCharts() {
   google.charts.setOnLoadCallback(drawCharts);
 
   (function pollSensors() {
-    $.get(window.dataSourceUrl + '/sensors', function(data) {
+    $.get(window.dataSourceUrl + '/sensors/live', function(data) {
       $.sensorData = data;
       
       drawCharts();

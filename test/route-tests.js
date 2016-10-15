@@ -21,10 +21,10 @@ describe('GET /', () => {
   });
 });
 
-describe('GET /sensors', () => {
-  it('it should GET /sensors', (done) => {
+describe('GET /sensors/live', () => {
+  it('it should GET /sensors/live', (done) => {
     chai.request(server)
-      .get('/sensors')
+      .get('/sensors/live')
       .end((err, res) => {
         res.should.have.status(200);
         res.should.be.json;
