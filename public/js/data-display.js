@@ -33,15 +33,17 @@ function initMap() {
   });
 }
 
-function initCharts() {
+function initDataDisplay() {
   google.charts.load('current', {'packages':['gauge']});
-  google.charts.setOnLoadCallback(drawCharts);
+  google.charts.setOnLoadCallback(drawGauges);
 
   (function pollSensors() {
     $.get(window.dataSourceUrl + '/sensors/live', function(data) {
       $.sensorData = data;
+
+      $('#node-version').text(data.app.engine);
       
-      drawCharts();
+      drawGauges();
 
       if(map && google.maps && (_.get(data, 'GPS.lat') || _.get(data, 'GPS.lon'))) {
 
@@ -79,24 +81,32 @@ function initCharts() {
   })();
 }
 
-function drawCharts() {
-  drawTemperatureChart();
-  drawHumidityChart();
-  drawPressureChart();
-  drawLuxChart();
-}
-
-function drawTemperatureChart() {
+function drawGauges() {
 
   if(!_.has(google, 'visualization.arrayToDataTable') || !_.has(google, 'visualization.Gauge') || !$.sensorData)
     return;
 
-  var data = google.visualization.arrayToDataTable([
+  var temperatureData = google.visualization.arrayToDataTable([
     ['Label', 'Value'],
     ['Temp F ', Number(_.get($.sensorData, 'DHT22.temperature_F', 0).toFixed(0))]
   ]);
 
-  var options = {
+  var humidityData = google.visualization.arrayToDataTable([
+    ['Label', 'Value'],
+    ['Humidity %', Number(_.get($.sensorData, 'DHT22.humidity', 0).toFixed(0))]
+  ]);
+
+  var pressureData = google.visualization.arrayToDataTable([
+    ['Label', 'Value'],
+    ['inHg', Number(_.get($.sensorData, 'BME280.pressure_inHg', 0).toFixed(2))]
+  ]);
+
+  var luxData = google.visualization.arrayToDataTable([
+    ['Label', 'Value'],
+    ['Lux', Number(_.get($.sensorData, 'TSL2561.lux', 0).toFixed(0))]
+  ]);
+
+  var temperatureOptions = {
     min         : 0,
     max         : 120,
     yellowFrom  : 70,
@@ -107,68 +117,45 @@ function drawTemperatureChart() {
     majorTicks  : ['0', '20', '40', '60', '80', '100', '120']
   };
 
-  var chart = new google.visualization.Gauge(document.getElementById('chart_div1'));
-  chart.draw(data, options);
-}
-
-function drawHumidityChart() {
-
-  if(!_.has(google, 'visualization.arrayToDataTable') || !_.has(google, 'visualization.Gauge') || !$.sensorData)
-    return;
-
-  var data = google.visualization.arrayToDataTable([
-    ['Label', 'Value'],
-    ['Humidity %', Number(_.get($.sensorData, 'DHT22.humidity', 0).toFixed(0))]
-  ]);
-
-  var options = {
+  var humidityOptions = {
     min         : 0,
     max         : 100,
     minorTicks  : 4,
     majorTicks  : ['0', '20', '40', '60', '80', '100']
   };
 
-  var chart = new google.visualization.Gauge(document.getElementById('chart_div2'));
-  chart.draw(data, options);
-}
-
-function drawPressureChart() {
-
-  if(!_.has(google, 'visualization.arrayToDataTable') || !_.has(google, 'visualization.Gauge') || !$.sensorData)
-    return;
-
-  var data = google.visualization.arrayToDataTable([
-    ['Label', 'Value'],
-    ['inHg', Number(_.get($.sensorData, 'BME280.pressure_inHg', 0).toFixed(2))]
-  ]);
-
-  var options = {
+  var pressureOptions = {
     min        : 27.8,
     max        : 31.2,
     minorTicks : 4,
     majorTicks : ['Stormy', 'Rain', 'Change', 'Fair', 'Dry']
   };
 
-  var chart = new google.visualization.Gauge(document.getElementById('chart_div3'));
-  chart.draw(data, options);
-}
-
-function drawLuxChart() {
-  if(!_.has(google, 'visualization.arrayToDataTable') || !_.has(google, 'visualization.Gauge') || !$.sensorData)
-    return;
-
-  var data = google.visualization.arrayToDataTable([
-    ['Label', 'Value'],
-    ['Lux', Number(_.get($.sensorData, 'TSL2561.lux', 0).toFixed(0))]
-  ]);
-
-  var options = {
+  var luxOptions = {
     min        : 0,
     max        : 40000,
     minorTicks : 10,
     majorTicks : ['0','10000', '20000', '30000', '40000']
   };
 
-  var chart = new google.visualization.Gauge(document.getElementById('chart_div4'));
-  chart.draw(data, options);
+  if(!$.temperatureGauge) {
+    $.temperatureGauge = new google.visualization.Gauge(document.getElementById('temperature-gauge'));
+  }
+
+  if(!$.humidityGauge) {
+    $.humidityGauge = new google.visualization.Gauge(document.getElementById('humidity-gauge'));
+  }
+
+  if(!$.pressureGauge) {
+    $.pressureGauge = new google.visualization.Gauge(document.getElementById('pressure-gauge'));
+  }
+
+  if(!$.luxGauge) {
+    $.luxGauge = new google.visualization.Gauge(document.getElementById('lux-gauge'));
+  }
+
+  $.temperatureGauge.draw(temperatureData, temperatureOptions);
+  $.humidityGauge.draw(humidityData, humidityOptions);
+  $.pressureGauge.draw(pressureData, pressureOptions);
+  $.luxGauge.draw(luxData, luxOptions);
 }

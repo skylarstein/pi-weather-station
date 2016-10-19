@@ -44,7 +44,7 @@ router.get('/sensors/history/:startDate/:endDate', (req, res) => {
   query.timestamp = {'$gte' : req.params.startDate, '$lte' : req.params.endDate };
 
   SensorData.find(query)
-            .select('-_id -__v -deviceId') // keep it clean for the caller
+            .select('-_id -__v -deviceId') // Keep it clean for the caller. Could also {select : false} in the SensorData schema definition.
             .exec((err, docs) => err ? res.status(500).send(err) : res.status(200).send(docs));
 });
 

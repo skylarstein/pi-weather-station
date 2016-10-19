@@ -94,7 +94,7 @@ class Publisher {
             console.error(`Failed to save SensorData! Error: ${err}`);
           }
           else {
-            console.log(`Saved ${JSON.stringify(sensorData, null, 2)}`);            
+            console.log(`Saved ${JSON.stringify(sensorData, null, 2)}`);
           }
 
           this._restartPublishTimer();

@@ -84,7 +84,9 @@ class DevicesRPi extends DevicesBase {
 
         (callback) => callback(null, { GPS : this.gps.getData() }),
 
-        (callback) => callback(null, { app : { platformUptime : os.uptime(), processUptime  : process.uptime() }})
+        (callback) => callback(null, { app : { platformUptime : os.uptime(),
+                                               processUptime  : process.uptime(),
+                                               engine         : `Node.js ${process.version}` }})
       ],
 
       (err, results) => resolve(deviceUtils.flattenResults(results)));

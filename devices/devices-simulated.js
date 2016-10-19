@@ -71,7 +71,9 @@ class DevicesSimulated extends DevicesBase {
         },
         app : {
           platformUptime : os.uptime(),
-          processUptime : process.uptime()
+          processUptime  : process.uptime(),
+          engine         : `Node.js ${process.version}`
+
         }
       };
 
