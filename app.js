@@ -6,12 +6,12 @@
 
 'use strict';
 
-const express   = require('express');
-const app       = express();
-const cors      = require('cors');
-const routes    = require('./routes/index.js');
-const Publisher = require('./controllers/publisher.js');
-const mongoose  = require('mongoose');
+const express           = require('express');
+const app               = express();
+const cors              = require('cors');
+const routes            = require('./routes/index.js');
+const DatabasePublisher = require('./controllers/publisher-db.js');
+const mongoose          = require('mongoose');
 
 app.use(cors()); // easier front end testing from local dev machine with CORS enabled
 app.use(express.static(__dirname + '/public')); // serve up static assets
@@ -32,6 +32,6 @@ mongoose.connect(process.env.DB_URL, (err) => {
   }
 });
 
-Publisher.instance().startPublishing();
+DatabasePublisher.instance().startPublishing();
 
 module.exports = app;

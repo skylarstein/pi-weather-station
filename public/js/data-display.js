@@ -6,11 +6,10 @@
 
 var map;
 var marker;
-var firstFix = true;
+var gotFirstFix = false;
 var mapReady = false;
 
 function initMap() {
-
   map = new google.maps.Map(document.getElementById('map-canvas'), {
     center : { lat : 37.444795, lng : -122.165146 },
     zoom : 4
@@ -30,80 +29,64 @@ function initMap() {
 
   google.maps.event.addListenerOnce(map, 'tilesloaded', function() {
     mapReady = true;
+    updateMap();
   });
 }
 
-function initDataDisplay() {
-  google.charts.load('current', {'packages':['gauge']});
-  google.charts.setOnLoadCallback(drawGauges);
+function updateMap() {
+  if(map && mapReady && google.maps && (_.get($.sensorData, 'GPS.lat') || _.get($.sensorData, 'GPS.lon'))) {
+    var latlng = new google.maps.LatLng($.sensorData.GPS.lat, $.sensorData.GPS.lon);
 
-  (function pollSensors() {
-    $.get(window.dataSourceUrl + '/sensors/live', function(data) {
-      $.sensorData = data;
+    // If this is our first good location, pan map to location. We'll do this only once
+    // on first fix to allow the user to then pan/zoom as they desire.
+    //
+    if(!gotFirstFix) {
+      gotFirstFix = true;
+      map.setZoom(16);
+      map.panTo(latlng);      
+    }
 
-      $('#node-version').text(data.app.engine);
-      
-      drawGauges();
-
-      if(map && google.maps && (_.get(data, 'GPS.lat') || _.get(data, 'GPS.lon'))) {
-
-        var latlng = new google.maps.LatLng(data.GPS.lat, data.GPS.lon);
-
-        // If this is our first good location, pan map to location. We'll do this only once
-        // on first fix to allow the user to then pan/zoom as they desire.
-        //
-        if(mapReady && firstFix) {
-          firstFix = false;
-          map.setZoom(16);
-          map.panTo(latlng);
-        }
-
-        // Position marker at the latest location
-        //
-        if(marker) {
-          marker.setPosition(latlng);
-        }
-        else {
-          marker = new google.maps.Marker({
-            position : latlng,
-            map : map,
-            title : ''
-          });
-        }
-      }
-
-      $('#raw-data-json').text(JSON.stringify(data, null, 2));
-      setTimeout(pollSensors, 1000);
-    }).
-    fail(function() {
-      setTimeout(pollSensors, 1000);
-    });
-  })();
+    // Position marker at the current location
+    //
+    if(marker) {
+      marker.setPosition(latlng);
+    }
+    else {
+      marker = new google.maps.Marker({
+        position : latlng,
+        map : map,
+        title : ''
+      });
+    }
+  }
 }
 
-function drawGauges() {
+function initGauages() {
+  google.charts.load('current', {'packages':['gauge']});
+}
 
-  if(!_.has(google, 'visualization.arrayToDataTable') || !_.has(google, 'visualization.Gauge') || !$.sensorData)
+function drawGauges(sensorData) {
+  if(!_.has(google, 'visualization.arrayToDataTable') || !_.has(google, 'visualization.Gauge'))
     return;
 
   var temperatureData = google.visualization.arrayToDataTable([
     ['Label', 'Value'],
-    ['Temp F ', Number(_.get($.sensorData, 'DHT22.temperature_F', 0).toFixed(0))]
+    ['Temp F ', Number(_.get(sensorData, 'DHT22.temperature_F', 0).toFixed(0))]
   ]);
 
   var humidityData = google.visualization.arrayToDataTable([
     ['Label', 'Value'],
-    ['Humidity %', Number(_.get($.sensorData, 'DHT22.humidity', 0).toFixed(0))]
+    ['Humidity %', Number(_.get(sensorData, 'DHT22.humidity', 0).toFixed(0))]
   ]);
 
   var pressureData = google.visualization.arrayToDataTable([
     ['Label', 'Value'],
-    ['inHg', Number(_.get($.sensorData, 'BME280.pressure_inHg', 0).toFixed(2))]
+    ['inHg', Number(_.get(sensorData, 'BME280.pressure_inHg', 0).toFixed(2))]
   ]);
 
   var luxData = google.visualization.arrayToDataTable([
     ['Label', 'Value'],
-    ['Lux', Number(_.get($.sensorData, 'TSL2561.lux', 0).toFixed(0))]
+    ['Lux', Number(_.get(sensorData, 'TSL2561.lux', 0).toFixed(0))]
   ]);
 
   var temperatureOptions = {

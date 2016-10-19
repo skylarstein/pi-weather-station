@@ -12,21 +12,35 @@ $(document).ready(function() {
     window.dataSourceUrl = $.urlParam('source');
   }
 
-  initDataDisplay();
+  initGauages();
 
-  (function monitorLocationDetails() {
-    // This request calls third part rate-limited reverse geocoding and timezone API.
-    // Be nice if you want to run this app 24 hours a day.
-    //
-    $.get(`${window.dataSourceUrl}/location`, function(data) {
-      $.locationData = data;
-      $('#raw-location-json').text(JSON.stringify(data, null, 2));
-      setTimeout(monitorLocationDetails, 60000);
-    }).
-    fail(function() {
-      setTimeout(monitorLocationDetails, 60000);
-    });
+  // Initiate websocket connection for sensor and location updates
+  //
+  (function websocketConnect() {
+    var host = location.origin.replace(/^http/, 'ws');
+    console.log('Websocket host:', host);
+    var ws = new WebSocket(host);
+    ws.onmessage = function (event) {
+      var eventData = JSON.parse(event.data);
+
+      switch(eventData.id) {
+        case 1:
+          //console.log('Received new sensor data:', eventData.data);
+          $.sensorData = eventData.data;
+          drawGauges(eventData.data);
+          updateMap();
+          $('#node-version').text(eventData.data.app.engine);
+          $('#raw-data-json').text(JSON.stringify(eventData.data, null, 2));
+          break;
+
+        case 2:
+          //console.log('Received new location data:', eventData.data);
+          $('#raw-location-json').text(JSON.stringify(eventData.data, null, 2));
+        break;
+      }
+    };
   })();
+
 });
 
 $.urlParam = function(name) {
