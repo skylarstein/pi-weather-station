@@ -12,27 +12,7 @@ $(document).ready(function() {
     window.dataSourceUrl = $.urlParam('source');
   }
 
-  $('#ledOn').on('click', function() {
-    $.post('/led-on')
-      .done(function(msg) {
-        alert('Success Message: ' + msg);
-       })
-      .fail(function(xhr, textStatus, errorThrown) {
-        alert('Error: ' + xhr.status + ', ' + xhr.responseText);
-      });
-  });
-
-  $('#ledOff').on('click', function() {
-   $.post('/led-off')
-      .done(function(msg) {
-        alert('Success Message: ' + msg);
-       })
-      .fail(function(xhr, textStatus, errorThrown) {
-        alert('Error: ' + xhr.status + ', ' + xhr.responseText);
-      });
-   });
-
-  initCharts();
+  initDataDisplay();
 
   (function monitorLocationDetails() {
     // This request calls third part rate-limited reverse geocoding and timezone API.

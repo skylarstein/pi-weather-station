@@ -32,18 +32,20 @@
             <span>&nbsp;Raspberry Pi Weather Station</span>
           </a>
         </div>
+        <div class="nav navbar-nav navbar-right">
+          <small><span id="node-version" class="navbar-text"></span></small>
+        </div>
       </div>
     </nav>
-    <div class="container text-center">
+    <div class="container-fluid text-center">
       <div id="data-container">
         <div id="table-row">
           <div id="gauge-col">
-            <div class="column-in">
-              <div id="chart_div1" class="gauge"></div>
-              <div id="chart_div2" class="gauge"></div>
-              <div id="chart_div3" class="gauge"></div>
-              <div id="chart_div4" class="gauge"></div>
-            </div>
+            <div class="gauge">Live Data</div>
+            <div id="temperature-gauge" class="gauge"></div>
+            <div id="humidity-gauge" class="gauge"></div>
+            <div id="pressure-gauge" class="gauge"></div>
+            <div id="lux-gauge" class="gauge"></div>
           </div>
           <div id="map-canvas"></div>
         </div>
