@@ -10,28 +10,24 @@ const _          = require('lodash');
 const mongoose   = require('mongoose');
 const SensorData = require('../model/sensor-data.js');
 
-class Publisher {
+class DatabasePublisher {
 
   // instance() - create a singleton instance of Publisher
   //
   static instance() {
-    const PublisherSingletonSymbol = Symbol.for("app.pi-weather-station.publisher");
+    const PublisherSingletonSymbol = Symbol.for("app.pi-weather-station.database-publisher");
     return Object.getOwnPropertySymbols(global).indexOf(PublisherSingletonSymbol) >= 0 ?
-      global[PublisherSingletonSymbol] : (global[PublisherSingletonSymbol] = new Publisher());
+      global[PublisherSingletonSymbol] : (global[PublisherSingletonSymbol] = new DatabasePublisher());
   }
 
   // constructor() - Would ideally have a private constructor. Users should not instantiate
   // this class directly, but should instead call Publisher.instance() for the singleton.
   //
   constructor() {
-    console.log('Creating Publisher');
+    console.log('Creating DatabasePublisher');
 
-    // Grab the DeviceManager singleton
-    //
-    const DeviceManager = require('../devices/device-manager.js');
-    this.deviceManager  = DeviceManager.instance();
-
-    this.publishRateMs = Number(process.env.SENSOR_DATA_PUBLISH_RATE_MS);
+    this.deviceManager = require('../devices/device-manager.js').instance();
+    this.publishRateMs = Number(process.env.DATABASE_SENSOR_DATA_RATE_MS);
     this.deviceId      = process.env.PI_WEATHER_STATION_DEVICE_ID;
   }
 
@@ -41,14 +37,16 @@ class Publisher {
   startPublishing() {
 
     if(!this.deviceId) {
-      console.error(`Unknown device id, Publisher will not start!`);
+      console.error(`Unknown device id, DatabasePublisher will not start!`);
       return;
     }
 
     if(!this.publishRateMs || isNaN(this.publishRateMs) || this.publishRateMs <= 0) {
-      console.error(`Publisher update rate not valid [${this.publishRateMs}], Publisher will not start!`);
+      console.error(`DatabasePublisher update rate not valid [${this.publishRateMs}], will not start!`);
       return;
     }
+
+    console.log(`DatabasePublisher starting with update rate ${this.publishRateMs}ms`);
 
     this.publishEnabled = true;
     this._restartPublishTimer();
@@ -57,6 +55,8 @@ class Publisher {
   // stopPublisher()
   //
   stopPublishing() {
+    console.log('DatabasePublisher: stop publishing');
+    clearTimeout(this.timeoutId);
     this.publishEnabled = false;
   }
 
@@ -64,7 +64,7 @@ class Publisher {
   //
   _restartPublishTimer() {
     if(this.publishEnabled) {
-      setTimeout(() => this._publish(), this.publishRateMs);
+      this.timeoutId = setTimeout(() => this._publish(), this.publishRateMs);
     }
   }
 
@@ -107,4 +107,4 @@ class Publisher {
   }
 }
 
-module.exports = Publisher;
+module.exports = DatabasePublisher;

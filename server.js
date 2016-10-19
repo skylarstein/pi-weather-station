@@ -9,11 +9,12 @@ if(!require('dotenv').config({silent: true})) {
   //throw new Error('An .env file is required!');
 }
 
-const app        = require('./app.js');
-const os         = require('os');
-const http       = require('http');
-const appPackage = require('./package.json');
-const port       = process.env.PORT || 8888;
+const app                = require('./app.js');
+const os                 = require('os');
+const http               = require('http');
+const appPackage         = require('./package.json');
+const port               = process.env.PORT || 8888;
+const WebsocketPublisher = require('./controllers/publisher-ws.js');
 
 // Start our server
 //
@@ -27,6 +28,8 @@ httpServer.on('listening', () => {
   const bind = (typeof addr === 'string') ? 'pipe ' + addr : 'port ' + addr.port;
 
   console.log(`HTTP server listening on ${bind} on ${os.hostname()}`);
+
+  WebsocketPublisher.instance().startPublishing(httpServer);
 });
 
 httpServer.on('error', (error) => {

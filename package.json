@@ -32,7 +32,8 @@
     "nmea": "^0.1.0",
     "request": "^2.72.0",
     "serialport": "^4.0.1",
-    "solar-calc": "^1.0.3"
+    "solar-calc": "^1.0.3",
+    "ws": "^1.1.1"
   },
   "linuxDependencies": {
     "i2c-bus": "^1.1.1",
