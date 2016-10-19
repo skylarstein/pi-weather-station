@@ -38,7 +38,7 @@ function updateMap() {
     var latlng = new google.maps.LatLng($.sensorData.GPS.lat, $.sensorData.GPS.lon);
 
     // If this is our first good location, pan map to location. We'll do this only once
-    // on first fix to allow the user to then pan/zoom as they desire.
+    // on first fix to allow the user to later pan/zoom as they desire.
     //
     if(!gotFirstFix) {
       gotFirstFix = true;
@@ -90,21 +90,21 @@ function drawGauges(sensorData) {
   ]);
 
   var temperatureOptions = {
-    min         : 0,
-    max         : 120,
-    yellowFrom  : 70,
-    yellowTo    : 90,
-    redFrom     : 90,
-    redTo       : 200,
-    minorTicks  : 4,
-    majorTicks  : ['0', '20', '40', '60', '80', '100', '120']
+    min        : 0,
+    max        : 120,
+    yellowFrom : 70,
+    yellowTo   : 90,
+    redFrom    : 90,
+    redTo      : 200,
+    minorTicks : 4,
+    majorTicks : ['0', '20', '40', '60', '80', '100', '120']
   };
 
   var humidityOptions = {
-    min         : 0,
-    max         : 100,
-    minorTicks  : 4,
-    majorTicks  : ['0', '20', '40', '60', '80', '100']
+    min        : 0,
+    max        : 100,
+    minorTicks : 4,
+    majorTicks : ['0', '20', '40', '60', '80', '100']
   };
 
   var pressureOptions = {

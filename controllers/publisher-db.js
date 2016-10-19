@@ -1,7 +1,7 @@
 /*
   publisher.js
 
-  Poll sensor data from DeviceManager, persist to the DB
+  DatabasePublisher persists sensor data for historical views.
 */
 
 'use strict';
@@ -42,7 +42,7 @@ class DatabasePublisher {
     }
 
     if(!this.publishRateMs || isNaN(this.publishRateMs) || this.publishRateMs <= 0) {
-      console.error(`DatabasePublisher update rate not valid [${this.publishRateMs}], will not start!`);
+      console.error(`DatabasePublisher update rate is not valid [${this.publishRateMs}], will not start!`);
       return;
     }
 

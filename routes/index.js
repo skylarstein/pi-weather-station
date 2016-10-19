@@ -24,8 +24,8 @@ router.get('/', (req, res) =>
 //
 router.get('/sensors/live', (req, res) =>
   deviceManager.readSensors()
-    .then(data => res.status(200).send(data))
-    .catch(err => res.status(500).send(err)));
+    .then((data) => res.status(200).send(data))
+    .catch((err) => res.status(500).send(err)));
 
 // GET sensor history data
 //
@@ -52,7 +52,7 @@ router.get('/sensors/history/:startDate/:endDate', (req, res) => {
 //
 router.get('/location', (req, res) =>
   deviceManager.locationDetails()
-    .then(data => res.status(200).send(data))
-    .catch(err => res.status(500).send(err)));
+    .then((data) => res.status(200).send(data))
+    .catch((err) => res.status(500).send(err)));
 
 module.exports = router;

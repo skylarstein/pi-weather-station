@@ -1,7 +1,7 @@
 /*
   sensor-data.js
 
-  Data model for a sensor data update from our device
+  SensorData schema for persisted historical data.
 */
 
 'use strict';

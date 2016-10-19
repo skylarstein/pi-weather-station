@@ -43,7 +43,7 @@ exports.cpuinfo = () => {
   }, {});
 }
 
-// flattenResults() - sensors results are generated via async.parallel with individual responses
+// flattenResults() - sensor results are generated via async.parallel with individual responses
 // pacakged into an array. Flatten the array to make things easier for the client to digest.
 /*
   Given: [{ sensor1 : { val1 : 1 }},

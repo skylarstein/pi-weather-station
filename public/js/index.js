@@ -20,7 +20,7 @@ $(document).ready(function() {
     var host = location.origin.replace(/^http/, 'ws');
     console.log('Websocket host:', host);
     var ws = new WebSocket(host);
-    ws.onmessage = function (event) {
+    ws.onmessage = function(event) {
       var eventData = JSON.parse(event.data);
 
       switch(eventData.id) {

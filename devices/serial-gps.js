@@ -14,7 +14,7 @@ class SerialGPS {
 
     this.serialPort = new SerialPort(port ? port : '/dev/ttyAMA0', {
       baudrate : baud ? baud : 9600,
-      parser : SerialPort.parsers.readline('\r\n'),
+      parser   : SerialPort.parsers.readline('\r\n'),
       autoOpen : false
     });
 

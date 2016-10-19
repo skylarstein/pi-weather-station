@@ -1,7 +1,7 @@
 /*
   publisher-ws.js
 
-  Publish sensor and location data to websocket clients
+  WebsocketPublisher will publish sensor and location data to websocket clients.
 */
 
 'use strict';
@@ -36,8 +36,7 @@ class WebsocketPublisher {
   startPublishing(httpServer) {
 
     if(!this.sensorPublishRateMs || isNaN(this.sensorPublishRateMs) || this.sensorPublishRateMs <= 0) {
-
-      console.error(`WebsocketPublisher update rate not valid [${this.sensorPublishRateMs}], will not start!`);
+      console.error(`WebsocketPublisher update rate is not valid [${this.sensorPublishRateMs}], will not start!`);
       return;
     }
 
