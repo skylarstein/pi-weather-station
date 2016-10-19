@@ -34,7 +34,7 @@ function initMap() {
 }
 
 function updateMap() {
-  if(map && mapReady && google.maps && (_.get($.sensorData, 'GPS.lat') || _.get($.sensorData, 'GPS.lon'))) {
+  if(map && mapReady && (_.get($.sensorData, 'GPS.lat') || _.get($.sensorData, 'GPS.lon'))) {
     var latlng = new google.maps.LatLng($.sensorData.GPS.lat, $.sensorData.GPS.lon);
 
     // If this is our first good location, pan map to location. We'll do this only once
