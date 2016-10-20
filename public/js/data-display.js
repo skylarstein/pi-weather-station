@@ -1,7 +1,7 @@
 /*
   data-display.js
 
-  Montor data stuff, draw data stuff.
+  Draw gauges for live data, location on a Google map
 */
 
 var map;
@@ -61,7 +61,7 @@ function updateMap() {
   }
 }
 
-function initGauages() {
+function initGauges() {
   google.charts.load('current', {'packages':['gauge']});
 }
 

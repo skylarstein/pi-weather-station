@@ -87,6 +87,10 @@ class DevicesSimulated extends DevicesBase {
     return new Promise((resolve, reject) => {
       let fakeData =  {
         timestamp : new Date(),
+        solar : {
+          sunrise : '2016-10-20T14:21:21.000Z',
+          sunset : '2016-10-21T01:23:25.000Z'
+        },
         location : {
           lat : '37.4448081',
           lon : '-122.165109168756',

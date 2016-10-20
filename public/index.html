@@ -9,10 +9,12 @@
     <script src="node_modules/lodash/lodash.min.js"></script>
     <script src="https://www.google.com/jsapi"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
 
     <!-- App Assets -->
     <script src="/js/data-display.js"></script>
     <script src="/js/index.js"></script>
+    <script src="/js/history-display.js"></script>
 
     <!-- Google Maps specifically loaded after data-display.js for initMap -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap&libraries=places"></script>
@@ -40,22 +42,27 @@
       <div id="data-container">
         <div id="table-row">
           <div id="gauge-col">
-            <div class="gauge">Live Data</div>
             <div id="temperature-gauge" class="gauge"></div>
             <div id="humidity-gauge" class="gauge"></div>
             <div id="pressure-gauge" class="gauge"></div>
             <div id="lux-gauge" class="gauge"></div>
           </div>
           <div id="map-canvas"></div>
+          <div class="chart">
+            <canvas id="temperatureChart" height="100px"></canvas>
+            <canvas id="humidityChart" height="100px"></canvas>
+            <canvas id="pressureChart" height="100px"></canvas>
+            <canvas id="luxChart" height="100px"></canvas>
+          </div>
+          <div id="raw-data">
+            <pre id="raw-data-json"></pre>
+          </div>
+          <div id="raw-data">
+            <pre id="raw-location-json"></pre>
+          </div>
         </div>
       </div>
       <br>
-      <div id="raw-data">
-        <pre id="raw-data-json"></pre>
-      </div>
-      <div id="raw-data">
-        <pre id="raw-location-json"></pre>
-      </div>
     </div>
-  </body>
+ </body>
 </html>

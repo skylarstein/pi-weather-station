@@ -4,14 +4,15 @@
 }
 
 #raw-data-json {
-float: left;
+  float: left;
   font-size: 10px;
+  display: none;
 }
 
 #raw-location-json {
   clear: left;
-  float: left;
   font-size: 10px;
+  display: none;
 }
 
 #container {
@@ -30,6 +31,7 @@ float: left;
 }
 
 #gauge-col {
+  vertical-align:top;
   width: 135px;
   height: 600px;
   padding: 0;
@@ -37,8 +39,13 @@ float: left;
 }
 
 #map-canvas {
-  display: table-cell;
-  height: 100%;
+  width: 100%;
+  height: 300px;
+}
+
+.charts {
+  width: 100%;
+  height: 1000px;
 }
 
 #gauge {
