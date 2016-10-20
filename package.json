@@ -20,7 +20,6 @@
   "homepage": "https://github.com/skylarstein/pi-weather-station#readme",
   "dependencies": {
     "async": "^2.0.0-rc.5",
-    "bme280-sensor": "0.0.9",
     "colors": "^1.1.2",
     "cors": "^2.7.1",
     "dotenv": "^2.0.0",
@@ -36,6 +35,7 @@
     "ws": "^1.1.1"
   },
   "linuxDependencies": {
+    "bme280-sensor": "0.0.9",
     "i2c-bus": "^1.1.1",
     "dht-sensor": "0.0.4",
     "onoff": "^1.0.4",
