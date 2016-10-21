@@ -6,7 +6,7 @@ Node.js spends so much of its time running inside virtualized instances, I figur
 
 A super basic front-end is served out of the /public directory with a few gauge controls for temperature, humidity, barometric pressure, and lux, as well as a map to display the current location. Raw data is included from all sensors.
 
-Next on the list, maybe a piezo buzzer for a startup sound, an LED for a heartbeat, graphs to display values over time, perhaps an integrated display or LCD. I imagine I'll just keep adding sensors/devices until I run out of room on the prototype board. Also, since the device knows its location, local weather forcasts could be queried from one of several sources.
+Next on the list, maybe a piezo buzzer for a startup sound, an LED for a heartbeat, perhaps an integrated display or LCD. I imagine I'll just keep adding sensors/devices until I run out of room on the prototype board. Also, since the device knows its location, local weather forecasts could be queried from one of several sources.
 
 [<img src="/docs/screenshot.png" width="250">](https://raw.githubusercontent.com/skylarstein/pi-weather-station/master/docs/screenshot.png)
 
