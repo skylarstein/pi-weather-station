@@ -1,6 +1,6 @@
 # Raspberry Pi Weather Station <img src="https://cdn.rawgit.com/skylarstein/pi-weather-station/master/public/images/raspberry-pi-logo.svg" width="40" align="bottom">
 
-[![CircleCI](https://circleci.com/gh/skylarstein/pi-weather-station.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/skylarstein/pi-weather-station)
+[![CircleCI](https://circleci.com/gh/skylarstein/pi-weather-station.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/skylarstein/pi-weather-station) <img src="https://david-dm.org/skylarstein/pi-weather-station/status.svg"> <img src="https://david-dm.org/skylarstein/pi-weather-station/dev-status.svg">
 
 Node.js spends so much of its time running inside virtualized instances, I figured it'd be fun to let it have its very own Raspberry Pi for an opportunity to talk directly to some hardware sensors: GPS, luminosity, ambient temperature, ambient humidity, and barometric pressure. Includes some fun stuff like calculating the local timezone offset and sunrise/sunset times at the reported GPS location, as well as support for publishing data to "the cloud" for real-time and historical data reporting.
 
