@@ -15,7 +15,8 @@ function initHistory() {
     var pressure = [];
     var lux = [];
 
-    data.forEach((element) => {
+    data.forEach((element, idx) => {
+      //if(idx % 5) return; // arbitrary thinning for some nice curve smoothing and faster rendering
       temperature.push({ x : element.timestamp, y : element.temperatureC * 9 / 5 + 32 });
       humidity.push({ x : element.timestamp, y : element.humidity });
       pressure.push({ x : element.timestamp, y : element.pressureinHg });
@@ -46,6 +47,19 @@ function initHistory() {
               day : 'MMM DD'
           }}
         }]
+      },
+      tooltips : {
+        callbacks : {
+          title : function(tooltipItems, data) {
+            // UTC to local date/time
+            var d = new Date(tooltipItems[0].xLabel);
+            return d.toLocaleDateString() + ' ' + d.toLocaleTimeString();
+          },
+          label : function(tooltipItem, data) {
+            // Two digits of precision will do
+            return data.datasets[0].label + ': ' + Number(data.datasets[0].data[tooltipItem.index].y).toFixed(2);
+          },
+        }
       }
     };
 
@@ -54,8 +68,8 @@ function initHistory() {
       data : {
         datasets : [{
           label : 'Temperature (F)',
-          backgroundColor : 'rgba(77, 158, 239, 0.60)',
-          borderColor : 'rgba(0,0,0,0)',
+          backgroundColor : 'rgba(255, 136, 0, 0.60)',
+          borderColor : 'rgba(0, 0, 0, 0)',
           data : temperature
         }]
       },
@@ -67,8 +81,8 @@ function initHistory() {
       data : {
         datasets : [{
           label : 'Humidity',
-          backgroundColor : 'rgba(0, 199, 116, 0.50)',
-          borderColor : 'rgba(0,0,0,0)',
+          backgroundColor : 'rgba(77, 158, 239, 0.60)',
+          borderColor : 'rgba(0, 0, 0, 0)',
           data : humidity
         }]
       },
@@ -80,8 +94,8 @@ function initHistory() {
       data : {
         datasets : [{
           label : 'Pressure (inHg)',
-          backgroundColor : 'rgba(255, 136, 0, 0.60)',
-          borderColor : 'rgba(0,0,0,0)',
+          backgroundColor : 'rgba(0, 199, 116, 0.50)',
+          borderColor : 'rgba(0, 0, 0, 0)',
           data : pressure
         }]
       },
@@ -94,7 +108,7 @@ function initHistory() {
         datasets : [{
           label : 'Lux',
           backgroundColor : 'rgba(242, 230, 69, 0.60)',
-          borderColor : 'rgba(0,0,0,0)',
+          borderColor : 'rgba(0, 0, 0, 0)',
           data : lux
         }]
       },
