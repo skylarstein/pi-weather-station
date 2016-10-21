@@ -1,7 +1,7 @@
 /*
   publisher-ws.js
 
-  WebsocketPublisher will publish sensor and location data to websocket clients.
+  WebSocketPublisher will publish sensor and location data to WebSocket clients.
 */
 
 'use strict';
@@ -10,37 +10,37 @@ const _               = require('lodash');
 const SensorData      = require('../model/sensor-data.js');
 const WebSocketServer = require('ws').Server;
 
-class WebsocketPublisher {
+class WebSocketPublisher {
 
-  // instance() - create a singleton instance of WebsocketPublisher
+  // instance() - create a singleton instance of WebSocketPublisher
   //
   static instance() {
-    const WebsocketPublisherSingletonSymbol = Symbol.for("app.pi-weather-station.websocket-publisher");
-    return Object.getOwnPropertySymbols(global).indexOf(WebsocketPublisherSingletonSymbol) >= 0 ?
-      global[WebsocketPublisherSingletonSymbol] : (global[WebsocketPublisherSingletonSymbol] = new WebsocketPublisher());
+    const WebSocketPublisherSingletonSymbol = Symbol.for("app.pi-weather-station.websocket-publisher");
+    return Object.getOwnPropertySymbols(global).indexOf(WebSocketPublisherSingletonSymbol) >= 0 ?
+      global[WebSocketPublisherSingletonSymbol] : (global[WebSocketPublisherSingletonSymbol] = new WebSocketPublisher());
   }
 
   // constructor() - Would ideally have a private constructor. Users should not instantiate
-  // this class directly, but should instead call WebsocketPublisher.instance() for the singleton.
+  // this class directly, but should instead call WebSocketPublisher.instance() for the singleton.
   //
   constructor() {
-    console.log('Creating WebsocketPublisher');
+    console.log('Creating WebSocketPublisher');
 
     this.deviceManager = require('../devices/device-manager.js').instance();
     this.sensorPublishRateMs = Number(process.env.WEBSOCKET_SENSOR_DATA_RATE_MS);
   }
 
-  // startPublishing() - fire up WebsocketPublisher and push sensor updates to clients
+  // startPublishing() - fire up WebSocketPublisher and push sensor updates to clients
   // at the configured interval.
   //
   startPublishing(httpServer) {
 
     if(!this.sensorPublishRateMs || isNaN(this.sensorPublishRateMs) || this.sensorPublishRateMs <= 0) {
-      console.error(`WebsocketPublisher update rate is not valid [${this.sensorPublishRateMs}], will not start!`);
+      console.error(`WebSocketPublisher update rate is not valid [${this.sensorPublishRateMs}], will not start!`);
       return;
     }
 
-    console.log(`WebsocketPublisher starting with update rate ${this.sensorPublishRateMs}ms`);
+    console.log(`WebSocketPublisher starting with update rate ${this.sensorPublishRateMs}ms`);
 
     this.wss = new WebSocketServer( { server: httpServer } );
 
@@ -98,11 +98,11 @@ class WebsocketPublisher {
   // stopPublisher()
   //
   stopPublishing() {
-    console.log('WebsocketPublisher: stop publishing');
+    console.log('WebSocketPublisher: stop publishing');
     clearTimeout(this.sensorTimerId);
     clearTimeout(this.locationTimerId);
     delete this.wss;
   }
 }
 
-module.exports = WebsocketPublisher;
+module.exports = WebSocketPublisher;

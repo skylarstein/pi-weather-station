@@ -122,7 +122,7 @@ class SerialGPS {
       longitude *= -1;
     }
 
-    return { lat : latitude, lon : longitude }
+    return { lat : latitude, lon : longitude };
   }
 }
 

@@ -14,7 +14,7 @@ const os                 = require('os');
 const http               = require('http');
 const appPackage         = require('./package.json');
 const port               = process.env.PORT || 8888;
-const WebsocketPublisher = require('./controllers/publisher-ws.js');
+const WebSocketPublisher = require('./controllers/publisher-ws.js');
 
 // Start our server
 //
@@ -29,7 +29,7 @@ httpServer.on('listening', () => {
 
   console.log(`HTTP server listening on ${bind} on ${os.hostname()}`);
 
-  WebsocketPublisher.instance().startPublishing(httpServer);
+  WebSocketPublisher.instance().startPublishing(httpServer);
 });
 
 httpServer.on('error', (error) => {
