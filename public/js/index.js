@@ -7,17 +7,18 @@ $(document).ready(function() {
   // Assume root data source endpoint is local unless explicitly overridden.
   // This makes local front-end dev/test a bit easier from my laptop.
   //
-  window.dataSourceUrl = '';
-  if($.urlParam('source')) {
-    window.dataSourceUrl = $.urlParam('source');
+  window.dataSourceUrl = location.origin;
+  if($.urlParam('dataSourceUrl')) {
+    window.dataSourceUrl = $.urlParam('dataSourceUrl');
   }
 
-  initGauages();
+  initGauges();
+  initHistory();
 
   // Initiate websocket connection for sensor and location updates
   //
   (function websocketConnect() {
-    var host = location.origin.replace(/^http/, 'ws');
+    var host = window.dataSourceUrl.replace(/^http/, 'ws');
     console.log('Websocket host:', host);
     var ws = new WebSocket(host);
     ws.onmessage = function(event) {
