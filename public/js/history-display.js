@@ -93,7 +93,7 @@ function initHistory() {
       data : {
         datasets : [{
           label : 'Lux',
-          backgroundColor : 'rgba(229, 255, 61, 0.60)',
+          backgroundColor : 'rgba(242, 230, 69, 0.60)',
           borderColor : 'rgba(0,0,0,0)',
           data : lux
         }]
