@@ -39,7 +39,7 @@
     "i2c-bus": "^1.1.1",
     "dht-sensor": "0.0.4",
     "onoff": "^1.0.4",
-    "raspi-sensors": "skylarstein/raspi-sensors"
+    "raspi-sensors": "^0.2.8"
   },
   "devDependencies": {
     "chai": "^3.5.0",
