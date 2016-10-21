@@ -60,6 +60,11 @@ function initHistory() {
             return data.datasets[0].label + ': ' + Number(data.datasets[0].data[tooltipItem.index].y).toFixed(2);
           },
         }
+      },
+      legend : {
+        onClick : function(evnt, legendItem) {
+          // disabling click-to-toggle legend visibility
+        }
       }
     };
 
