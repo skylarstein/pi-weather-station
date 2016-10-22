@@ -30,16 +30,16 @@
     "mongoose": "^4.6.3",
     "nmea": "^0.1.0",
     "request": "^2.72.0",
-    "serialport": "^4.0.1",
     "solar-calc": "^1.0.3",
     "ws": "^1.1.1"
   },
   "linuxDependencies": {
     "bme280-sensor": "0.0.9",
-    "i2c-bus": "^1.1.1",
+    "i2c-bus": "^1.1.2",
     "dht-sensor": "0.0.4",
-    "onoff": "^1.0.4",
-    "raspi-sensors": "^0.2.8"
+    "onoff": "^1.1.1",
+    "raspi-sensors": "^0.2.8",
+    "serialport": "^4.0.3"
   },
   "devDependencies": {
     "chai": "^3.5.0",
