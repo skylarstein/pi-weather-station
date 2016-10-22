@@ -22,7 +22,7 @@ describe('GET /', () => {
 });
 
 describe('GET /sensors/live', () => {
-  it('it should GET /sensors/live', (done) => {
+  it('it should return valid sensor data', (done) => {
     chai.request(server)
       .get('/sensors/live')
       .end((err, res) => {
@@ -54,7 +54,7 @@ describe('GET /sensors/live', () => {
 });
 
 describe('GET /location', () => {
-  it('it should GET /location', (done) => {
+  it('it should return valid location data', (done) => {
     chai.request(server)
       .get('/location')
       .end((err, res) => {
@@ -74,4 +74,24 @@ describe('GET /location', () => {
         done();
       });
   }).timeout(5000);
+});
+
+describe('GET /sensors/history/:startDate/:endDate', () => {
+  it('it should fail when given invalid startDate', (done) => {
+    chai.request(server)
+      .get('/sensors/history/foo/2016-10-22T10:23:12-0700')
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+
+  it('it should fail when given invalid endDate', (done) => {
+    chai.request(server)
+      .get('/sensors/history/2016-10-22T14:23:12.000Z/foo')
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
 });
