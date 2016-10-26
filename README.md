@@ -26,7 +26,8 @@ Next on the list, maybe a piezo buzzer for a startup sound, an LED for a heartbe
 
 ## Hardware Device Setup
 
-The sensors will fit within the Adafruit GPS Hat prototyping area but for clarity I moved this layout example onto a seperate breadboard.
+The sensors will fit within the Adafruit GPS Hat prototyping area but for clarity I moved this layout example onto a seperate breadboard. Keep in mind that the CPU on the Raspberry Pi can run quite hot depending on several factors. If you mount an ambient temperature and humidity sensor directly above the main board your measurements may be affected.
+
 ![Hardware Device Setup Image](/docs/pi-weather-station.png?raw=true "Hardware Device Setup Image")
 
 ## Raspberry Pi Software Setup
