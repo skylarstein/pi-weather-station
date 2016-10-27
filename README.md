@@ -73,7 +73,7 @@ sudo make install
 ```
 ### 5. npm install
 
-The takes several minutes on my RPi 2 Model B. Hang in there.
+This takes several minutes on my RPi 2 Model B. Hang in there.
 
 ## Running the Project
 
