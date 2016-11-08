@@ -25,7 +25,7 @@ httpServer.on('listening', () => {
   console.log(`Node ${process.version}, ${os.platform()}/${os.arch()}`);
 
   const addr = httpServer.address();
-  const bind = (typeof addr === 'string') ? 'pipe ' + addr : 'port ' + addr.port;
+  const bind = (typeof addr === 'string') ? `pipe ${addr}` : `port ${addr.port}`;
 
   console.log(`HTTP server listening on ${bind} on ${os.hostname()}`);
 
@@ -37,7 +37,7 @@ httpServer.on('error', (error) => {
     throw error;
   }
 
-  const bind = (typeof port === 'string') ? 'Pipe ' + port : 'Port ' + port;
+  const bind = (typeof port === 'string') ? `Pipe ${port}` : `Port ${port}`;
 
   switch(error.code) {
 
@@ -58,9 +58,6 @@ httpServer.on('error', (error) => {
 
 // Clean shutdown
 //
-process.on('SIGTERM', () => cleanShutdown('SIGTERM'));
-process.on('SIGINT', () => cleanShutdown('SIGINT'));
-
 const cleanShutdown = (shutdownType) => {
   console.log(`[${shutdownType}] Initiating graceful shutdown...`);
 
@@ -73,6 +70,9 @@ const cleanShutdown = (shutdownType) => {
   });
   */
   process.exit(0);
-}
+};
+
+process.on('SIGTERM', () => cleanShutdown('SIGTERM'));
+process.on('SIGINT', () => cleanShutdown('SIGINT'));
 
 module.exports = app; // for testing
