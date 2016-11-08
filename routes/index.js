@@ -7,7 +7,6 @@
 'use strict';
 
 const router     = require('express').Router();
-const path       = require('path');
 const SensorData = require('../model/sensor-data.js');
 const moment     = require('moment');
 
@@ -16,9 +15,6 @@ const moment     = require('moment');
 //
 const DeviceManager = require('../devices/device-manager.js');
 const deviceManager = DeviceManager.instance();
-
-router.get('/', (req, res) =>
-  res.sendFile(path.join(_dirname, 'public', 'index.html')));
 
 // GET live sensor data
 //
@@ -34,11 +30,11 @@ router.get('/sensors/history/:startDate/:endDate', (req, res) => {
   let query = { deviceId : process.env.PI_WEATHER_STATION_DEVICE_ID };
 
   if(!moment(req.params.startDate, moment.ISO_8601).isValid()) {
-    return res.status(400).send('Invalid ISO 8601 startDate')
+    return res.status(400).send('Invalid ISO 8601 startDate');
   }
 
   if(!moment(req.params.endDate, moment.ISO_8601).isValid()) {
-    return res.status(400).send('Invalid ISO 8601 endDate')
+    return res.status(400).send('Invalid ISO 8601 endDate');
   }
 
   query.timestamp = {'$gte' : req.params.startDate, '$lte' : req.params.endDate };
