@@ -33,7 +33,7 @@ class DevicesRPi extends DevicesBase {
 
     this.bme280.init()
       .then((result) => console.log('BME280 initialization succeeded'))
-      .catch((err) => console.error('BME280 initialization failed: ' + err));
+      .catch((err) => console.error(`BME280 initialization failed: ${err}`));
   }
 
   ledOn() {

@@ -22,26 +22,26 @@ exports.isRaspberryPi = () => {
   //
   const info = exports.cpuinfo();
 
-  const isBCM = info ? _.filter(info.Hardware, (val) => val.indexOf('BCM') !== -1).length : 0;
-  const isARM = info ? _.filter(info.model_name, (val) => val.indexOf('ARMv') !== -1).length : 0;
+  const isBCM = info ? _.filter(info.Hardware, (val) => val.indexOf('BCM') !== -1).length : false;
+  const isARM = info ? _.filter(info.model_name, (val) => val.indexOf('ARMv') !== -1).length : false;
 
   return (os.type() === 'Linux' && isBCM && isARM);
-}
+};
 
 // cpuinfo() - return /proc/cpuinfo as an object
 //
 exports.cpuinfo = () => {
   const _cpuinfo = !fs.existsSync('/proc/cpuinfo') ? '' : fs.readFileSync('/proc/cpuinfo') + '';
   return _cpuinfo.split('\n').reduce((result, line) => {
-    line = line.replace(/\t/g, '')
-    let parts = line.split(':')
-    let key = parts[0].replace(/\s/g, '_')
+    line = line.replace(/\t/g, '');
+    let parts = line.split(':');
+    let key = parts[0].replace(/\s/g, '_');
     if(parts.length === 2) {
-      result[key] = parts[1].trim().split(' ')
+      result[key] = parts[1].trim().split(' ');
     }
-    return result
+    return result;
   }, {});
-}
+};
 
 // flattenResults() - sensor results are generated via async.parallel with individual responses
 // pacakged into an array. Flatten the array to make things easier for the client to digest.
@@ -64,43 +64,9 @@ exports.flattenResults = (data) => {
     }
   }
   return results;
-}
+};
 
-// reverseGeocode() - turn latitude/longitude into a human readable address / place name
-//
-exports.reverseGeocode = (gpsData) => {
-  return new Promise((resolve, reject) => {
-    //getJSON(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${gpsData.lat},${gpsData.lon}`)
-    getJSON(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${gpsData.lat}&lon=${gpsData.lon}`)
-      .then((data) => resolve({ address     : data.address,
-                                lat         : data.lat,
-                                lon         : data.lon,
-                                boundingBox : data.boundingbox
-                            }))
-      .catch((err) => reject(err));
-    });
-}
-
-// lookupTimezone() - determine the timezone at the given latitude/longitude
-//
-exports.lookupTimezone = (gpsData) => {
-  return new Promise((resolve, reject) => {
-    getJSON(`https://maps.googleapis.com/maps/api/timezone/json?location=${gpsData.lat},${gpsData.lon}&timestamp=${gpsData.timestamp.getTime()/1000}`)
-      .then((data) => resolve(data))
-      .catch((err) => reject(err));
-    });
-}
-
-// sunTimes() - get sunrise and sunset times for the given date and location
-//
-exports.suntimes = (gpsData) => {
-  let solarCalc = new SolarCalc(gpsData.timestamp, gpsData.lat, gpsData.lon);
-  return { sunrise : solarCalc.sunrise,
-           sunset : solarCalc.sunset
-         };
-}
-
-// getJSON() - wrapper around an HTTP GET request
+// getJSON() - simple wrapper around a GET request returning JSON
 //
 const getJSON = (url) => {
   return new Promise((resolve, reject) => {
@@ -120,4 +86,38 @@ const getJSON = (url) => {
       }
     });
   });
-}
+};
+
+// reverseGeocode() - turn latitude/longitude into a human readable address / place name
+//
+exports.reverseGeocode = (gpsData) => {
+  return new Promise((resolve, reject) => {
+    //getJSON(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${gpsData.lat},${gpsData.lon}`)
+    getJSON(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${gpsData.lat}&lon=${gpsData.lon}`)
+      .then((data) => resolve({ address     : data.address,
+                                lat         : data.lat,
+                                lon         : data.lon,
+                                boundingBox : data.boundingbox
+                              }))
+      .catch((err) => reject(err));
+  });
+};
+
+// lookupTimezone() - determine the timezone at the given latitude/longitude
+//
+exports.lookupTimezone = (gpsData) => {
+  return new Promise((resolve, reject) => {
+    getJSON(`https://maps.googleapis.com/maps/api/timezone/json?location=${gpsData.lat},${gpsData.lon}&timestamp=${gpsData.timestamp.getTime()/1000}`)
+      .then((data) => resolve(data))
+      .catch((err) => reject(err));
+  });
+};
+
+// sunTimes() - get sunrise and sunset times for the given date and location
+//
+exports.suntimes = (gpsData) => {
+  let solarCalc = new SolarCalc(gpsData.timestamp, gpsData.lat, gpsData.lon);
+  return { sunrise : solarCalc.sunrise,
+           sunset : solarCalc.sunset
+         };
+};

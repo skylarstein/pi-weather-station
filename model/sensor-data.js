@@ -8,8 +8,7 @@
 
 const mongoose = require('mongoose');
 
-const sensorDataSchema = mongoose.Schema(
-{
+const sensorDataSchema = mongoose.Schema({
   deviceId     : { type : String },
   timestamp    : { type : Date, default : undefined },
   temperatureC : { type : Number, default : 0 },

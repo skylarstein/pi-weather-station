@@ -15,7 +15,7 @@ class DatabasePublisher {
   // instance() - create a singleton instance of Publisher
   //
   static instance() {
-    const PublisherSingletonSymbol = Symbol.for("app.pi-weather-station.database-publisher");
+    const PublisherSingletonSymbol = Symbol.for('app.pi-weather-station.database-publisher');
     return Object.getOwnPropertySymbols(global).indexOf(PublisherSingletonSymbol) >= 0 ?
       global[PublisherSingletonSymbol] : (global[PublisherSingletonSymbol] = new DatabasePublisher());
   }
@@ -37,7 +37,7 @@ class DatabasePublisher {
   startPublishing() {
 
     if(!this.deviceId) {
-      console.error(`Unknown device id, DatabasePublisher will not start!`);
+      console.error('Unknown device id, DatabasePublisher will not start!');
       return;
     }
 
@@ -101,7 +101,7 @@ class DatabasePublisher {
         });
       })
       .catch((err) => {
-        console.error(`Unable to publish sensor data, DeviceManager.readSensors() error: ${error}`);
+        console.error(`Unable to publish sensor data, DeviceManager.readSensors() error: ${err}`);
         this._restartPublishTimer();
       });
   }

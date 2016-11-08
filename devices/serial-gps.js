@@ -98,7 +98,7 @@ class SerialGPS {
     let seconds = timestamp.substring(4, 6);
     let day     = date.substring(0, 2);
     let month   = date.substring(2, 4);
-    let year    = '20' + date.substring(4, 6); // TODO: Fix this bug in 84 years
+    let year    = `20${date.substring(4, 6)}`; // TODO: Fix this bug in 84 years
 
     return new Date(Date.UTC(year, month - 1, day, hours, minutes, seconds));
   }

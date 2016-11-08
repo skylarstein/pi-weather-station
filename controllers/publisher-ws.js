@@ -6,8 +6,6 @@
 
 'use strict';
 
-const _               = require('lodash');
-const SensorData      = require('../model/sensor-data.js');
 const WebSocketServer = require('ws').Server;
 
 class WebSocketPublisher {
@@ -15,7 +13,7 @@ class WebSocketPublisher {
   // instance() - create a singleton instance of WebSocketPublisher
   //
   static instance() {
-    const WebSocketPublisherSingletonSymbol = Symbol.for("app.pi-weather-station.websocket-publisher");
+    const WebSocketPublisherSingletonSymbol = Symbol.for('app.pi-weather-station.websocket-publisher');
     return Object.getOwnPropertySymbols(global).indexOf(WebSocketPublisherSingletonSymbol) >= 0 ?
       global[WebSocketPublisherSingletonSymbol] : (global[WebSocketPublisherSingletonSymbol] = new WebSocketPublisher());
   }
@@ -73,10 +71,10 @@ class WebSocketPublisher {
           });
         })
         .catch((err) => {
-          console.error(`Unable to publish sensor data, DeviceManager.readSensors() error: ${error}`);
+          console.error(`Unable to publish sensor data, DeviceManager.readSensors() error: ${err}`);
           this._restartPublishTimer();
         });
-      }
+    }
   }
 
   _sendLocationData() {
@@ -89,10 +87,10 @@ class WebSocketPublisher {
           });
         })
         .catch((err) => {
-          console.error(`Unable to publish location data, DeviceManager.locationDetails() error: ${error}`);
+          console.error(`Unable to publish location data, DeviceManager.locationDetails() error: ${err}`);
           this._restartPublishTimer();
         });
-      }
+    }
   }
 
   // stopPublisher()

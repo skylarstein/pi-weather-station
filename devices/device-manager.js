@@ -15,7 +15,7 @@ const deviceUtils = require('./device-utils.js');
 class DeviceManager {
 
   static instance() { // singleton instance
-    const DeviceManagerSingletonSymbol = Symbol.for("app.pi-weather-station.device-manager");
+    const DeviceManagerSingletonSymbol = Symbol.for('app.pi-weather-station.device-manager');
     return Object.getOwnPropertySymbols(global).indexOf(DeviceManagerSingletonSymbol) >= 0 ?
       global[DeviceManagerSingletonSymbol] : (global[DeviceManagerSingletonSymbol] = new DeviceManager());
   }

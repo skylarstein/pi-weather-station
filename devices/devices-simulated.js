@@ -7,7 +7,6 @@
 'use strict';
 
 const DevicesBase = require('./devices-base.js');
-const deviceUtils = require('./device-utils.js');
 const os          = require('os');
 
 class DevicesSimulated extends DevicesBase {
