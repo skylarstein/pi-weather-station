@@ -13,6 +13,7 @@ const DatabasePublisher = require('./controllers/publisher-db.js');
 const mongoose          = require('mongoose');
 
 class WeatherStationApp {
+
   constructor() {
     this.express = express();
 
