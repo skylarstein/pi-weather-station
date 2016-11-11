@@ -4,14 +4,14 @@ process.env.NODE_ENV = 'test';
 
 const chai     = require('chai');
 const chaiHttp = require('chai-http');
-const server   = require('../server.js');
+const app      = require('../server.js');
 const should   = chai.should();
 
 chai.use(chaiHttp);
 
 describe('GET /', () => {
   it('it should GET /', (done) => {
-    chai.request(server)
+    chai.request(app)
       .get('/')
       .end((err, res) => {
         res.should.have.status(200);
@@ -23,7 +23,7 @@ describe('GET /', () => {
 
 describe('GET /sensors/live', () => {
   it('it should return valid sensor data', (done) => {
-    chai.request(server)
+    chai.request(app)
       .get('/sensors/live')
       .end((err, res) => {
         res.should.have.status(200);
@@ -55,7 +55,7 @@ describe('GET /sensors/live', () => {
 
 describe('GET /location', () => {
   it('it should return valid location data', (done) => {
-    chai.request(server)
+    chai.request(app)
       .get('/location')
       .end((err, res) => {
         res.should.have.status(200);
@@ -78,7 +78,7 @@ describe('GET /location', () => {
 
 describe('GET /sensors/history/:startDate/:endDate', () => {
   it('it should fail when given invalid startDate', (done) => {
-    chai.request(server)
+    chai.request(app)
       .get('/sensors/history/foo/2016-10-22T10:23:12-0700')
       .end((err, res) => {
         res.should.have.status(400);
@@ -87,7 +87,7 @@ describe('GET /sensors/history/:startDate/:endDate', () => {
   });
 
   it('it should fail when given invalid endDate', (done) => {
-    chai.request(server)
+    chai.request(app)
       .get('/sensors/history/2016-10-22T14:23:12.000Z/foo')
       .end((err, res) => {
         res.should.have.status(400);
