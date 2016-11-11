@@ -27,11 +27,11 @@ class DHT22 {
 
   pollingWorker(ms) {
     let data = this.dht22.read(22, this.gpioNo);
-    if(data.humidity == 0 && data.temperature == 0) {
+    if(data.humidity === 0 && data.temperature === 0) {
       data = this.dht22.read(22, this.gpioNo);
     }
  
-    if(data.humidity != 0 || data.temperature != 0) {
+    if(data.humidity !== 0 || data.temperature !== 0) {
       this.humidity = data.humidity;
       this.temperature_C = data.temperature;
     }

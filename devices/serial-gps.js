@@ -43,42 +43,42 @@ class SerialGPS {
 
         case 'GGA':
           let locGGA = this.gpsToDegrees(sentence.lat, sentence.latPole, sentence.lon, sentence.lonPole);
-          this.data['lat']           = locGGA.lat;
-          this.data['lon']           = locGGA.lon;
-          this.data['altitude']      = sentence.alt;
-          this.data['altitudeUnits'] = sentence.altUnit;
+          this.data.lat           = locGGA.lat;
+          this.data.lon           = locGGA.lon;
+          this.data.laltitude     = sentence.alt;
+          this.data.altitudeUnits = sentence.altUnit;
           break;
 
         case 'RMC':
           let locRMC = this.gpsToDegrees(sentence.lat, sentence.latPole, sentence.lon, sentence.lonPole);
-          this.data['lat']        = locRMC.lat;
-          this.data['lon']        = locRMC.lon;
-          this.data['timestamp']  = this.gpsToUTC(sentence.timestamp, sentence.date);
-          this.data['speedKnots'] = sentence.speedKnots;
-          this.data['heading']    = sentence.trackTrue;
+          this.data.lat        = locRMC.lat;
+          this.data.lon        = locRMC.lon;
+          this.data.timestamp  = this.gpsToUTC(sentence.timestamp, sentence.date);
+          this.data.speedKnots = sentence.speedKnots;
+          this.data.heading    = sentence.trackTrue;
           break;
   
         case 'GSA':
-          this.data['satelliteCount'] = sentence.satellites.length;
-          this.data['PDOP']           = parseFloat(sentence.PDOP);
-          this.data['HDOP']           = parseFloat(sentence.HDOP);
-          this.data['VDOP']           = parseFloat(sentence.VDOP);
+          this.data.satelliteCount = sentence.satellites.length;
+          this.data.PDOP           = parseFloat(sentence.PDOP);
+          this.data.HDOP           = parseFloat(sentence.HDOP);
+          this.data.VDOP           = parseFloat(sentence.VDOP);
 
           switch(sentence.mode) {
             case 1:
-              this.data['fix'] = 'No Fix';
+              this.data.fix = 'No Fix';
               break;
 
             case 2:
-              this.data['fix'] = '2D Fix';
+              this.data.fix = '2D Fix';
               break;
 
             case 3:
-              this.data['fix'] = '3D Fix';
+              this.data.fix = '3D Fix';
               break;
 
             default:
-              this.data['fix'] = `Unknown (${sentence.mode})`;
+              this.data.fix = `Unknown (${sentence.mode})`;
           }
 
           break;

@@ -4,7 +4,7 @@
 
 Node.js spends so much of its time running inside virtualized instances, I figured it'd be fun to let it have its very own Raspberry Pi for an opportunity to talk directly to some hardware sensors: GPS, luminosity, ambient temperature, ambient humidity, and barometric pressure. Includes some fun stuff like calculating the local timezone offset and sunrise/sunset times at the reported GPS location, as well as support for publishing data to "the cloud" for real-time and historical data reporting.
 
-A super basic front-end is served out of the /public directory with a few gauge controls for temperature, humidity, barometric pressure, and lux, as well as a map to display the current location. Raw data is included from all sensors.
+A super basic front-end is served out of the /public directory with a few gauge controls for temperature, humidity, barometric pressure, and lux, as well as a map to display the current location.
 
 Next on the list, maybe a piezo buzzer for a startup sound, an LED for a heartbeat, perhaps an integrated display or LCD. I imagine I'll just keep adding sensors/devices until I run out of room on the prototype board. Also, since the device knows its location, local weather forecasts could be queried from one of several sources.
 
@@ -12,7 +12,7 @@ Next on the list, maybe a piezo buzzer for a startup sound, an LED for a heartbe
 
 ## Currently Supported Hardware
 
-* Foremost, I am running this project on a [Raspberry Pi 2 Model B](https://www.raspberrypi.org/products/raspberry-pi-2-model-b/). I haven't yet tried this on a RPi 3 since the Adafruit GPS Hat I'm using is not compatible with that board. Hopefully that will change in the future.
+* Foremost, I am running this project on a [Raspberry Pi 2 Model B](https://www.raspberrypi.org/products/raspberry-pi-2-model-b/). I haven't yet tried this on a RPi 3 since the Adafruit GPS Hat I'm using is not off-the-shelf compatible with that board. It can be made to work I just need to get around to it.
 
 * [BME280 Humidity and Pressure Sensor](https://www.adafruit.com/product/2652) (I2C). While this device does report temperature, note that temperature is measured by the internal temperature sensor. This temperature value depends on the PCB temperature, sensor element self-heating, and ambient temperature is typically reported above actual ambient temperature.
 

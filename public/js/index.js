@@ -46,5 +46,5 @@ $(document).ready(function() {
 
 $.urlParam = function(name) {
   var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-  return results == null ? null : decodeURI(results[1]) || null;
-}
+  return results === null ? null : decodeURI(results[1]) || null;
+};

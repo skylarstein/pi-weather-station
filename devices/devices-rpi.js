@@ -56,17 +56,17 @@ class DevicesRPi extends DevicesBase {
 
         (callback) => this.bme280.readSensorData()
           .then((data) => {
-            data['temperature_F'] = BME280.convertCelciusToFahrenheit(data.temperature_C);
-            data['pressure_inHg'] = BME280.convertHectopascalToInchesOfMercury(data.pressure_hPa);
+            data.temperature_F = BME280.convertCelciusToFahrenheit(data.temperature_C);
+            data.pressure_inHg = BME280.convertHectopascalToInchesOfMercury(data.pressure_hPa);
             /*
-            data['heatIndex_C'] = BME280.calculateHeatIndexCelcius(data.temperature_C, data.humidity);
-            data['heatIndex_F'] = BME280.convertCelciusToFahrenheit(data.heatIndex_C);
+            data.heatIndex_C = BME280.calculateHeatIndexCelcius(data.temperature_C, data.humidity);
+            data.heatIndex_F = BME280.convertCelciusToFahrenheit(data.heatIndex_C);
 
-            data['dewPoint_C'] = BME280.calculateDewPointCelcius(data.temperature_C, data.humidity);
-            data['dewPoint_F'] = BME280.convertCelciusToFahrenheit(data.dewPoint_C);
+            data.dewPoint_C = BME280.calculateDewPointCelcius(data.temperature_C, data.humidity);
+            data.dewPoint_F = BME280.convertCelciusToFahrenheit(data.dewPoint_C);
             */
-            data['altitude_m'] = BME280.calculateAltitudeMeters(data.pressure_hPa);
-            data['altitude_ft'] = BME280.convertMetersToFeet(data.altitude_m);
+            data.altitude_m = BME280.calculateAltitudeMeters(data.pressure_hPa);
+            data.altitude_ft = BME280.convertMetersToFeet(data.altitude_m);
 
             return callback(null, { BME280 : data });
           })
@@ -74,7 +74,7 @@ class DevicesRPi extends DevicesBase {
 
         (callback) => {
           let data = this.dht22.readSensorData();
-          data['temperature_F'] = BME280.convertCelciusToFahrenheit(data.temperature_C);
+          data.temperature_F = BME280.convertCelciusToFahrenheit(data.temperature_C);
           return callback(null, { DHT22 : data });
         },
 

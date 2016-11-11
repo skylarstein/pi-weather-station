@@ -50,7 +50,6 @@ class WeatherStationApp {
 
     DatabasePublisher.instance().startPublishing();
   }
-
 }
 
 module.exports = WeatherStationApp;
